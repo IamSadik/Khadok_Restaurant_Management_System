@@ -110,7 +110,7 @@
         <div class="modal-content">
             <span class="close-modal">&times;</span>
             <h2>Sign Up as Stakeholder</h2>
-            <form id="stakeholder-signup-form" method="POST">
+            <form id="stakeholder-signup-form">
                 <div class="form-group">
                     <label for="stakeholder-name">Name</label>
                     <input type="text" id="stakeholder-name" name="name" placeholder="Enter your name" required>
@@ -160,8 +160,38 @@
                 alert('Something went wrong!');
             }
         });
+
+        document.getElementById('stakeholder-signup-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const name = document.getElementById('stakeholder-name').value;
+            const email = document.getElementById('stakeholder-email').value;
+            const password = document.getElementById('stakeholder-password').value;
+            const restaurant_name = document.getElementById('restaurant-name').value;
+
+            try {
+                const response = await fetch('/api/stakeholder/signup', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ name, email, password, restaurant_name }),
+                });
+
+                const data = await response.json();
+                if (response.ok) {
+                    alert('Signup successful!');
+                    // Redirect or clear the form
+                } else {
+                    alert(`Error: ${data.message}`);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Something went wrong!');
+            }
+        });
     </script>
-    
+  
 
 
 

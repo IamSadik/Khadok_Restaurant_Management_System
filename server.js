@@ -37,7 +37,8 @@ const consumerRoutes = require('./routes/consumerRoutes');
 app.use('/', consumerRoutes);
 const riderRoutes = require('./routes/riderRoutes');
 app.use('/api/rider', riderRoutes);
-
+const stakeholderRoutes = require('./routes/stakeholderRoutes');
+app.use('/api/stakeholder', stakeholderRoutes);
 
 
 

@@ -1,0 +1,128 @@
+/* Adjusting Page Content */
+.main-content {
+    margin-left: 80px; /* Adjusted for collapsed sidebar */
+    padding: 20px;
+    transition: margin-left 0.3s ease-in-out;
+    overflow-x: hidden; /* To prevent horizontal scrolling */
+}
+
+.main-content.expanded {
+    margin-left: 260px; /* Adjusted for expanded sidebar */
+}
+
+/* Header Section */
+.main-content .header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.main-content .header h1 {
+    font-size: 2.5rem;
+    color: #2a3d66;
+}
+
+.main-content .header p {
+    font-size: 1rem;
+    color: #555;
+}
+
+/* Quick Actions Section */
+.main-content .quick-actions {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.main-content .quick-actions .action-card {
+    flex: 1;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.main-content .quick-actions .action-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.main-content .quick-actions .action-card i {
+    font-size: 2rem;
+    color: #2a3d66;
+    margin-bottom: 10px;
+}
+
+.main-content .quick-actions .action-card h3 {
+    font-size: 1.2rem;
+    margin: 10px 0;
+    color: #2a3d66;
+}
+
+.main-content .quick-actions .action-card p {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+/* Statistics Section */
+.main-content .statistics {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.main-content .statistics .stat-card {
+    flex: 1;
+    background-color: #2a3d66;
+    color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.main-content .statistics .stat-card h3 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.main-content .statistics .stat-card p {
+    font-size: 1rem;
+}
+
+/* Recent Activities Section */
+.main-content .recent-activities {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.main-content .recent-activities h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #2a3d66;
+}
+
+.main-content .recent-activities table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.main-content .recent-activities table th,
+.main-content .recent-activities table td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+.main-content .recent-activities table th {
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+
+

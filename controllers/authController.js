@@ -1,6 +1,6 @@
 const { getConsumerByEmail, getStakeholderByEmail } = require('../models/authModel');
 
-const bcrypt = require('bcrypt');
+//const bcrypt = require('bcrypt');
 
 
 // Variables to store logged-in emails
@@ -19,12 +19,9 @@ exports.loginConsumer = async (req, res) => {
         }
 
 
-        // Compare the provided password with the stored encrypted password
-        const isMatch = await bcrypt.compare(password, consumer.password);
-        if (!isMatch) {
-
-      
-            return res.status(401).send('Invalid email or password');
+        // Directly compare passwords since they are not hashed
+        if (password !== consumer.password) {
+            return res.status(401).json({ message: 'Invalid email or password' });
         }
           // Simulate successful authentication
         if (email) {
@@ -48,10 +45,8 @@ exports.loginStakeholder = async (req, res) => {
             return res.status(404).json({ message: 'Stakeholder not found' });
         }
 
-        // Compare the provided password with the stored encrypted password
-        const isMatch = await bcrypt.compare(password, stakeholder.password);
-        if (!isMatch) {
-
+        // Directly compare passwords since they are not hashed
+        if (password !== stakeholder.password) {
             return res.status(401).json({ message: 'Invalid email or password' });
         }
         if (email) {
@@ -60,7 +55,7 @@ exports.loginStakeholder = async (req, res) => {
         }
        
          // redirect to dashboard
-         res.redirect('/consumer/khadok.consumer.dashboard.html');
+         res.redirect('/stakeholder/khadok.stakeholder.index.html');
     } catch (error) {
         console.error('Error in stakeholder login:', error);
         res.status(500).json({ message: 'Internal Server Error' });
@@ -75,7 +70,7 @@ exports.logout = (req, res) => {
 
     if (userType === 'consumer') {
         consumerEmail = null; // Clear consumer email
-    } else if (userType === 'stakeholder') {
+    } else  {
         stakeholderEmail = null; // Clear stakeholder email
     }
 
@@ -98,3 +93,10 @@ exports.getEmail = (req, res) => {
     res.status(400).json({ message: 'Invalid user type' });
 };
 
+exports.logoutHandler = (req, res) => {
+    // Simply return a success response with the redirect URL
+    res.json({
+        message: 'Logout successful!',
+        redirectURL: '../login.html', // URL for your dedicated logout page
+    });
+};

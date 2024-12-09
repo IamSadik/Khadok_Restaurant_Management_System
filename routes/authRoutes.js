@@ -4,7 +4,10 @@ const express = require("express");
 const router = express.Router();
 const { loginConsumer, loginStakeholder,   } = require("../controllers/authController");
 const { logout , getEmail} = require('../controllers/authController');
+const { logoutHandler } = require('../controllers/authController');
 
+// Logout route stakeholder
+router.post('/logout', logoutHandler);
 
 router.post('/login-consumer', (req, res, next) => {
     console.log('Route hit:', req.body);

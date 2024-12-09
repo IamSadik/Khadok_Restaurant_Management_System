@@ -8,6 +8,7 @@ const pool = require('./config/configdb');
 const authRoutes = require('./routes/authRoutes');
 const restaurantRoutes = require('./routes/restaurantRoutes');
 
+
 // Initialize dotenv for environment variables
 dotenv.config();
 
@@ -35,8 +36,19 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 const consumerRoutes = require('./routes/consumerRoutes');
 app.use('/', consumerRoutes);
+
+const riderRoutes = require('./routes/riderRoutes');
+app.use('/api/rider', riderRoutes);
+const stakeholderRoutes = require('./routes/stakeholderRoutes');
+app.use('/api/stakeholder', stakeholderRoutes);
+
+
+
+
+
 // Use the restaurant routes
 app.use(restaurantRoutes);
+
 // Routes
 //app.use('/api/admin', require('./routes/adminRoutes'));
 //app.use('/api/consumer', require('./routes/consumerRoutes'));

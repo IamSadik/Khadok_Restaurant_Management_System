@@ -15,6 +15,3 @@ exports.loginHandler = async (req, res) => {
     }
 };
 
-
-
-  

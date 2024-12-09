@@ -1,6 +1,7 @@
 const { getConsumerByEmail, getStakeholderByEmail } = require('../models/authModel');
 
-//const bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt');
+
 
 // Variables to store logged-in emails
 let consumerEmail = null;
@@ -17,7 +18,12 @@ exports.loginConsumer = async (req, res) => {
             return res.status(404).send('Consumer not found');
         }
 
-        if (password !== consumer.password) {
+
+        // Compare the provided password with the stored encrypted password
+        const isMatch = await bcrypt.compare(password, consumer.password);
+        if (!isMatch) {
+
+      
             return res.status(401).send('Invalid email or password');
         }
           // Simulate successful authentication
@@ -42,7 +48,10 @@ exports.loginStakeholder = async (req, res) => {
             return res.status(404).json({ message: 'Stakeholder not found' });
         }
 
-        if (password !== stakeholder.password) {
+        // Compare the provided password with the stored encrypted password
+        const isMatch = await bcrypt.compare(password, stakeholder.password);
+        if (!isMatch) {
+
             return res.status(401).json({ message: 'Invalid email or password' });
         }
         if (email) {
@@ -88,3 +97,4 @@ exports.getEmail = (req, res) => {
 
     res.status(400).json({ message: 'Invalid user type' });
 };
+

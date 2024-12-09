@@ -61,7 +61,7 @@
         <div class="modal-content">
             <span class="close-modal">&times;</span>
             <h2>Create an Account</h2>
-            <form action="consumer_signup.php" method="POST">
+            <form id="consumer-signup-form" method="POST">
                 <div class="form-group">
                     <label for="name">Name</label>
                     <input type="text" id="name" name="name" placeholder="Enter your name" required>
@@ -76,6 +76,7 @@
                 </div>
                 <button type="submit" class="submit-btn">Register</button>
             </form>
+            
         </div>
     </div>
 
@@ -84,7 +85,8 @@
         <div class="modal-content">
             <span class="close-modal">&times;</span>
             <h2>Sign Up as Rider</h2>
-            <form id="rider-signup-form" method="POST" action="rider_signup.php">
+            <!-- Replace the form's method and action with an event listener in JavaScript -->
+            <form id="rider-signup-form">
                 <div class="form-group">
                     <label for="rider-name">Name</label>
                     <input type="text" id="rider-name" name="name" placeholder="Enter your name" required>
@@ -97,8 +99,9 @@
                     <label for="rider-password">Password</label>
                     <input type="password" id="rider-password" name="password" placeholder="Enter your password" required>
                 </div>
-                <button type="submit" class="submit-btn">Register</button>
+                <button type="button" id="rider-submit-btn" class="submit-btn">Register</button>
             </form>
+            
         </div>
     </div>
 
@@ -107,7 +110,7 @@
         <div class="modal-content">
             <span class="close-modal">&times;</span>
             <h2>Sign Up as Stakeholder</h2>
-            <form id="stakeholder-signup-form" method="POST" action="stakeholder_signup.php">
+            <form id="stakeholder-signup-form">
                 <div class="form-group">
                     <label for="stakeholder-name">Name</label>
                     <input type="text" id="stakeholder-name" name="name" placeholder="Enter your name" required>
@@ -126,12 +129,70 @@
                 </div>
                 <button type="submit" class="submit-btn">Register</button>
             </form>
+            
         </div>
     </div>
 
-
-
+    <script>
+        document.getElementById('rider-submit-btn').addEventListener('click', async () => {
+            const name = document.getElementById('rider-name').value;
+            const email = document.getElementById('rider-email').value;
+            const password = document.getElementById('rider-password').value;
     
+            try {
+                const response = await fetch('/api/rider/signup', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ name, email, password }),
+                });
+    
+                const data = await response.json();
+                if (response.ok) {
+                    alert('Signup successful!');
+                    // Redirect or clear the form
+                } else {
+                    alert(`Error: ${data.message}`);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Something went wrong!');
+            }
+        });
+
+        document.getElementById('stakeholder-signup-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const name = document.getElementById('stakeholder-name').value;
+            const email = document.getElementById('stakeholder-email').value;
+            const password = document.getElementById('stakeholder-password').value;
+            const restaurant_name = document.getElementById('restaurant-name').value;
+
+            try {
+                const response = await fetch('/api/stakeholder/signup', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ name, email, password, restaurant_name }),
+                });
+
+                const data = await response.json();
+                if (response.ok) {
+                    alert('Signup successful!');
+                    // Redirect or clear the form
+                } else {
+                    alert(`Error: ${data.message}`);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Something went wrong!');
+            }
+        });
+    </script>
+  
+
 
 
     <script src="js/modal.js"></script>

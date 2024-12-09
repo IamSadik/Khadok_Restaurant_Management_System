@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <div class="navigation">
+            <ul>
+                <li>
+                    <a href="#">
+                        <span class="icon">
+                            <ion-icon name="beer-outline"></ion-icon>
+                        </span>
+                        <span class="title">K H A D O K</span>
+                    </a>
+                </li>
+                <li><a href="index.html"><span class="icon"><ion-icon name="home-outline"></ion-icon></span><span class="title">Dashboard</span></a></li>
+                <li><a href="#"><span class="icon"><ion-icon name="people-outline"></ion-icon></span><span class="title">Customers</span></a></li>
+                <li><a href="messages.html"><span class="icon"><ion-icon name="chatbubble-outline"></ion-icon></span><span class="title">Messages</span></a></li>
+                <li><a href="help.html"><span class="icon"><ion-icon name="help-outline"></ion-icon></span><span class="title">Help</span></a></li>
+                <li><a href="settings.html"><span class="icon"><ion-icon name="settings-outline"></ion-icon></span><span class="title">Settings</span></a></li>
+                <li><a href="#"><span class="icon"><ion-icon name="log-out-outline"></ion-icon></span><span class="title">Sign Out</span></a></li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main">
+            <div class="topbar">
+                <div class="toggle"><ion-icon name="menu-outline"></ion-icon></div>
+            </div>
+
+            <!-- Feature Section -->
+            <div class="features-container">
+                <!-- Feature 1: Tracking Map -->
+                <div class="feature feature-map">
+                    <div class="cardHeader">
+                        <h2>Live Tracking System</h2>
+                    </div>
+                    <div id="map"></div>
+                      <br>
+                    <!-- Orders Table -->
+                    <div class="cardHeader">
+                        <h2>Order Table</h2>
+                    </div>
+                    <table class="orders-table">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Consumer ID</th>
+                                <th>Order Date</th>
+                                <th>Status</th>
+                                <th>Total Amount</th>
+                                <th>Restuarent Name</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>101</td>
+                                <td>5001</td>
+                                <td>2024-11-22</td>
+                                <td>Pending</td>
+                                <td>$100</td>
+                                <td>Chillox</td>
+                                <td><button class="accept-btn" data-order-id="101">Accept</button></td>
+                            </tr>
+                            <tr>
+                                <td>102</td>
+                                <td>5002</td>
+                                <td>2024-11-21</td>
+                                <td>Pending</td>
+                                <td>$150</td>
+                                <td>Khanas</td>
+                                <td><button class="accept-btn" data-order-id="102">Accept</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Feature 2: Countdown Timer -->
+                <div class="feature feature-timer">
+                    <div class="cardHeader">
+                        <h2>Order countdown-timer</h2>
+                    </div>
+                    <div id="countdown-timer">--:--:--</div>
+                    <div class="price-info">
+                        <label>Price: <span id="original-price">$50.00</span></label>
+                        <textarea id="code" placeholder="Type confirmation code"></textarea>
+                        <label>Discounted Price: <span id="discounted-price">$45.00</span></label>
+                    </div>
+                    <button id="stop-timer-btn">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Google Maps API -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&callback=initMap" async defer></script>
+
+    <!-- Main JavaScript -->
+    <script src="assets/js/main.js"></script>
+
+    <!-- Ionicons -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>

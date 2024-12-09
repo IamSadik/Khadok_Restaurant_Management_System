@@ -1,41 +1,43 @@
-// search.js
-
-// Fetch suggestions dynamically
-function fetchSuggestions() {
-    const input = document.getElementById("search-input");
-    const suggestionsBox = document.getElementById("suggestions");
-    const query = input.value.trim();
-
-    if (query.length > 0) {
-        fetch(`/search-restaurants?query=${query}`)
-            .then(response => response.json())
-            .then(data => {
-                suggestionsBox.innerHTML = ""; // Clear previous suggestions
-                if (data.length > 0) {
-                    data.forEach(restaurant => {
-                        const suggestion = document.createElement("div");
-                        suggestion.classList.add("suggestion-item");
-                        suggestion.textContent = restaurant.restaurant_name;
-                        suggestion.onclick = () => {
-                            window.location.href = `/restaurant-profile?id=${stakeholder.stakeholder_id}`; // Route to the restaurant profile
-                        };
-                        suggestionsBox.appendChild(suggestion);
-                    });
-                } else {
-                    suggestionsBox.innerHTML = "<div class='no-suggestions'>No matches found</div>";
-                }
-            })
-            .catch(error => console.error("Error fetching suggestions:", error));
-    } else {
-        suggestionsBox.innerHTML = ""; // Clear suggestions if input is empty
+     // Function to fetch suggestions as the user types
+     async function fetchSuggestions() {
+        const searchQuery = document.getElementById('search-input').value.trim();
+        const suggestionsBox = document.getElementById('suggestions');
+        
+        // Clear the suggestions box if search query is empty
+        if (!searchQuery) {
+            suggestionsBox.innerHTML = '';
+            return;
+        }
+    
+        try {
+            // Send request to the backend to fetch search results
+            const response = await fetch(`/api/search-restaurants?query=${searchQuery}`);
+            const suggestions = await response.json();
+    
+            // Display suggestions in the suggestion box
+            suggestionsBox.innerHTML = suggestions.map(restaurant => {
+                return `<div class="suggestion-item">${restaurant.restaurant_name}</div>`;
+            }).join('');
+    
+            // Add event listeners to the suggestion items (optional, for selecting suggestions)
+            const suggestionItems = document.querySelectorAll('.suggestion-item');
+            suggestionItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    document.getElementById('search-input').value = item.textContent;  // Fill the input with selected suggestion
+                    suggestionsBox.innerHTML = '';  // Clear suggestions
+                });
+            });
+        } catch (error) {
+            console.error('Error fetching suggestions:', error);
+        }
     }
-}
-
-// Handle full search submission
-function searchRestaurants() {
-    const query = document.getElementById("search-input").value.trim();
-    if (query) {
-        window.location.href = `/search-results?query=${query}`; // Redirect to the search results page
+    
+    // Prevent form submission on Enter key
+    function searchRestaurants() {
+        const searchQuery = document.getElementById('search-input').value.trim();
+        if (searchQuery) {
+            window.location.href = `/search-results?query=${searchQuery}`;  // Redirect to a results page or perform another action
+        }
+        return false;  // Prevent form submission
     }
-    return false; // Prevent default form submission
-}
+    

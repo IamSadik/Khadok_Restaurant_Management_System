@@ -16,6 +16,8 @@
     <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+    <script src="js/app.js"></script>
+   
 
 </head>
 <body>
@@ -89,21 +91,21 @@
                         <div class="job">Consumer</div>
                     </div>
                 </div>
-                    <li>
-                        <a href="logout.php">
-                            <i class='bx bx-log-out-circle' id="log_out"></i>
-                            <span class="links_name">Logout</span>
-                        </a>
-                        
-                    </li>
-
+                <button id="logoutButton" class="logout_button">
+                    <i class='bx bx-log-out-circle' id="log_out"></i>
+                    <span class="links_name">Logout</span>
+                </button>
             </div>
         </div>
-
+        
     </div>
 
     <div class="home_content">
     <div class="dashboard-container">
+        <div class="user-info">
+            <p id="userEmail">Fetching user info...</p>
+        </div>
+        
         <header>
             <h1>Welcome Back, Consumer!</h1>
         </header>
@@ -191,12 +193,18 @@
 
             // Fetch orders when the component mounts
             componentDidMount() {
-                fetch('fetch_active_orders.php') // API to fetch orders
-                    .then(response => response.json())
-                    .then(data => {
-                        this.setState({ orders: data, loading: false });
-                    })
-                    .catch(error => console.error('Error fetching orders:', error));
+                fetch('/consumer/active-orders')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    this.setState({ orders: data, loading: false });
+                })
+                .catch(error => console.error('Error fetching orders:', error));
+
             }
 
             // Format time remaining
@@ -216,7 +224,7 @@
             render() {
                 const { orders, loading } = this.state;
 
-                return (
+                return ( 
                     <section className="active-orders-section">
                         <h2>Active Orders</h2>
                         {loading ? (
@@ -246,6 +254,55 @@
         ReactDOM.render(<ActiveOrders />, document.getElementById('active-orders-section'));
     </script>
 
+<script>
+    document.getElementById('logoutButton').addEventListener('click', async () => {
+        try {
+            const response = await fetch('/auth/logout?type=consumer', {
+                method: 'GET',
+            });
+
+            if (response.ok) {
+                alert('Logout successful');
+                window.location.href = '../login.html';
+            } else {
+                alert('Error during logout');
+            }
+        } catch (error) {
+            console.error('Error logging out:', error);
+        }
+    });
+</script>
+
+<script>
+    // Fetch logged-in email
+    async function fetchEmail() {
+        try {
+            const response = await fetch('/auth/email?type=consumer', {
+                method: 'GET',
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                if (data.email) {
+                    document.getElementById('userEmail').innerText = `Logged in as: ${data.email}`;
+                } else {
+                    alert('No email found. Please log in again.');
+                    window.location.href = '/login.html';
+                }
+            } else {
+                alert('Error fetching email');
+                window.location.href = '/login.html';
+            }
+        } catch (error) {
+            console.error('Error fetching email:', error);
+            window.location.href = '/login.html';
+        }
+    }
+
+    // Call the function on page load
+    fetchEmail();
+</script>
+   
 
 </body>
 </html>

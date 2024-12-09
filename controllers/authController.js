@@ -1,28 +1,38 @@
 const { getConsumerByEmail, getStakeholderByEmail } = require('../models/authModel');
+
 //const bcrypt = require('bcrypt');
+
+// Variables to store logged-in emails
+let consumerEmail = null;
+let stakeholderEmail = null;
+
 
 exports.loginConsumer = async (req, res) => {
     const { email, password } = req.body;
+
     try {
         const consumer = await getConsumerByEmail(email);
+
         if (!consumer) {
             return res.status(404).send('Consumer not found');
         }
 
-        // Directly compare passwords since they are not hashed
         if (password !== consumer.password) {
             return res.status(401).send('Invalid email or password');
         }
+          // Simulate successful authentication
+        if (email) {
+            consumerEmail = email; // Store consumer email
+           
+        }
 
-        // Redirect to home.html on successful login
+        // redirect to dashboard
         res.redirect('/consumer/khadok.consumer.dashboard.html');
-
     } catch (error) {
         console.error('Error in consumer login:', error);
         res.status(500).send('Internal Server Error');
     }
 };
-
 
 exports.loginStakeholder = async (req, res) => {
     const { email, password } = req.body;
@@ -32,16 +42,49 @@ exports.loginStakeholder = async (req, res) => {
             return res.status(404).json({ message: 'Stakeholder not found' });
         }
 
-        // Directly compare passwords since they are not hashed
         if (password !== stakeholder.password) {
             return res.status(401).json({ message: 'Invalid email or password' });
         }
-
-        // If login successful, redirect to stakeholder dashboard
-        res.status(200).json({ redirectURL: '/stakeholder/dashboard' });
+        if (email) {
+            stakeholderEmail = email; // Store stakeholder email
+            
+        }
+       
+         // redirect to dashboard
+         res.redirect('/consumer/khadok.consumer.dashboard.html');
     } catch (error) {
         console.error('Error in stakeholder login:', error);
         res.status(500).json({ message: 'Internal Server Error' });
     }
 };
 
+
+// Logout Handler
+exports.logout = (req, res) => {
+    // Clear the logged-in email based on user type
+    const userType = req.query.type; // Assume type is passed as a query parameter (e.g., /auth/logout?type=consumer)
+
+    if (userType === 'consumer') {
+        consumerEmail = null; // Clear consumer email
+    } else if (userType === 'stakeholder') {
+        stakeholderEmail = null; // Clear stakeholder email
+    }
+
+    res.status(200).json({ message: 'Logout successful' });
+};
+
+
+
+
+// Get Email Endpoint
+exports.getEmail = (req, res) => {
+    const userType = req.query.type; // Assume type is passed as a query parameter (e.g., /auth/email?type=consumer)
+
+    if (userType === 'consumer') {
+        return res.status(200).json({ email: consumerEmail });
+    } else if (userType === 'stakeholder') {
+        return res.status(200).json({ email: stakeholderEmail });
+    }
+
+    res.status(400).json({ message: 'Invalid user type' });
+};

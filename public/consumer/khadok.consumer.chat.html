@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+    <link rel="stylesheet" href="css/khadok.consumer.dashboard.css">
+    <link rel="stylesheet" href="css/khadok.consumer.sidebar.css">
+    <link rel="stylesheet" href="css/khadok.consumer.chat.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        /* Styles for filter and toggle buttons */
+        .filter-btn, .toggle-btn {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            margin-right: 5px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            color: #333;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover, .toggle-btn:hover {
+            background-color: #ddd;
+            transform: scale(1.05);
+        }
+
+        .filter-btn.active {
+            background-color: #007bff;
+            color: white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Hide chat messages initially */
+        .chat-main {
+            transform: translateX(-100%);
+            opacity: 0;
+            display: none;
+            transition: all 0.5s ease-in-out;
+        }
+
+        .chat-main.active {
+            transform: translateX(0);
+            opacity: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Contacts visibility */
+        .contact {
+            padding: 10px;
+            cursor: pointer;
+            border-bottom: 1px solid #ddd;
+            transition: background-color 0.3s;
+        }
+
+        .contact:hover {
+            background-color: #f0f0f0;
+        }
+
+        .contact.hidden {
+            display: none;
+        }
+
+        /* Toggle button styles */
+        .toggle-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: #f4f4f4;
+            border: none;
+            padding: 8px 12px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .toggle-btn:hover {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo_content">
+            <div class="logo">
+                
+                <div class="logo_name">Khadok
+
+                </div>
+            </div>
+            <i class='bx bx-menu' id="btn"></i>
+        </div>
+        <ul class="nav_list">
+            <li>
+                
+                    <i class='bx bx-search-alt'></i>
+                    <input type="text" placeholder="Search...">
+                
+                <span class="tooltip">Search </span>
+            </li>
+            <li>
+                <a href="khadok.consumer.dashboard.html">
+                    <i class='bx bxs-grid-alt'></i>
+                    <span class="links_name">Dashboard</span>
+                </a>
+                <span class="tooltip">Dashboard</span>
+            </li>
+            <li>
+                <a href="khadok.consumer.user.html">
+                    <i class='bx bxs-user-circle'></i>
+                    <span class="links_name">User</span>
+                </a>
+                <span class="tooltip">User</span>
+            </li>
+            <li>
+                <a href="khadok.consumer.chat.html">
+                    <i class='bx bxs-chat'></i>
+                    <span class="links_name">Messages</span>
+                </a>
+                <span class="tooltip">Messages</span>
+            </li>
+            <li>
+                <a href="khadok.consumer.order.html">
+                    <i class='bx bxs-package'></i>
+                    <span class="links_name">Orders</span>
+                </a>
+                <span class="tooltip">Orders</span>
+            </li>
+            <li>
+                <a href="khadok.consumer.cart.html">
+                    <i class='bx bxs-cart'></i>
+                    <span class="links_name">Cart</span>
+                </a>
+                <span class="tooltip">Cart</span>
+            </li>
+            <li>
+                <a href="khadok.consumer.setting.html">
+                    <i class='bx bxs-cog'></i>
+                    <span class="links_name">Settings</span>
+                </a>
+                <span class="tooltip">Settings</span>
+            </li>
+        </ul>
+        <div class="profile_content">
+            <div class="profile">
+                <div class="profile_details">
+                    <div class="name_job">
+                        <div class="name">Logout</div>
+                        <div class="job">Consumer</div>
+                    </div>
+                </div>
+                    <li>
+                        <a href="logout.php">
+                            <i class='bx bx-log-out-circle' id="log_out"></i>
+                            <span class="links_name">Logout</span>
+                        </a>
+                        
+                    </li>
+
+            </div>
+        </div>
+
+    </div>
+    <div class="home_content">
+        <div class="chat-container">
+            <!-- Left Sidebar: Contact List -->
+            <div class="chat-sidebar">
+                <div class="chat-sidebar-header">
+                    <h3>Chats</h3>
+                    <div class="chat-filter">
+                        <button id="rider-filter" class="filter-btn active">Riders</button>
+                        <button id="stakeholder-filter" class="filter-btn">Stakeholders</button>
+                    </div>
+                </div>
+                <div class="chat-contacts">
+                    <!-- Contacts will be dynamically loaded -->
+                    <div class="contact rider" data-type="rider" data-name="Rider 1">Rider 1</div>
+                    <div class="contact rider" data-type="rider" data-name="Rider 2">Rider 2</div>
+                    <div class="contact stakeholder hidden" data-type="stakeholder" data-name="Stakeholder 1">Stakeholder 1</div>
+                    <div class="contact stakeholder hidden" data-type="stakeholder" data-name="Stakeholder 2">Stakeholder 2</div>
+                </div>
+            </div>
+
+                        <!-- Chat Area -->
+            <div class="chat-main">
+                <button class="toggle-btn" id="hide-chat">Hide Chat</button>
+                <div class="chat-header">
+                    <div class="contact-info">
+                        <img src="images/default-avatar.png" alt="Avatar" class="contact-avatar" id="contact-avatar">
+                        <h4 id="contact-name">Select a conversation</h4>
+                    </div>
+                </div>
+                <div class="chat-messages" id="chat-messages">
+                    <div class="placeholder">
+                        <i class="fas fa-comments"></i>
+                        <p>No messages yet</p>
+                    </div>
+                </div>
+                <div class="chat-input">
+                    <input type="text" id="message-input" placeholder="Type your message..." disabled />
+                    <button id="send-btn" disabled>
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Placeholder Icon -->
+            <i class="fas fa-comments chat-placeholder-icon" id="chat-placeholder-icon" title="Click to open chat"></i>
+
+        </div>
+    </div>
+    <script>
+        const contacts = document.querySelectorAll('.contact');
+        const riderFilter = document.getElementById('rider-filter');
+        const stakeholderFilter = document.getElementById('stakeholder-filter');
+        const chatMain = document.querySelector('.chat-main');
+        const messageInput = document.getElementById('message-input');
+        const sendBtn = document.getElementById('send-btn');
+        const contactName = document.getElementById('contact-name');
+        const chatMessages = document.getElementById('chat-messages');
+        const hideChatBtn = document.getElementById('hide-chat');
+
+        // Filter functionality
+        riderFilter.addEventListener('click', () => {
+            riderFilter.classList.add('active');
+            stakeholderFilter.classList.remove('active');
+            contacts.forEach(contact => {
+                if (contact.dataset.type === 'rider') {
+                    contact.classList.remove('hidden');
+                } else {
+                    contact.classList.add('hidden');
+                }
+            });
+        });
+
+        stakeholderFilter.addEventListener('click', () => {
+            stakeholderFilter.classList.add('active');
+            riderFilter.classList.remove('active');
+            contacts.forEach(contact => {
+                if (contact.dataset.type === 'stakeholder') {
+                    contact.classList.remove('hidden');
+                } else {
+                    contact.classList.add('hidden');
+                }
+            });
+        });
+
+        // Contact selection functionality
+        contacts.forEach(contact => {
+            contact.addEventListener('click', () => {
+                contacts.forEach(c => c.classList.remove('active'));
+                contact.classList.add('active');
+                chatMain.classList.add('active');
+                messageInput.disabled = false;
+                sendBtn.disabled = false;
+                contactName.textContent = contact.dataset.name;
+
+                // Clear and dynamically load messages
+                chatMessages.innerHTML = `<p>Loading conversation with ${contact.dataset.name}...</p>`;
+            });
+        });
+
+        // Hide Chat functionality
+        hideChatBtn.addEventListener('click', () => {
+            chatMain.classList.remove('active');
+        });
+    </script>
+</body>
+</html>

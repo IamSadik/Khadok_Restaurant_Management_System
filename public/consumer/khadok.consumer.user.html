@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="css/khadok.consumer.sidebar.css">
+    <link rel="stylesheet" href="css/khadok.consumer.dashboard.css">
+    <link rel="stylesheet" href="css/khadok.consumer.user.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    
+    <div class="sidebar">
+        <div class="logo_content">
+            <div class="logo">
+                
+                <div class="logo_name">Khadok
+
+                </div>
+            </div>
+            <i class='bx bx-menu' id="btn"></i>
+        </div>
+        <ul class="nav_list">
+            <li>
+                
+                    <i class='bx bx-search-alt'></i>
+                    <input type="text" placeholder="Search...">
+                
+                <span class="tooltip">Search </span>
+            </li>
+            <li>
+                <a href="khadok.consumer.dashboard.html">
+                    <i class='bx bxs-grid-alt'></i>
+                    <span class="links_name">Dashboard</span>
+                </a>
+                <span class="tooltip">Dashboard</span>
+            </li>
+            <li>
+                <a href="khadok.consumer.user.html">
+                    <i class='bx bxs-user-circle'></i>
+                    <span class="links_name">User</span>
+                </a>
+                <span class="tooltip">User</span>
+            </li>
+            <li>
+                <a href="khadok.consumer.chat.html">
+                    <i class='bx bxs-chat'></i>
+                    <span class="links_name">Messages</span>
+                </a>
+                <span class="tooltip">Messages</span>
+            </li>
+            <li>
+                <a href="khadok.consumer.order.html">
+                    <i class='bx bxs-package'></i>
+                    <span class="links_name">Orders</span>
+                </a>
+                <span class="tooltip">Orders</span>
+            </li>
+            <li>
+                <a href="khadok.consumer.cart.html">
+                    <i class='bx bxs-cart'></i>
+                    <span class="links_name">Cart</span>
+                </a>
+                <span class="tooltip">Cart</span>
+            </li>
+            <li>
+                <a href="khadok.consumer.setting.html">
+                    <i class='bx bxs-cog'></i>
+                    <span class="links_name">Settings</span>
+                </a>
+                <span class="tooltip">Settings</span>
+            </li>
+        </ul>
+        <div class="profile_content">
+            <div class="profile">
+                <div class="profile_details">
+                    <div class="name_job">
+                        <div class="name">Logout</div>
+                        <div class="job">Consumer</div>
+                    </div>
+                </div>
+                    <li>
+                        <a href="logout.php">
+                            <i class='bx bx-log-out-circle' id="log_out"></i>
+                            <span class="links_name">Logout</span>
+                        </a>
+                        
+                    </li>
+
+            </div>
+        </div>
+
+    </div>
+
+<div class="home_content">
+    <!-- Column 1: Profile Card -->
+    <div class="card profile-card profile-full">
+        <i class="fas fa-user-circle card-icon"></i>
+        <h3>My Profile</h3>
+        <p><strong>Name:</strong> John Doe</p>
+        <p><strong>Email:</strong> johndoe@example.com</p>
+        <p><strong>Phone:</strong> +1234567890</p>
+        <button class="btn btn-edit-profile">Edit Profile</button>
+        <!-- Map Section -->
+        <div class="card map-container">
+            <i class="fas fa-map-marker-alt card-icon"></i>
+            <h3>My Location</h3>
+            <div id="userMap" style="height: 300px; width: 100%;"></div>
+        </div>
+
+    </div>
+
+    <!-- Column 2 and 3: Total Orders -->
+    <div class="card order-insights">
+        <i class="fas fa-shopping-bag card-icon"></i>
+        <h3>Total Orders</h3>
+        <span>25</span>
+        <p><strong>Last Order:</strong></p>
+        <ul>
+            <li><strong>Item:</strong> Pepperoni Pizza</li>
+            <li><strong>Restaurant:</strong> Pizza Palace</li>
+        </ul>
+    </div>
+
+    <!-- Column 2 and 3: Insights -->
+    <div class="card order-insights">
+        <i class="fas fa-chart-line card-icon"></i>
+        <h3>Insights</h3>
+        <canvas id="orderHistory"></canvas>
+    </div>
+
+    <!-- Column 2 and 3: Wallet Balance -->
+    <div class="card wallet-balance">
+        <i class="fas fa-wallet"></i>
+        <span>Wallet Balance</span>
+        <span>$120.00</span>
+    </div>
+    <div class="card user-reviews">
+        <i class="fas fa-star card-icon"></i>
+        <h3>User Reviews</h3>
+        <div class="review-item">
+            <i class="fas fa-user-circle review-icon"></i>
+            <div class="review-content">
+                <p><strong>Restaurant:</strong> Example Restaurant</p>
+                <p><strong>Review:</strong> The food was amazing! Loved the ambiance and service.</p>
+                <p><strong>Rating:</strong> ⭐⭐⭐⭐⭐</p>
+            </div>
+        </div>
+        <div class="review-item">
+            <i class="fas fa-user-circle review-icon"></i>
+            <div class="review-content">
+                <p><strong>Restaurant:</strong> Another Restaurant</p>
+                <p><strong>Review:</strong> Great experience! The pizza was delicious.</p>
+                <p><strong>Rating:</strong> ⭐⭐⭐⭐</p>
+            </div>
+        </div>
+        <div class="review-item">
+            <i class="fas fa-user-circle review-icon"></i>
+            <div class="review-content">
+                <p><strong>Restaurant:</strong> Example Restaurant</p>
+                <p><strong>Review:</strong> The food was amazing! Loved the ambiance and service.</p>
+                <p><strong>Rating:</strong> ⭐⭐⭐⭐⭐</p>
+            </div>
+        </div>
+        <!-- Add more reviews dynamically later -->
+    </div>
+</div>
+
+    
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // Sample Chart for Order Insights
+    const ctx = document.getElementById('orderHistory').getContext('2d');
+    const chart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+            datasets: [{
+                label: 'Orders',
+                data: [5, 10, 7, 12, 8, 15],
+                borderColor: '#4CAF50',
+                fill: false,
+                tension: 0.4
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    display: false
+                }
+            }
+        }
+    });
+</script>
+
+
+</body>
+</html>

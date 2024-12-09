@@ -1,0 +1,125 @@
+/* General Styling */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+header {
+    background-color: #ff6f61;
+    padding: 15px 20px;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    font-size: 24px;
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+    margin: 0;
+}
+
+header nav ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+}
+
+/* Welcome Section */
+.welcome-section {
+    text-align: center;
+    padding: 30px;
+    background-color: #fff;
+    margin-bottom: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.welcome-section h2 {
+    margin: 0;
+    font-size: 28px;
+}
+
+/* Menu Edit Section */
+.menu-edit-section, .interior-edit-section {
+    background-color: #fff;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+}
+
+.menu-edit-section h3, .interior-edit-section h3 {
+    font-size: 22px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.menu-edit-container, .interior-edit-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.menu-input, .table-input {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.add-item-btn, .save-btn, .upload-btn {
+    background-color: #ff6f61;
+    color: #fff;
+    font-size: 16px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    align-self: flex-start;
+}
+
+.add-item-btn:hover, .save-btn:hover, .upload-btn:hover {
+    background-color: #ff4b3a;
+}
+
+/* Table Setup Section */
+.table-setup-section {
+    margin-top: 30px;
+}
+
+.table-setup {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.table-setup label {
+    font-size: 16px;
+    flex: 1;
+}
+
+.table-setup input {
+    flex: 2;
+    padding: 8px;
+    font-size: 16px;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #ff6f61;
+    color: #fff;
+    font-size: 14px;
+}

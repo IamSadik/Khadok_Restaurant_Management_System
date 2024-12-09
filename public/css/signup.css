@@ -1,0 +1,283 @@
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    background-color: #ffffff;
+    color: #254a5d;
+}
+header {
+   
+    margin-top: -75px; /* Move the header upwards */
+    height: 30px; /* Allow the height to adjust to content */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 20px;
+    border-bottom: 1px solid #ddd;
+    background: rgba(255, 255, 255, 0.2); /* Transparent white */
+    backdrop-filter: blur(10px); /* Frosted glass effect */
+    z-index: 10;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3); /* Optional: subtle border */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: shadow for depth */
+    position: fixed;
+    width: 100%;
+}
+
+.logo-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none; /* Ensure there's no underline */
+    margin-left: 50px;
+}
+
+.brand-logo {
+    width: 40px; /* Adjust size of the logo image */
+    height: auto;
+    margin-right: 5px; /* Add some space between the image and the text */
+    margin-top: -8px;
+}
+
+.logo-text {
+
+    font-size: 24px; /* Adjust text size */
+    font-weight: 700; /* Make the logo name bold */
+    font-family: 'Playfair Display', serif; /* Make sure the font matches your design */
+    color: #254a5d;
+    margin-top: -13px;
+    
+}
+header .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #333;
+    
+}
+nav {
+    display: flex;
+    justify-content: center; /* Centers items horizontally */
+    align-items: center; /* Ensures vertical centering */
+    height: 100%; /* Ensure it uses the full height of the navigation bar */
+    flex: 1;
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+    gap: 10px;
+    margin-bottom: auto;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin-left: -90px;
+    margin-top: -19px;
+}
+
+header nav ul li {
+    font-size: 1rem;
+    padding: 5px;
+   
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 5px;
+    margin: 10px auto; /* Space out the navigation items */
+    list-style: none;
+    display: inline-block; /* Ensure items align horizontally */
+    text-align: center; /* Center content within each list item */
+    justify-content: center;
+    
+}
+
+header nav ul li a {
+    text-decoration: none;
+    color: #254a5d;
+    transition: color 0.3s ease;
+    transition: color 0.4s ease-in-out;
+    
+    
+}
+
+header nav ul li a:hover {
+     background: rgba(255, 255, 255, 0.3); /* Hover effect */
+    color:#f4f4f4;
+}
+
+.logo-link {
+    text-decoration: none; /* Remove the underline */
+    color: inherit; /* Keep the current color, so it doesn’t change */
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.about-btn{
+    display: inline-block;
+    padding: 5px 10px; /* Adjust the padding to increase size */
+    font-size: 16px; /* Adjust the font size for better readability */
+    text-decoration: none;
+    color: #254a5d; /* Ensure the text color is visible */
+    
+    
+    text-align: center; /* Center the text within the button */
+    transition: .4s ease;
+}
+.about-btn:hover{
+    background: none;
+    scale: 1.15;
+    color: #1d1b31;
+    
+}
+
+.contact-btn{
+    display: inline-block;
+    padding: 5px 10px; /* Adjust the padding to increase size */
+    font-size: 16px; /* Adjust the font size for better readability */
+    text-decoration: none;
+    color: #254a5d; /* Ensure the text color is visible */
+    
+    text-align: center; /* Center the text within the button */
+    transition: .4s ease;
+}
+.contact-btn:hover{
+    background: none;
+    scale: 1.15;
+    color: #1d1b31;
+}
+
+
+.login-btn{
+    display: inline-block;
+    padding: 5px 10px; /* Adjust the padding to increase size */
+    font-size: 16px; /* Adjust the font size for better readability */
+    text-decoration: none;
+    color: #254a5d; /* Ensure the text color is visible */
+    
+    text-align: center; /* Center the text within the button */
+    transition: .4s ease;
+}
+.login-btn:hover{
+    background: none;
+    scale: 1.15;
+    color: #1d1b31;
+}
+
+
+.signup-btn {
+    display: inline-block;
+    padding: 5px 10px; /* Adjust the padding to increase size */
+    font-size: 16px; /* Adjust the font size for better readability */
+    text-decoration: none;
+    color: #254a5d; /* Ensure the text color is visible */
+   
+    text-align: center; /* Center the text within the button */
+    transition: .4s ease;
+}
+.signup-btn:hover{
+    background: none;
+    scale: 1.15;
+    color: #1d1b31;
+}
+
+.user-icon {
+    margin-top: 0px; /* Adjusted for better alignment */
+    margin-right: 86px; /* Brought slightly to the left from the far-right edge */
+    text-decoration: none;
+    list-style: none;
+    color: #0078d7; /* Updated to a more vibrant color */
+    font-size: 30px; /* Increased size for better visibility */
+    cursor: pointer;
+    text-align: center;
+}
+
+.user-icon a {
+    text-decoration: none;
+    color: #254a5d; /* Icon color */
+    font-size: 30px; /* Icon size for better visibility */
+    display: inline-block; /* Ensures proper rendering */
+}
+
+.user-icon a:hover {
+    color: #0078d7; /* Slightly darker color on hover for effect */
+}
+
+
+
+
+
+
+
+main {
+    margin-top: 80px;
+    padding: 20px;
+}
+
+.signup-section {
+    text-align: center;
+    padding: 40px 10%;
+    
+}
+
+.signup-section h1 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    
+}
+
+.signup-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    transform: translateY(20px);
+    animation: moveup 0.5s ease-out forwards;
+    animation-delay: .5s; /* Delay for when to start */
+}
+.signup-card {
+    background: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    width: 250px;
+    text-align: center;
+    transition: transform 0.3s ease;
+    
+}
+
+.signup-card:hover {
+    transform: translateY(-10px);
+   
+}
+
+.signup-card h2 {
+    font-size: 1.5rem;
+    color: #254a5d;
+    margin-bottom: 10px;
+}
+
+.signup-card p {
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.signup-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #254a5d;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition:  0.3s ease-in;
+}
+
+.signup-btn:hover {
+    background: #356c85;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 30px;
+}
+   

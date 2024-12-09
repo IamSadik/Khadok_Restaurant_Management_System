@@ -1,0 +1,166 @@
+/* Ensuring the home_content fills the page properly */
+.home_content {
+    margin: 20px 20px 20px 70px;
+    max-width: 100%;
+    padding: 60px 20px 20px 20px;
+    display: grid;
+    grid-template-columns: 1fr; /* Single column layout */
+    gap:40px;
+    overflow: auto;
+}
+
+/* Profile card spanning both rows in Column 1 */
+.profile-full {
+    grid-column: 1; /* Stretches across column 1 */
+    grid-row: 1 / span 2; /* Covers both rows */
+    height: 100%;
+}
+
+/* Styling each card to take the full width */
+.card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    transition: transform 0.2s ease;
+    gap: 8px;
+    height: 100%;
+}
+
+.card:hover {
+    transform: scale(1.01);
+}
+
+/* Adjusting specific cards for a better look */
+.profile-card {
+    display: flex;
+    top: 0px;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    
+}
+/* Styling for the map container */
+.map-container {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    box-shadow: 2px 1px 4px 2px  rgba(0, 0, 0, 0.1);;
+}
+
+#userMap {
+    height: 90%;
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 10px;
+    border: .5px solid gray;
+}
+
+.profile-card button{
+    margin-top: 12px;
+    color: #fff;
+    background: #3498DB;
+    border: 3px solid #3498DB;
+    border-radius: 5px;
+    size: auto;
+    text-align: center;
+}
+
+.profile-card h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.card-icon {
+    font-size: 48px;
+    color: #4CAF50; /* Green for profile icon */
+    margin-bottom: 10px;
+}
+
+.order-insights {
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card.wallet-balance{
+    top: 0cap;
+}
+
+.wallet-balance,
+.last-order {
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.wallet-balance span,
+.last-order span {
+    font-weight: bold;
+}
+
+/* Making layout responsive */
+@media (min-width: 768px) {
+    .home_content {
+        grid-template-columns: repeat(2, 1fr); /* Two-column layout for larger screens */
+    }
+}
+
+@media (min-width: 1024px) {
+    .home_content {
+        grid-template-columns: repeat(3, 1fr); /* Three-column layout for extra-large screens */
+    }
+}
+
+
+
+
+/* Reviews Section */
+.user-reviews {
+    display: flex;
+    flex-direction: column;
+    gap:20px;
+    padding: 15px;
+    height: 100%;
+    width: 100%;
+    overflow-y: auto;
+}
+
+.user-reviews .review-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+.review-icon {
+    font-size: 36px;
+    color: #3498DB;
+}
+
+.review-content p {
+    margin: 5px 0;
+}
+
+.user-reviews h3 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.user-reviews .card-icon {
+    font-size: 36px;
+    margin-bottom: 5px;
+    color: #FFD700; /* Gold for reviews */
+}

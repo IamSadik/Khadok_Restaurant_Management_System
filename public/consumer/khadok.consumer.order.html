@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orders and Reservations</title>
+    <link rel="stylesheet" href="css/khadok.consumer.dashboard.css">
+    <link rel="stylesheet" href="css/khadok.consumer.sidebar.css">
+    <link rel="stylesheet" href="css/khadok.consumer.order.css">
+    <link rel="stylesheet" href="css/reservation.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">   
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo_content">
+            <div class="logo">
+                
+                <div class="logo_name">Khadok
+
+                </div>
+            </div>
+            <i class='bx bx-menu' id="btn"></i>
+        </div>
+        <ul class="nav_list">
+            <li>
+                
+                    <i class='bx bx-search-alt'></i>
+                    <input type="text" placeholder="Search...">
+                
+                <span class="tooltip">Search </span>
+            </li>
+            <li>
+                <a href="khadok.consumer.dashboard.html">
+                    <i class='bx bxs-grid-alt'></i>
+                    <span class="links_name">Dashboard</span>
+                </a>
+                <span class="tooltip">Dashboard</span>
+            </li>
+            <li>
+                <a href="khadok.consumer.user.html">
+                    <i class='bx bxs-user-circle'></i>
+                    <span class="links_name">User</span>
+                </a>
+                <span class="tooltip">User</span>
+            </li>
+            <li>
+                <a href="khadok.consumer.chat.html">
+                    <i class='bx bxs-chat'></i>
+                    <span class="links_name">Messages</span>
+                </a>
+                <span class="tooltip">Messages</span>
+            </li>
+            <li>
+                <a href="khadok.consumer.order.html">
+                    <i class='bx bxs-package'></i>
+                    <span class="links_name">Orders</span>
+                </a>
+                <span class="tooltip">Orders</span>
+            </li>
+            <li>
+                <a href="khadok.consumer.cart.html">
+                    <i class='bx bxs-cart'></i>
+                    <span class="links_name">Cart</span>
+                </a>
+                <span class="tooltip">Cart</span>
+            </li>
+            <li>
+                <a href="khadok.consumer.setting.html">
+                    <i class='bx bxs-cog'></i>
+                    <span class="links_name">Settings</span>
+                </a>
+                <span class="tooltip">Settings</span>
+            </li>
+        </ul>
+        <div class="profile_content">
+            <div class="profile">
+                <div class="profile_details">
+                    <div class="name_job">
+                        <div class="name">Logout</div>
+                        <div class="job">Consumer</div>
+                    </div>
+                </div>
+                    <li>
+                        <a href="logout.php">
+                            <i class='bx bx-log-out-circle' id="log_out"></i>
+                            <span class="links_name">Logout</span>
+                        </a>
+                        
+                    </li>
+
+            </div>
+        </div>
+
+    </div>
+    <div class="home_content">
+        <!-- Order Section -->
+        <div class="order-container">
+            <!-- Order Sidebar -->
+            <div class="order-sidebar">
+                <div class="order-sidebar-header">
+                    <h3>Your Orders</h3>
+                    <div class="order-filter">
+                        <button id="all-filter" class="filter-btn active">All</button>
+                        <button id="active-filter" class="filter-btn">Active</button>
+                        <button id="completed-filter" class="filter-btn">Completed</button>
+                    </div>
+                </div>
+                <div class="order-list" id="order-list">
+                    <!-- Orders will be dynamically loaded here -->
+                </div>
+            </div>
+
+            <!-- Order Details Area -->
+            <div class="order-details">
+                <div class="order-header">
+                    <h4>Order Details</h4>
+                </div>
+                <div class="order-info" id="order-info">
+                    <div class="placeholder">
+                        <i class="fas fa-box"></i>
+                        <p>Select an order to view details</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reservation Section -->
+        <div class="reservation-container">
+            <!-- Reservation Sidebar -->
+            <div class="reservation-sidebar">
+                <div class="reservation-sidebar-header">
+                    <h3>Your Reservations</h3>
+                    <div class="reservation-filter">
+                        <button id="all-reservation-filter" class="reservation-filter-btn active">All</button>
+                        <button id="upcoming-reservation-filter" class="reservation-filter-btn">Upcoming</button>
+                        <button id="past-reservation-filter" class="reservation-filter-btn">Past</button>
+                    </div>
+                </div>
+                <div class="reservation-list" id="reservation-list">
+                    <!-- Reservations will be dynamically loaded here -->
+                </div>
+            </div>
+
+            <!-- Reservation Details Area -->
+            <div class="reservation-details">
+                <div class="reservation-header">
+                    <h4>Reservation Details</h4>
+                </div>
+                <div class="reservation-info" id="reservation-info">
+                    <div class="placeholder">
+                        <i class="fas fa-calendar-alt"></i>
+                        <p>Select a reservation to view details</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/khadok.consumer.order.js"></script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="css/rider_login.css">
+    <title>Welcome to Khadok</title>
+    <style>
+        .home-icon {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 24px;
+            color: #444;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .home-icon:hover {
+            color: #007bff;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Home Icon -->
+    <a href="index.html" class="home-icon" title="Go to Landing Page">
+        <i class="fa-solid fa-house"></i>
+    </a>
+
+   
+
+    <!-- Rider Form Section -->
+    <div class="form-container rider-container">
+        <form class="rider-form" method="post" action="rider_login.php">
+            <h1 style="align-self: center;">Rider</h1>
+            <div class="social-icons">
+                <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
+                <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
+                <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
+            </div>
+            <span>or use your email password</span>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <a href="#">Forget Your Password?</a>
+            <button type="submit">Rider Sign In</button>
+        </form>
+    </div>
+
+    <script src="js/login_script.js"></script>
+</body>
+
+</html>

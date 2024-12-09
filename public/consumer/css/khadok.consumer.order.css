@@ -1,0 +1,219 @@
+
+
+.home_content {
+    margin: 20px 20px 20px 70px;
+    width: 100%;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 1fr; /* Single column layout */
+    gap: 40px;
+    overflow: auto; /* Allow scrolling if content exceeds height */
+}
+/* General Styles */
+.order-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 30px;
+    
+    margin-top: 20px;
+}
+
+.order-sidebar {
+    width: 35%;
+    background: #f4f4f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.order-sidebar-header h3 {
+    align-content: center;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.order-filter {
+    align-items: center;
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.filter-btn {
+    background: #ddd;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+.filter-btn.active {
+    background-color: #5bc0de;
+    color: white;
+}
+
+.filter-btn:hover {
+    background-color: #3498db;
+    color: white;
+}
+
+/* Scrollable Sidebar */
+.order-list {
+    max-height: 320px;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+/* Status Badge Styles */
+.order-status {
+    float: right;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    color: white;
+}
+
+.order-status.active {
+    background-color: #28a745;
+}
+
+.order-status.completed {
+    background-color: #007bff;
+}
+
+.order-item {
+    background: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+.order-item:hover {
+    background-color: #f1f1f1;
+    transform: translateX(5px);
+}
+
+/* Order Details Section */
+.order-details {
+    flex: 1;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.order-header h4 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.order-info {
+    min-height: 200px;
+}
+
+.placeholder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    color: #888;
+    gap: 10px;
+}
+
+.fas {
+    font-size: 3rem;
+}
+
+
+/* Reservation Container */
+.reservation-container {
+    display: flex;
+    gap: 20px;
+    margin-top: 40px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+/* Reservation Sidebar */
+.reservation-sidebar {
+    flex: 1;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-right: 10px;
+}
+
+.reservation-sidebar-header {
+    padding: 15px;
+    background-color: #007bff;
+    color: #fff;
+    text-align: center;
+}
+
+.reservation-filter {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.reservation-filter-btn {
+    padding: 8px 16px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.reservation-filter-btn.active {
+    background-color: #0056b3;
+}
+
+.reservation-list {
+    padding: 15px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.reservation-item {
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: #fff;
+}
+
+.reservation-item:hover {
+    background-color: #f0f0f0;
+}
+
+/* Reservation Details */
+.reservation-details {
+    flex: 2;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.reservation-info .placeholder {
+    text-align: center;
+    color: #aaa;
+    gap: 10px;
+}
+
+.reservation-info i {
+    font-size: 50px;
+    margin-bottom: 10px;
+}

@@ -1,0 +1,819 @@
+/* styles.css */
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    background-color: #ffffff;
+    color: #254a5d;
+}
+
+header {
+    margin-top: -30px; /* Move the header upwards */
+    height: 65px; /* Allow the height to adjust to content */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3); /* Optional: subtle border */
+    background: rgba(255, 255, 255, 0.2); /* Transparent white */
+    backdrop-filter: blur(10px); /* Frosted glass effect */
+    z-index: 10;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: shadow for depth */
+    position: fixed;
+    width: 100%;
+    top: 0;
+    transform: translateY(0);
+    transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smoother animation */
+}
+.hidden {
+    transform: translateY(-100%); /* Hide the header by moving it up */
+}
+
+
+.logo-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none; /* Ensure there's no underline */
+    margin-left: 50px;
+}
+
+.brand-logo {
+    width: 40px; /* Adjust size of the logo image */
+    height: auto;
+    margin-right: 5px; /* Add some space between the image and the text */
+    margin-top: 27px;
+}
+
+.logo-text {
+
+    font-size: 24px; /* Adjust text size */
+    font-weight: 700; /* Make the logo name bold */
+    font-family: 'Playfair Display', serif; /* Make sure the font matches your design */
+    color: #254a5d;
+    margin-top: 22px;
+    
+}
+header .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #333;
+    
+}
+nav {
+    position: relative;
+    display: flex;
+    justify-content: center; /* Centers items horizontally */
+    align-items: center; /* Ensures vertical centering */
+    height: 100%; /* Ensure it uses the full height of the navigation bar */
+    flex: 1;
+}
+
+
+
+header nav ul {
+    list-style: none;
+    display: flex;
+    gap: 10px;
+    margin-bottom: auto;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin-left: -72px;
+}
+
+header nav ul li {
+    font-size: 1rem;
+    padding: 5px;
+   
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 5px;
+    margin: 10px auto; /* Space out the navigation items */
+    list-style: none;
+    display: inline-block; /* Ensure items align horizontally */
+    text-align: center; /* Center content within each list item */
+    
+}
+
+header nav ul li a {
+    text-decoration: none;
+    color: #254a5d;
+    transition: color 0.3s ease;
+    transition: color 0.4s ease-in-out;
+    
+    
+}
+
+header nav ul li a:hover {
+     background: rgba(255, 255, 255, 0.3); /* Hover effect */
+    color:#f4f4f4;
+}
+
+.logo-link {
+    text-decoration: none; /* Remove the underline */
+    color: inherit; /* Keep the current color, so it doesn’t change */
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.about-btn{
+    display: inline-block;
+    padding: 5px 10px; /* Adjust the padding to increase size */
+    font-size: 16px; /* Adjust the font size for better readability */
+    text-decoration: none;
+    color: #254a5d; /* Ensure the text color is visible */
+    
+    
+    text-align: center; /* Center the text within the button */
+    transition: .4s ease;
+}
+.about-btn:hover{
+    background: none;
+    scale: 1.15;
+    color: #1d1b31;
+    
+}
+
+.contact-btn{
+    display: inline-block;
+    padding: 5px 10px; /* Adjust the padding to increase size */
+    font-size: 16px; /* Adjust the font size for better readability */
+    text-decoration: none;
+    color: #254a5d; /* Ensure the text color is visible */
+    
+    text-align: center; /* Center the text within the button */
+    transition: .4s ease;
+}
+.contact-btn:hover{
+    background: none;
+    scale: 1.15;
+    color: #1d1b31;
+}
+
+
+.login-btn{
+    display: inline-block;
+    padding: 5px 10px; /* Adjust the padding to increase size */
+    font-size: 16px; /* Adjust the font size for better readability */
+    text-decoration: none;
+    color: #254a5d; /* Ensure the text color is visible */
+    
+    text-align: center; /* Center the text within the button */
+    transition: .4s ease;
+}
+.login-btn:hover{
+    background: none;
+    scale: 1.15;
+    color: #1d1b31;
+}
+
+
+.signup-btn {
+    display: inline-block;
+    padding: 5px 10px; /* Adjust the padding to increase size */
+    font-size: 16px; /* Adjust the font size for better readability */
+    text-decoration: none;
+    color: #254a5d; /* Ensure the text color is visible */
+   
+    text-align: center; /* Center the text within the button */
+    transition: .4s ease;
+}
+.signup-btn:hover{
+    background: none;
+    scale: 1.15;
+    color: #1d1b31;
+}
+
+
+
+.user-icon {
+    margin-top: 35px; /* Adjusted for better alignment */
+    margin-right: 70px; /* Brought slightly to the left from the far-right edge */
+    text-decoration: none;
+    list-style: none;
+    color: #0078d7; /* Updated to a more vibrant color */
+    font-size: 30px; /* Increased size for better visibility */
+    cursor: pointer;
+    text-align: center;
+}
+
+.user-icon a {
+    text-decoration: none;
+    color: #254a5d; /* Icon color */
+    font-size: 30px; /* Icon size for better visibility */
+    display: inline-block; /* Ensures proper rendering */
+}
+
+.user-icon a:hover {
+    color: #0078d7; /* Slightly darker color on hover for effect */
+}
+
+
+
+
+.hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    text-align: center;
+    color: #fff;
+}
+
+.carousel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.carousel-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.carousel-image.active {
+    opacity: 1;
+}
+
+.hero-text {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: moveup 0.5s ease-out forwards;
+    animation-delay: .7s; /* Delay for when to start */
+    z-index: 1;
+}
+.hero-text.visible {
+    opacity: 0;
+    transform: translateY(0);
+}
+
+.hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+.search-bar {
+    display: flex;
+    justify-content: center;
+    
+    gap: 10px;
+    opacity: 1;
+    transform: translateY(20px);
+    animation: moveup 0.5s ease-out forwards;
+    animation-delay: .5s; /* Delay for when to start */
+    
+    
+}
+/* Trigger animation when the search bar is in view */
+.search-bar.visible {
+    opacity: 0;
+    transform: translateY(0);
+}
+.search-bar:hover{
+    transform: translateX(-10px); /* Lift the search bar slightly */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Stronger shadow for depth */
+    
+    
+}
+
+
+.search-bar input:focus {
+    background-color: #f4f4f4; /* Change background on focus */
+    border-color: #007BFF; /* Focused input border color */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Inner glow effect on focus */
+}
+
+.search-bar input {
+    padding: 10px;
+    font-size: 1rem;
+    width: 450px;
+    border: none;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+    background-color: #fff;
+    flex-grow: 1;
+}
+
+.search-bar button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #254a5d;
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.search-bar button:hover {
+    background-color: #FEB176;
+    transform: translateX(5px); /* Move the button slightly */
+}
+
+.suggestions-box {
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 0;
+    background: white;
+    border: 1px solid #ddd;
+    width: 470px   ; /* Match search bar width */
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 10;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 30px;
+    padding: 0; /* Remove extra padding */
+}
+
+.suggestion-item {
+    padding: 10px;
+    cursor: pointer; /* Default pointer cursor */
+    text-align: left;
+    background: white;
+    margin: 0;
+    border-bottom: 1px solid #ddd;
+    transition: background 0.3s ease, transform 0.2s ease; /* Smooth hover effect */
+    
+    color: #254a5d;
+}
+
+.suggestion-item:hover {
+    background: #f9f9f9;
+    color: #FEB176;
+    transform: translateX(5px); /* Subtle shift for a modern effect */
+    cursor: alias; /* Optional custom cursor */
+}
+.suggestions .suggestions-box{
+    opacity: 0;
+}
+
+.suggestion-item:last-child {
+    border-bottom: none; /* Remove border for the last item */
+}
+
+
+.no-suggestions {
+    padding: 10px;
+    color: #777;
+    text-align: center;
+    font-style: italic; /* Style for "No matches found" */
+}
+
+
+.services {
+    text-align: center;
+    padding: 50px 20px;
+    background: #fff;
+}
+
+.services h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.service-list {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.service-item {
+    background: #ffffff;
+    border: 1px solid #ddd;
+    padding: 20px;
+    width: 300px;
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.service-item:hover{
+    transform: translateY(-10px);
+}
+
+.service-item h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+
+
+.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+#featured-restaurants {
+    padding: 50px 20px;
+    background-color: #ffffff;
+    text-align: center;
+}
+
+.horizontal-scroll-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+   
+}
+
+.restaurant-grid {
+    display: flex;
+    gap: 40px; /* Adjust as needed */
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding: 10px 0px;
+    margin: 0 10px; /* Adds margin to the grid itself */
+    border-left: 10px solid transparent; /* Visual margin on left */
+    border-right: 10px solid transparent; /* Visual margin on right */
+}
+
+.restaurant-grid::-webkit-scrollbar {
+    height: 8px;
+}
+
+.restaurant-grid::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 5px;
+}
+
+.restaurant-grid::-webkit-scrollbar-track {
+    background: #f5f5f5;
+}
+
+.scroll-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #254a5d;
+    border: none;
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 10;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.4s ease-in-out; /* Smooth hover effect */
+    opacity: 0; /* Initially hidden */
+    pointer-events: none; /* Disable clicks when hidden */
+}
+
+.scroll-btn.left {
+    left: -20px;
+}
+.scroll-btn.right {
+    right: -20px;
+}
+
+.scroll-btn:hover {
+    background-color: #f8b400;
+    transform: scale(1.4); /* Slight zoom effect */
+}
+
+.horizontal-scroll-container:hover .scroll-btn {
+    opacity: 1; /* Show buttons on hover */
+    pointer-events: auto; /* Enable clicks when visible */
+}
+
+.restaurant-card {
+    min-width: 250px; /* Set a fixed size for each card */
+    border: 1px solid #ddd;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: 0.4s;
+}
+
+.restaurant-card:hover {
+    transform: translateY(-8px);
+}
+
+.restaurant-card h3 {
+    margin: 0;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem; 
+    font-size: 1.2em;
+    color: #254a5d;
+}
+
+.restaurant-card p {
+    margin: 10px 0 0;
+    color: #254a5d;
+}
+.restaurant-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.restaurant-info {
+    padding: 20px;
+}
+
+.restaurant-info h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #555;
+}
+
+.restaurant-info p {
+    font-size: 1rem;
+    margin-bottom: 5px;
+    color: #777;
+}
+
+
+
+
+
+.cities-section {
+    margin-top: 50px;
+    padding: 20px;
+  }
+  
+  .cities-section h2 {
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .cities-container {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding: 10px 0;
+    scrollbar-width: thin; /* Modern browser scrollbar */
+  }
+  
+  .cities-container::-webkit-scrollbar {
+    height: 8px;
+  }
+  
+  .cities-container::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 10px;
+  }
+  
+  .city-card {
+    flex: 0 0 auto; /* Prevent shrinking */
+    width: 280px;
+    height: 350px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    background-color: white;
+  }
+  
+  .city-card img {
+    width: 100%;
+    height: 80%;
+    object-fit: cover;
+    transform: scale(1.1); /* Zoom in by default */
+    transition: transform 0.5s ease;
+  }
+  
+  .city-card img:hover {
+    transform: scale(1); /* Zoom out to original size */
+  }
+  
+  .city-card p {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+    color: #333;
+  }
+  
+
+
+
+
+
+  
+
+
+/* Join Us Section */
+.join-us {
+    background: linear-gradient(to right, #ff9a5c, #ffcd81);
+    padding: 80px 20px;
+    border-radius: 15px;
+    margin: 40px auto;
+    width: 90%;
+    max-width: 1200px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .join-us-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .join-us-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    animation: fadeInUp 1s ease-in-out both;
+  }
+  
+  .join-us-logo {
+    width: 120px;
+    height: auto;
+    animation: float 3s infinite ease-in-out;
+  }
+  
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+  
+  .join-us-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: #ffffff;
+    margin: 10px 0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    animation: fadeIn 1.5s ease-in;
+  }
+  
+  .join-us-description {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.2rem;
+    color: #ffffff;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    animation: fadeIn 2s ease-in;
+  }
+  
+  .join-us-button {
+    display: inline-block;
+    background-color: #254a5d;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 1rem;
+    font-family: 'Open Sans', sans-serif;
+    padding: 15px 30px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    animation: bounceIn 2.0s ease-in;
+  }
+  
+  .join-us-button:hover {
+    background-color: #f47c3c;
+    transform: translateY(-3px) scale(1.1);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+  }
+  
+  /* Animations */
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes bounceIn {
+    0%, 60%, 75%, 90%, 100% {
+      transform: translateY(0);
+    }
+    25% {
+      transform: translateY(-10px);
+    }
+    50% {
+      transform: translateY(5px);
+    }
+  }
+  
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px 10px;
+    background: transparent;
+    color: #000;
+    font-family: 'Open Sans', sans-serif;
+    position: relative;
+}
+
+.footer-divider {
+    border: none;
+    border-top: 2px solid #000; /* Black line at the top */
+    margin: 0 auto;
+    width: 90%;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 20px auto;
+}
+
+.footer-links {
+    margin: 15px 0;
+}
+
+.footer-links a {
+    color: #000;
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: #f47c3c; /* Highlight color on hover */
+}
+
+.social-media-icons {
+    margin-top: 10px;
+}
+
+.social-media-icons a {
+    color: #000;
+    font-size: 1.5rem;
+    margin: 0 10px;
+    transition: color 0.3s ease;
+}
+
+.social-media-icons a:hover {
+    color: #f47c3c; /* Highlight color on hover */
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .footer-links,
+    .social-media-icons {
+        margin: 10px 0;
+    }
+
+    .social-media-icons a {
+        font-size: 1.2rem;
+    }
+}
+
+@keyframes moveup {
+    0% {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}

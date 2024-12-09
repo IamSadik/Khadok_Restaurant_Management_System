@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khadok - Unleash your cravings</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/node-vibrant/3.1.6/vibrant.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+
+
+
+
+
+    <script src="js/navbar-color.js" defer></script>
+    <script src="js/search.js" defer></script>
+
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header class="nav-bar">
+        <div class="logo">
+            <a href="index.html" class="logo-link">
+                <img src="images/khadok2.png" alt="Brand Logo" class="brand-logo">
+                <span class="logo-text">Khadok</span>
+            </a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="about.html" class="about-btn">About</a></li>
+                <li><a href="admin_login.html" class="contact-btn">Admin</a></li>
+                <li><a href="rider_login.html" class="login-btn">Rider</a></li>
+                <li><a href="signup.html" class="signup-btn">Sign up</a></li> 
+                       
+            </ul>
+            
+        </nav>
+        <ul>
+            <li class="user-icon">
+                <a href="login.html">
+                    <i class="fas fa-user-circle"></i>
+                </a>
+            </li> 
+        </ul>
+             
+    </header>
+    
+    
+    
+    
+    
+    
+    
+
+    <section class="hero">
+        <div class="carousel">
+            <img src="images/image.jpg" alt="Delicious Food" class="carousel-image">
+            <img src="images/image2.jpg" alt="Tasty Meals" class="carousel-image">
+            <img src="images/image3.jpg" alt="Fresh Ingredients" class="carousel-image">
+            <img src="images/image4.jpg" alt="Fresh Ingredients" class="carousel-image">
+            <img src="images/image5.jpg" alt="Fresh Ingredients" class="carousel-image">
+        </div>
+        <div class="hero-text">
+            <h1>Welcome to Khadok</h1>
+            <p>Discover your favorite meals and the best dining experiences.</p>
+            <div class="search-container" style="position: relative; width: 100%;">
+                <form class="search-bar" id="search-form" onsubmit="return searchRestaurants();">
+                    <input type="text" id="search-input" 
+                        placeholder="Search for your favorite restaurants..." 
+                        onkeyup="fetchSuggestions()" 
+                        autocomplete="off">
+                    <button type="submit">Search</button>
+                </form>
+                <div id="suggestions" class="suggestions-box"></div>
+            </div>
+
+                                  
+        </div>
+    </section>
+    
+
+    <section class="services">
+        <h2>Our Services</h2>
+        <div class="service-list">
+            <div class="service-item">
+                <h3>Delivery</h3>
+                <p>Fast and reliable food delivery to your doorstep.</p>
+            </div>
+            <div class="service-item">
+                <h3>Pickup</h3>
+                <p>Order online and pick up at your convenience.</p>
+            </div>
+            <div class="service-item">
+                <h3>Dine-In</h3>
+                <p>Reserve a table and enjoy a luxurious dining experience.</p>
+            </div>
+        </div>
+    </section>
+    <section id="featured-restaurants">
+        <h2>Top Rated Restaurants</h2>
+        <div class="horizontal-scroll-container">
+          <button class="scroll-btn left" id="scroll-left" aria-label="Scroll Left">&lt;</button>
+          <div id="restaurant-grid" class="restaurant-grid">
+            <!-- Dynamic restaurant cards will be injected here -->
+          </div>
+          <button class="scroll-btn right" id="scroll-right" aria-label="Scroll Right">&gt;</button>
+        </div>
+    </section>
+      
+    <div class="cities-section">
+        <h2>Cities We Are Available In</h2>
+        <div class="horizontal-scroll-container">
+          <!-- Reuse the same scroll buttons -->
+          <button class="scroll-btn left" id="city-scroll-left" aria-label="Scroll Left">&lt;</button>
+          <div id="cities-grid" class="restaurant-grid">
+            <div class="city-card">
+              <img src="images/istambul.jpg" alt="Istambul">
+              <p>Istambul</p>
+            </div>
+            <div class="city-card">
+              <img src="images/dhaka.jpg" alt="Dhaka">
+              <p>Dhaka</p>
+            </div>
+            <div class="city-card">
+              <img src="images/barisal.jpg" alt="Barisal">
+              <p>Barisal</p>
+            </div>
+            <div class="city-card">
+              <img src="images/cox.jpg" alt="Cox's Bazar">
+              <p>Cox's Bazar</p>
+            </div>
+            <div class="city-card">
+              <img src="images/chittagong.jpg" alt="Chittagong">
+              <p>Chittagong</p>
+            </div>
+            <div class="city-card">
+              <img src="images/sylhet.jpg" alt="Sylhet">
+              <p>Sylhet</p>
+            </div>
+            <div class="city-card">
+              <img src="images/noakhali.jpg" alt="Noakhali">
+              <p>Noakhali</p>
+            </div>
+          </div>
+          <button class="scroll-btn right" id="city-scroll-right" aria-label="Scroll Right">&gt;</button>
+        </div>
+    </div>
+      
+      
+      
+
+    <section class="join-us" id="join-us">
+        <div class="join-us-container">
+          <div class="join-us-content" data-aos="fade-up">
+            <img src="images/khadok2.png" alt="Logo" class="join-us-logo" />
+            <div class="join-us-text">
+              <h2 class="join-us-title">Connecting hearts through food, one order at a time</h2>
+              <p class="join-us-description">
+                Support us as we bring taste and convenience to your doorstep!
+              </p>
+              <a href="signup.html" class="join-us-button">Join Now</a>
+            </div>
+          </div>
+        </div>
+    </section>
+      
+    
+
+
+    <!-- scroll js -->
+    <script>
+                // Featured Restaurants Scroll
+        const restaurantLeftBtn = document.getElementById('scroll-left');
+        const restaurantRightBtn = document.getElementById('scroll-right');
+        const restaurantGrid = document.getElementById('restaurant-grid');
+
+        restaurantLeftBtn.addEventListener('click', () => {
+        restaurantGrid.scrollBy({ left: -300, behavior: 'smooth' });
+        });
+
+        restaurantRightBtn.addEventListener('click', () => {
+        restaurantGrid.scrollBy({ left: 300, behavior: 'smooth' });
+        });
+
+        // Cities Scroll
+        const cityLeftBtn = document.getElementById('city-scroll-left');
+        const cityRightBtn = document.getElementById('city-scroll-right');
+        const citiesGrid = document.getElementById('cities-grid');
+
+        cityLeftBtn.addEventListener('click', () => {
+        citiesGrid.scrollBy({ left: -300, behavior: 'smooth' });
+        });
+
+        cityRightBtn.addEventListener('click', () => {
+        citiesGrid.scrollBy({ left: 300, behavior: 'smooth' });
+        });
+
+
+    </script>
+    
+    <!-- navbar js -->
+    <script>
+        window.addEventListener("scroll", () => {
+    const header = document.querySelector("header");
+    if (window.scrollY > 50) {
+        header.style.background = "rgba(255, 255, 255, 0.9)";
+    } else {
+        header.style.background = "rgba(255, 255, 255, 0.2)";
+    }
+});
+
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+        const images = document.querySelectorAll(".carousel-image");
+        let currentIndex = 0;
+
+        function showNextImage() {
+            // Hide the current image
+            images[currentIndex].classList.remove("active");
+
+            // Move to the next image
+            currentIndex = (currentIndex + 1) % images.length;
+
+            // Show the next image
+            images[currentIndex].classList.add("active");
+        }
+
+        // Initial display
+        images[currentIndex].classList.add("active");
+
+        // Change image every 3 seconds
+        setInterval(showNextImage, 3000);
+    });
+
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+        const restaurantGrid = document.getElementById('restaurant-grid');
+
+        fetch('fetch_featured_restaurants.php')
+            .then(response => response.json())
+         .then(data => {
+                if (data.error) {
+                    console.error('Error:', data.error);
+                   return;
+                }
+               data.forEach(restaurant => {
+                  const rating = typeof restaurant.ratings === 'number' ? restaurant.ratings.toFixed(1) : 'N/A';
+                  const restaurantCard = `
+                      <div class="restaurant-card">
+                            <h3>${restaurant.restaurant_name}</h3>
+                            <p>Rating: ${rating}</p>
+                       </div>
+                 `;
+                  restaurantGrid.innerHTML += restaurantCard;
+              });
+          })
+         .catch(error => console.error('Fetch Error:', error));
+    });
+    
+    </script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+     // Select the search bar element
+     const searchBar = document.querySelector('.search-bar');
+
+        // Set up Intersection Observer to watch for when the search bar is in the viewport
+      const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+               // If the search bar is in view, add the 'visible' class to trigger animation
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                 observer.unobserve(entry.target);  // Stop observing after it becomes visible
+              }
+           });
+      }, {
+         threshold: 0.5  // Trigger when 50% of the search bar is visible
+      });
+
+        // Start observing the search bar
+        observer.observe(searchBar);
+        });
+
+    </script>
+    <script>
+         document.addEventListener('DOMContentLoaded', () => {
+     // Select the hero text element
+     const heroText = document.querySelector('.hero-text');
+
+        // Set up Intersection Observer to watch for when the hero text is in the viewport
+     const observer = new IntersectionObserver((entries, observer) => {
+          entries.forEach(entry => {
+             // If the hero text is in view, add the 'visible' class to trigger animation
+              if (entry.isIntersecting) {
+                  entry.target.classList.add('visible');
+                   observer.unobserve(entry.target);  // Stop observing after it becomes visible
+               }
+           });
+      }, {
+         threshold: 0.5  // Trigger when 50% of the hero text is visible
+     });
+
+        // Start observing the hero text
+     observer.observe(heroText);
+    });
+
+    </script>
+    
+    <script>
+        // Fetch suggestions dynamically
+        function fetchSuggestions() {
+            const input = document.getElementById("search-input");
+            const suggestionsBox = document.getElementById("suggestions");
+            const query = input.value.trim();
+    
+            if (query.length > 0) {
+                fetch(`/api/search-restaurants?query=${query}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        suggestionsBox.innerHTML = ""; // Clear previous suggestions
+                        if (data.length > 0) {
+                            data.forEach(restaurant => {
+                                const suggestion = document.createElement("div");
+                                suggestion.classList.add("suggestion-item");
+                                suggestion.textContent = restaurant.restaurant_name;
+                                suggestion.onclick = () => {
+                                    window.location.href = `/restaurant-profile?id=${stakeholder.stakeholder_id}`; // Update URL to match your route
+                                };
+                                suggestionsBox.appendChild(suggestion);
+                            });
+                        } else {
+                            suggestionsBox.innerHTML = "<div class='no-suggestions'>No matches found</div>";
+                        }
+                    })
+                    .catch(error => console.error("Error fetching suggestions:", error));
+            } else {
+                suggestionsBox.innerHTML = ""; // Clear suggestions if input is empty
+            }
+        }
+    
+        // Handle full search submission
+        function searchRestaurants() {
+            const query = document.getElementById("search-input").value.trim();
+            if (query) {
+                window.location.href = `/search-results?query=${query}`; // Update URL for search results
+            }
+            return false; // Prevent form submission
+        }
+    </script>
+    
+    
+
+    <script>
+            // detached scrolling
+            // JavaScript for detached scrolling effect
+            document.addEventListener("DOMContentLoaded", () => {
+        let lastScrollY = window.scrollY;
+        const header = document.querySelector("header");
+
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > lastScrollY) {
+                header.classList.add("hidden"); // Hide header on scroll down
+            } else {
+                header.classList.remove("hidden"); // Show header on scroll up
+            }
+            lastScrollY = window.scrollY;
+        });
+    });
+
+    </script>
+
+    <script>
+        let lastScrollY = window.scrollY; // Track the last known scroll position
+
+        window.addEventListener('scroll', () => {
+        const header = document.querySelector('header'); // Select the header
+        const currentScrollY = window.scrollY;
+
+        if (currentScrollY > lastScrollY) {
+            // Scrolling down, show the header
+            header.classList.remove('hidden');
+        } else if (currentScrollY < lastScrollY) {
+            // Scrolling up, hide the header
+            header.classList.add('hidden');
+        }
+
+        lastScrollY = currentScrollY; // Update the last scroll position
+        });
+
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+        AOS.init({
+            duration: 1000,
+            easing: 'ease-in-out',
+        });
+        });
+
+    </script>
+ 
+    <footer>
+        <hr class="footer-divider" />
+        <div class="footer-content">
+         <p>&copy; 2024 Khadok. All rights reserved.</p>
+         <div class="footer-links">
+             <a href="terms.html">Terms & Conditions</a>
+                <a href="privacy.html">Privacy Policy</a>
+             <a href="contact.html">Contact Us</a>
+        </div>
+        <div class="social-media-icons">
+            <a href="https://facebook.com" target="_blank" aria-label="Facebook">
+                <i class="fab fa-facebook"></i>
+            </a>
+            <a href="https://twitter.com" target="_blank" aria-label="Twitter">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="https://instagram.com" target="_blank" aria-label="Instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn">
+                <i class="fab fa-linkedin"></i>
+            </a>
+        </div>
+        </div>
+    </footer>
+
+</body>
+</html>

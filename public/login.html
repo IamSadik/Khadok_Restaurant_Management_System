@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="css/login.css">
+    <title>Welcome to Khadok</title>
+    <style>
+        .home-icon {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 24px;
+            color: #444;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .home-icon:hover {
+            color: #007bff;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Home Icon -->
+    <a href="index.html" class="home-icon" title="Go to Landing Page">
+        <i class="fa-solid fa-house"></i>
+    </a>
+
+    <div class="container" id="container">
+        <!-- Consumer Form -->
+        <div class="form-container sign-in">
+            <form method="post" action="/auth/login-consumer">
+                <h1>Consumer</h1>
+                <div class="social-icons">
+                    <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
+                    <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
+                    <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+                <span>or use your email password</span>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <a href="#">Forget Your Password?</a>
+                <button type="submit">Consumer Sign In</button>
+            </form>
+        </div>
+
+        <!-- Stakeholder Form -->
+        <div class="form-container sign-up">
+            <form method="post" action="/auth/login-stakeholder">
+                <h1>Stakeholder</h1>
+                <div class="social-icons">
+                    <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
+                    <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
+                    <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+                <span>or use your email password</span>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <a href="#">Forget Your Password?</a>
+                <button type="submit">Stakeholder Sign In</button>
+            </form>
+        </div>
+
+        <!-- Toggle Section -->
+        <div class="toggle-container">
+            <div class="toggle">
+                <div class="toggle-panel toggle-left">
+                    <h1>Go Back?</h1>
+                    <p>Go back to sign in as a consumer and explore Khadok</p>
+                    <button id="login">Go Back</button>
+                </div>
+                <div class="toggle-panel toggle-right">
+                    <h1>Stakeholder?</h1>
+                    <p>Simply select Stakeholder and join Khadok for business</p>
+                    <button id="register">Stakeholder</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+
+    <script src="js/login_script.js"></script>
+</body>
+
+</html>

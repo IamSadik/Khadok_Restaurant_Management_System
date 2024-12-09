@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Settings</title>
+    <link rel="stylesheet" href="css/khadok.consumer.sidebar.css">
+    <link rel="stylesheet" href="css/khadok.consumer.dashboard.css">
+    <link rel="stylesheet" href="css/khadok.consumer.setting.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">   
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo_content">
+            <div class="logo">
+                
+                <div class="logo_name">Khadok
+
+                </div>
+            </div>
+            <i class='bx bx-menu' id="btn"></i>
+        </div>
+        <ul class="nav_list">
+            <li>
+                
+                    <i class='bx bx-search-alt'></i>
+                    <input type="text" placeholder="Search...">
+                
+                <span class="tooltip">Search </span>
+            </li>
+            <li>
+                <a href="khadok.consumer.dashboard.html">
+                    <i class='bx bxs-grid-alt'></i>
+                    <span class="links_name">Dashboard</span>
+                </a>
+                <span class="tooltip">Dashboard</span>
+            </li>
+            <li>
+                <a href="khadok.consumer.user.html">
+                    <i class='bx bxs-user-circle'></i>
+                    <span class="links_name">User</span>
+                </a>
+                <span class="tooltip">User</span>
+            </li>
+            <li>
+                <a href="khadok.consumer.chat.html">
+                    <i class='bx bxs-chat'></i>
+                    <span class="links_name">Messages</span>
+                </a>
+                <span class="tooltip">Messages</span>
+            </li>
+            <li>
+                <a href="khadok.consumer.order.html">
+                    <i class='bx bxs-package'></i>
+                    <span class="links_name">Orders</span>
+                </a>
+                <span class="tooltip">Orders</span>
+            </li>
+            <li>
+                <a href="khadok.consumer.cart.html">
+                    <i class='bx bxs-cart'></i>
+                    <span class="links_name">Cart</span>
+                </a>
+                <span class="tooltip">Cart</span>
+            </li>
+            <li>
+                <a href="khadok.consumer.setting.html">
+                    <i class='bx bxs-cog'></i>
+                    <span class="links_name">Settings</span>
+                </a>
+                <span class="tooltip">Settings</span>
+            </li>
+        </ul>
+        <div class="profile_content">
+            <div class="profile">
+                <div class="profile_details">
+                    <div class="name_job">
+                        <div class="name">Logout</div>
+                        <div class="job">Consumer</div>
+                    </div>
+                </div>
+                    <li>
+                        <a href="logout.php">
+                            <i class='bx bx-log-out-circle' id="log_out"></i>
+                            <span class="links_name">Logout</span>
+                        </a>
+                        
+                    </li>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="home_content">
+        <h2 class="page-title"><i class="fas fa-cogs"></i> Account Settings</h2>
+        
+        <div class="settings-container">
+            <!-- Profile Section -->
+            <div class="settings-section">
+                <div class="section-header">
+                    <i class="fas fa-user-circle"></i>
+                    <h3>Profile Information</h3>
+                </div>
+                <form id="profileForm" method="POST" action="update_profile.php">
+                    <div class="form-group">
+                        <label for="username"><i class="fas fa-user"></i> Username</label>
+                        <input type="text" id="username" name="username" value="Current Username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email"><i class="fas fa-envelope"></i> Email</label>
+                        <input type="email" id="email" name="email" value="Current Email" required>
+                    </div>
+                    <button type="submit" class="btn save-btn"><i class="fas fa-save"></i> Save Changes</button>
+                </form>
+            </div>
+
+            <!-- Change Password Section -->
+            <div class="settings-section">
+                <div class="section-header">
+                    <i class="fas fa-key"></i>
+                    <h3>Change Password</h3>
+                </div>
+                <form id="passwordForm" method="POST" action="change_password.php">
+                    <div class="form-group">
+                        <label for="oldPassword"><i class="fas fa-lock"></i> Old Password</label>
+                        <input type="password" id="oldPassword" name="oldPassword" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="newPassword"><i class="fas fa-lock"></i> New Password</label>
+                        <input type="password" id="newPassword" name="newPassword" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword"><i class="fas fa-lock"></i> Confirm Password</label>
+                        <input type="password" id="confirmPassword" name="confirmPassword" required>
+                    </div>
+                    <button type="submit" class="btn save-btn"><i class="fas fa-check-circle"></i> Change Password</button>
+                </form>
+            </div>
+
+            <!-- Address Management Section -->
+            <div class="settings-section">
+                <div class="section-header">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Address Management</h3>
+                </div>
+                <form id="addressForm" method="POST" action="update_address.php">
+                    <div class="form-group">
+                        <label for="address"><i class="fas fa-home"></i> Address</label>
+                        <input type="text" id="address" name="address" value="Current Address" required>
+                    </div>
+                    <button type="submit" class="btn save-btn"><i class="fas fa-save"></i> Save Address</button>
+                </form>
+            </div>
+
+            <!-- Linked Accounts Section -->
+            <div class="settings-section">
+                <div class="section-header">
+                    <i class="fas fa-plug"></i>
+                    <h3>Linked Accounts</h3>
+                </div>
+                <form id="linkedAccountsForm">
+                    <button type="button" class="btn google-btn"><i class="fab fa-google"></i> Link Google</button>
+                    <button type="button" class="btn facebook-btn"><i class="fab fa-facebook"></i> Link Facebook</button>
+                </form>
+            </div>
+
+            <!-- Security Settings Section -->
+            <div class="settings-section">
+                <div class="section-header">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Security Settings</h3>
+                </div>
+                <form id="securityForm">
+                    <div class="form-group">
+                        <label for="twoFactorAuth"><i class="fas fa-lock"></i> Two-factor Authentication</label>
+                        <input type="checkbox" id="twoFactorAuth" name="twoFactorAuth">
+                    </div>
+                    <button type="submit" class="btn save-btn"><i class="fas fa-save"></i> Save Security Settings</button>
+                </form>
+            </div>
+
+            <!-- Subscription Management Section -->
+            <div class="settings-section">
+                <div class="section-header">
+                    <i class="fas fa-credit-card"></i>
+                    <h3>Subscription Management</h3>
+                </div>
+                <form id="subscriptionForm">
+                    <button type="button" class="btn subscription-btn"><i class="fas fa-eye"></i> View Subscription</button>
+                </form>
+            </div>
+
+            <!-- Account Deactivation Section -->
+            <div class="settings-section">
+                <div class="section-header">
+                    <i class="fas fa-user-slash"></i>
+                    <h3>Account Deactivation</h3>
+                </div>
+                <form id="deactivationForm">
+                    <button type="button" class="btn deactivation-btn"><i class="fas fa-trash-alt"></i> Deactivate Account</button>
+                </form>
+            </div>
+
+            <!-- Feedback Section -->
+            <div class="settings-section">
+                <div class="section-header">
+                    <i class="fas fa-comment-alt"></i>
+                    <h3>Feedback</h3>
+                </div>
+                <form id="feedbackForm">
+                    <div class="form-group">
+                        <label for="feedback"><i class="fas fa-comment-dots"></i> Your Feedback</label>
+                        <textarea id="feedback" name="feedback" rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="btn save-btn"><i class="fas fa-paper-plane"></i> Submit Feedback</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="js/khadok.consumer.setting.js"></script>
+</body>
+</html>

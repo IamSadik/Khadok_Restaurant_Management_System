@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/signup.css">
+    <link rel="stylesheet" href="css/modal.css"> <!-- Link for popup styling -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="index.html" class="logo-link">
+                <img src="images/khadok2.png" alt="Brand Logo" class="brand-logo">
+                <span class="logo-text">Khadok</span>
+            </a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html" class="about-btn">Home</a></li>
+                <li><a href="about.html" class="about-btn">About</a></li>
+                <li><a href="admin_login.html" class="contact-btn">Admin</a></li>
+                <li><a href="rider_login.html" class="login-btn">Rider</a></li>
+            </ul>
+        </nav>
+        <ul>
+            <li class="user-icon">
+                <a href="login.html">
+                    <i class="fas fa-user-circle"></i>
+                </a>
+            </li> 
+        </ul>
+    </header>
+    <main>
+        <section class="signup-section">
+            <h1>Join Us</h1>
+            <div class="signup-container">
+                <div class="signup-card">
+                    <h2>Consumer</h2>
+                    <p>Sign up to explore restaurants, order your favorite dishes, and enjoy seamless dining experiences.</p>
+                    <button class="signup-btn open-modal" data-modal="consumer-modal">Sign Up as Consumer</button>
+                </div>
+                <div class="signup-card">
+                    <h2>Rider</h2>
+                    <p>Join our team as a Rider to deliver happiness and enjoy flexible working hours and competitive pay.</p>
+                    <button class="signup-btn open-modal" data-modal="rider-modal">Sign Up as Rider</button>
+                </div>
+                <div class="signup-card">
+                    <h2>Stakeholder</h2>
+                    <p>Become a Stakeholder to grow your restaurant's reach, manage menus, and showcase your business.</p>
+                    <button class="signup-btn open-modal" data-modal="stakeholder-modal">Sign Up as Stakeholder</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Consumer Modal -->
+    <div class="modal" id="consumer-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Create an Account</h2>
+            <form action="consumer_signup.php" method="POST">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                </div>
+                <button type="submit" class="submit-btn">Register</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Rider Modal -->
+    <div class="modal" id="rider-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Sign Up as Rider</h2>
+            <form id="rider-signup-form" method="POST" action="rider_signup.php">
+                <div class="form-group">
+                    <label for="rider-name">Name</label>
+                    <input type="text" id="rider-name" name="name" placeholder="Enter your name" required>
+                </div>
+                <div class="form-group">
+                    <label for="rider-email">Email Address</label>
+                    <input type="email" id="rider-email" name="email" placeholder="Enter your email address" required>
+                </div>
+                <div class="form-group">
+                    <label for="rider-password">Password</label>
+                    <input type="password" id="rider-password" name="password" placeholder="Enter your password" required>
+                </div>
+                <button type="submit" class="submit-btn">Register</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Stakeholder Modal -->
+    <div class="modal" id="stakeholder-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Sign Up as Stakeholder</h2>
+            <form id="stakeholder-signup-form" method="POST" action="stakeholder_signup.php">
+                <div class="form-group">
+                    <label for="stakeholder-name">Name</label>
+                    <input type="text" id="stakeholder-name" name="name" placeholder="Enter your name" required>
+                </div>
+                <div class="form-group">
+                    <label for="stakeholder-email">Email Address</label>
+                    <input type="email" id="stakeholder-email" name="email" placeholder="Enter your email address" required>
+                </div>
+                <div class="form-group">
+                    <label for="stakeholder-password">Password</label>
+                    <input type="password" id="stakeholder-password" name="password" placeholder="Enter your password" required>
+                </div>
+                <div class="form-group">
+                    <label for="restaurant-name">Restaurant Name</label>
+                    <input type="text" id="restaurant-name" name="restaurant_name" placeholder="Enter your restaurant name" required>
+                </div>
+                <button type="submit" class="submit-btn">Register</button>
+            </form>
+        </div>
+    </div>
+
+
+
+    
+
+
+    <script src="js/modal.js"></script>
+</body>
+</html>

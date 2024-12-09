@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Montserrat, sans-serif;
+    background: linear-gradient(to right, #e2e2e2, #c9d6ff); /* Beautiful blue-purple gradient */
+    color: #fff; /* Text color to contrast the gradient */
+    overflow: hidden; /* Prevent scrolling from affecting full-page layout */
+}
+
+
+
+.form-container.rider-container {
+    position: absolute; /* Ensures it can be centered relative to the page */
+    top: 340px; /* Vertically centers the form */
+    left: 50%; /* Horizontally centers the form */
+    transform: translate(-50%, -50%); /* Adjusts for the element's dimensions */
+    justify-items: center;
+    height: 350px;
+    transition: all 0.6s ease-in-out;
+    text-decoration: none;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+    width: 650px;
+    z-index: 10;
+    align-content: center;
+    padding: 60px;
+    border-radius: 30px;
+    background: linear-gradient(to right, #97a0879a, #767f65);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+form.rider-form{
+    display: auto;
+    justify-items: center;
+    
+}
+form.rider-form a{
+    text-decoration: none;
+    justify-content: center;
+    color: #eee;
+    font-size: 14px;
+    margin-left: 3px;
+    display: block;
+    margin-top: 10px;
+}
+
+
+.form-container .rider-form .social-icons{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+.rider-form .icon {
+    font-size: 14px;
+    color: #000;
+    border: 0.25px solid #0000002f;
+    padding: 10px;
+    
+    text-align: center;
+    transition: transform 0.3s, background 0.3s;
+}
+
+
+.rider-form span {
+    align-items: center;
+    color: #000;
+    font-size: 14px;
+    margin-bottom: 20px;
+    display: block;
+}
+.rider-form input {
+    width: 70%;
+    padding: 12px;
+    margin: 10px auto;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #000;
+    outline: none;
+    transition: background 0.3s, border-color 0.3s;
+}
+.rider-form button {
+    justify-items: center;
+    align-items: center;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    font-size: 16px;
+    font-weight: 600;
+    transition: background 0.3s, transform 0.3s;
+}
+.form-container.rider-container.social-icons a{
+    border: 1px solid #ccc;
+    border-radius: 20%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 3px;
+    width: 40px;
+    height: 40px;
+    text-decoration: none;
+}
+
+.form-container.rider-container input{
+    background-color: #eee;
+    
+    border: none;
+    margin: 8px 0;
+    padding: 10px 15px;
+    font-size: 13px;
+    border-radius: 8px;
+    width: 100%;
+    outline: none;
+}
+
+.form-container.rider-container button{
+    background-color: #254a5d;
+    display: block;
+    color: #fff;
+    font-size: 12px;
+    padding: 10px 45px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-top: 20px;
+    cursor: pointer;
+    justify-self: center;
+    
+}
+
+.form-container.rider-container button:hover{
+    
+   box-shadow: inset;
+}

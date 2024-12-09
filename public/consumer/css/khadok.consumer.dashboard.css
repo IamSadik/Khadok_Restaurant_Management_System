@@ -1,0 +1,246 @@
+/* General Styles */
+html {
+    font-size: 90%;
+}
+
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    background-color: #f9f9f9;
+    color: #333;
+    display: flex;
+    transform: scale(0.95);
+    transform-origin: top left;
+  
+}
+
+.sidebar{
+  
+    position: fixed;
+}
+
+.hidden {
+    display: none;
+}
+.user-info .card {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: linear-gradient(135deg, #ff7e5f, #feb47b);
+    padding: 15px;
+    border-radius: 10px;
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.user-info .card i {
+    font-size: 2rem;
+}
+
+.user-info .card h3 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.user-info .card p {
+    margin: 0;
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Add these styles for the user profile section */
+.user-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.user-profile .profile-info {
+    margin-bottom: 20px;
+}
+
+.user-profile button {
+    padding: 10px 20px;
+    margin-top: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.user-profile button:hover {
+    background-color: #45a049;
+}
+
+
+.home_content {
+    position: absolute;
+    height: 100%;
+    left: 78px;
+    width: calc(100% - 78px); /* Dynamically adjusts based on sidebar's width */
+    transition: all 0.5s ease; /* Smooth transition for expansion */
+    align-items: center;
+    margin-top: 40px;
+    overflow: auto;
+}
+
+.sidebar.active ~ .home_content {
+    left: 240px; /* Matches the expanded width of the sidebar */
+    width: calc(100% - 240px);
+}
+
+/* Dashboard Main Content */
+.dashboard-container {
+    flex-grow: 1;
+    margin-left: 70px;
+    padding: 20px;
+}
+
+header {
+    margin-bottom: 30px;
+}
+
+header h1 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #34495e;
+}
+
+/* Cards Section */
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.card {
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.card i {
+    font-size: 30px;
+    color: #3498db;
+    margin-right: 15px;
+}
+
+.card-info h3 {
+    font-size: 18px;
+    color: #2c3e50;
+    margin: 0;
+}
+
+.card-info p {
+    font-size: 14px;
+    color: #7f8c8d;
+    margin: 5px 0 0;
+}
+
+/* Upcoming Section */
+.upcoming-section h2 {
+    font-size: 20px;
+    color: #34495e;
+    margin-bottom: 15px;
+}
+
+.reservation {
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.reservation:hover{
+    transform: scale(1.01);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.reservation i {
+    font-size: 25px;
+    color: #e67e22;
+    margin-right: 15px;
+}
+
+.reservation p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+
+
+
+.active-orders-section {
+    display: ruby-base-container;
+    flex-wrap: nowrap; /* Allows wrapping to the next row if cards exceed the width */
+    gap: 20px; /* Adds spacing between the cards */
+    margin-top: 20px;
+    justify-content: flex-start; /* Aligns cards to the left (or use `center` if needed) */
+}
+
+.orders-container{
+    display: flex;
+    gap: 20px;
+}
+.order-card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 250px; /* Set a fixed width for consistency */
+    height: auto; /* Adjusts dynamically based on content */
+    text-align: center;
+    display: inline-flex;
+    flex-direction: column; /* Keeps content inside the card vertical */
+    align-items: center;
+    justify-content: space-between;
+    transition: transform 0.3s, box-shadow 0.3s;
+
+    grid-area: 20px;
+}
+
+.order-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.order-card i {
+    font-size: 30px;
+    color: #ff6347;
+    margin-bottom: 10px;
+}
+
+.order-card h3 {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.order-card p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.4;
+}
+
+.timer {
+    font-size: 16px;
+    color: #ff6347;
+    font-weight: bold;
+    margin-top: 10px;
+}

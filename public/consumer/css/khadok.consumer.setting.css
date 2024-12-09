@@ -1,0 +1,144 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f2f5;
+   
+    padding: 10;
+}
+
+.home_content {
+    margin: 20px 50px 20px 70px;
+    max-width:  100%;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 1fr; /* Single column layout */
+    gap: 20px;
+    overflow: auto;
+    scroll-margin-left: 50px;
+    justify-items: center;
+}
+.page-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.settings-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 30px;
+    justify-content: center;
+    width: 80%;
+}
+
+.settings-section {
+    background-color: #ffffff;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+}
+
+.settings-section:hover{
+    transform: scale(1.02);
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.section-header i {
+    font-size: 1.5rem;
+    color: #4CAF50;
+    align-items: center;
+}
+
+.settings-section h3 {
+    font-size: 1.5rem;
+    color: #333;
+    justify-items: center;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    font-size: 1rem;
+    margin-bottom: 5px;
+    color: #555;
+    
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.form-group input[type="checkbox"] {
+    width: auto;
+}
+
+.btn {
+    background-color: #3498DB;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.btn:hover {
+    background-color: #245a5d;
+}
+
+/* Icons in button */
+.btn i {
+    font-size: 1.2rem;
+}
+textarea#feedback{
+    width: 100%;
+}
+/* Responsiveness */
+@media (max-width: 768px) {
+    .settings-container {
+        padding: 10px;
+    }
+    .settings-section {
+        padding: 15px;
+    }
+}
+
+
+.settings-section {
+    background-color: #ffffff;
+    border-radius: 30px;
+    padding: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.settings-section .section-header i {
+    font-size: 1.8rem;
+    color: #0056B3;
+}
+
+.settings-section button {
+    width: 100%;
+    margin-top: 10px;
+}

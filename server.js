@@ -7,6 +7,7 @@ const mysql = require('mysql');
 const pool = require('./config/configdb');
 const authRoutes = require('./routes/authRoutes');
 
+
 // Initialize dotenv for environment variables
 dotenv.config();
 
@@ -34,6 +35,12 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 const consumerRoutes = require('./routes/consumerRoutes');
 app.use('/', consumerRoutes);
+const riderRoutes = require('./routes/riderRoutes');
+app.use('/api/rider', riderRoutes);
+
+
+
+
 
 // Routes
 //app.use('/api/admin', require('./routes/adminRoutes'));

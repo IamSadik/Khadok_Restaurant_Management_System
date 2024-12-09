@@ -1,5 +1,5 @@
 const { getConsumerByEmail, getStakeholderByEmail } = require('../models/authModel');
-//const bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt');
 
 exports.loginConsumer = async (req, res) => {
     const { email, password } = req.body;
@@ -9,8 +9,9 @@ exports.loginConsumer = async (req, res) => {
             return res.status(404).send('Consumer not found');
         }
 
-        // Directly compare passwords since they are not hashed
-        if (password !== consumer.password) {
+        // Compare the provided password with the stored encrypted password
+        const isMatch = await bcrypt.compare(password, consumer.password);
+        if (!isMatch) {
             return res.status(401).send('Invalid email or password');
         }
 
@@ -23,7 +24,6 @@ exports.loginConsumer = async (req, res) => {
     }
 };
 
-
 exports.loginStakeholder = async (req, res) => {
     const { email, password } = req.body;
     try {
@@ -32,8 +32,9 @@ exports.loginStakeholder = async (req, res) => {
             return res.status(404).json({ message: 'Stakeholder not found' });
         }
 
-        // Directly compare passwords since they are not hashed
-        if (password !== stakeholder.password) {
+        // Compare the provided password with the stored encrypted password
+        const isMatch = await bcrypt.compare(password, stakeholder.password);
+        if (!isMatch) {
             return res.status(401).json({ message: 'Invalid email or password' });
         }
 
@@ -44,4 +45,3 @@ exports.loginStakeholder = async (req, res) => {
         res.status(500).json({ message: 'Internal Server Error' });
     }
 };
-

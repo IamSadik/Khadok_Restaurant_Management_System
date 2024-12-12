@@ -1,4 +1,4 @@
-const { getConsumerByEmail, getStakeholderByEmail } = require('../models/authModel');
+const { getConsumerByEmail, getStakeholderByEmail, getRiderByEmail } = require('../models/authModel');
 //const bcrypt = require('bcrypt');
 
 exports.loginConsumer = async (req, res) => {
@@ -45,3 +45,28 @@ exports.loginStakeholder = async (req, res) => {
     }
 };
 
+
+exports.loginRider = async (req, res) => {
+    const { email, password } = req.body;
+
+    try {
+        // Fetch Rider by email
+        const rider = await getRiderByEmail(email);
+
+        // Check if Rider exists
+        if (!rider) {
+            return res.status(404).json({ message: 'Rider not found' });
+        }
+
+        // Directly compare passwords since they are not hashed
+        if (password !== rider.password) {
+            return res.status(401).json({ message: 'Invalid email or password' });
+        }
+
+        // If login is successful, redirect to Rider dashboard
+        res.status(200).json({ redirectURL: '/rider/dashboard' });
+    } catch (error) {
+        console.error('Error in Rider login:', error);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+};

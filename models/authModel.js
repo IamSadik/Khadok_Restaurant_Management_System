@@ -21,3 +21,22 @@ exports.getStakeholderByEmail = async (email) => {
 };
 
 
+=======
+// Fetch rider by email
+exports.getRiderByEmail = async (email) => {
+    return new Promise((resolve, reject) => {
+        const query = 'SELECT * FROM rider WHERE email = ?';
+        console.log('Executing Query:', query, [email]);
+
+        pool.query(query, [email], (err, results) => {
+            if (err) {
+                console.error('Database Query Error:', err);
+                return reject(err);
+            }
+
+            console.log('Query Results:', results);
+            resolve(results[0]); // Assuming 'rider' table exists
+        });
+    });
+};
+

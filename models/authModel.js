@@ -20,4 +20,12 @@ exports.getStakeholderByEmail = async (email) => {
     });
 };
 
-
+// Fetch rider by email
+exports.getRiderByEmail = async (email) => {
+    return new Promise((resolve, reject) => {
+        pool.query('SELECT * FROM rider WHERE email = ?', [email], (err, results) => {
+            if (err) return reject(err);
+            resolve(results[0]); // Assuming 'rider' table exists
+        });
+    });
+};

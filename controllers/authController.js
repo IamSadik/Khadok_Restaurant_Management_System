@@ -1,4 +1,4 @@
-const { getConsumerByEmail, getStakeholderByEmail } = require('../models/authModel');
+const { getConsumerByEmail, getStakeholderByEmail, getRiderByEmail} = require('../models/authModel');
 
 //const bcrypt = require('bcrypt');
 
@@ -61,6 +61,38 @@ exports.loginStakeholder = async (req, res) => {
         res.status(500).json({ message: 'Internal Server Error' });
     }
 };
+
+
+exports.loginRider = async (req, res) => {
+    const { email, password } = req.body;
+
+    try {
+        // Fetch Rider by email
+        const rider = await getRiderByEmail(email);
+
+        // Check if Rider exists
+        if (!rider) {
+            return res.status(404).json({ message: 'Rider not found' });
+        }
+
+        // Directly compare passwords since they are not hashed
+        if (password !== rider.password) {
+            return res.status(401).json({ message: 'Invalid email or password' });
+        }
+
+        // Store Rider email (if necessary)
+        if (email) {
+            riderEmail = email; // Store Rider email for session or other uses
+        }
+
+        // Redirect to Rider dashboard
+        res.redirect('/rider/index.html');
+    } catch (error) {
+        console.error('Error in Rider login:', error);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+};
+
 
 
 // Logout Handler

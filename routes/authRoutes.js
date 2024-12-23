@@ -2,7 +2,7 @@
 
 const express = require("express");
 const router = express.Router();
-const { loginConsumer, loginStakeholder,   } = require("../controllers/authController");
+const { loginConsumer, loginStakeholder, loginRider  } = require("../controllers/authController");
 const { logout , getEmail} = require('../controllers/authController');
 const { logoutHandler } = require('../controllers/authController');
 
@@ -19,5 +19,10 @@ router.post("/login-stakeholder", loginStakeholder); // POST for stakeholder log
 router.get('/logout', logout); // Add logout route
 router.get('/email', getEmail); // Add endpoint to fetch logged-in email
 
+// Route for Rider login
+router.post('/login-rider', (req, res, next) => {
+    console.log('Rider login route hit:', req.body);
+    next(); // Pass control to loginRider
+}, loginRider);
 
 module.exports = router;

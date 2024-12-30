@@ -1,6 +1,6 @@
 const { getConsumerByEmail, getStakeholderByEmail, getRiderByEmail} = require('../models/authModel');
 
-//const bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt');
 
 
 // Variables to store logged-in emails

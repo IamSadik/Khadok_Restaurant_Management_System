@@ -11,3 +11,4 @@ const createRider = async (name, email, hashedPassword) => {
 };
 
 module.exports = { createRider };
+

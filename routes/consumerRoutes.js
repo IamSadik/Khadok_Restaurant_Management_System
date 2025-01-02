@@ -1,10 +1,8 @@
 const express = require('express');
+const { signupConsumer } = require('../controllers/consumerController');
+
 const router = express.Router();
 
-// Import your login controller (if needed)
-const { loginHandler } = require('../controllers/consumerController');
-
-
+router.post('/signup', signupConsumer);
 
 module.exports = router;
-

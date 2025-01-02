@@ -53,33 +53,3 @@ function showSuccessPopup() {
     }
 }
 
-// Modify the form submission handling script
-document.addEventListener("DOMContentLoaded", () => {
-    const forms = document.querySelectorAll(".modal form");
-
-    forms.forEach((form) => {
-        form.addEventListener("submit", function (event) {
-            event.preventDefault(); // Prevent default form submission behavior
-
-            const formData = new FormData(this);
-
-            fetch(this.getAttribute("action") || "consumer_signup.php", {
-                method: "POST",
-                body: formData,
-            })
-                .then((response) => response.text())
-                .then((data) => {
-                    if (data.includes("Sign-up successful")) {
-                        showSuccessPopup(); // Show the success popup
-                        this.reset(); // Clear form inputs
-                    } else {
-                        alert("Sign-up failed. Please try again."); // Error handling
-                    }
-                })
-                .catch((error) => {
-                    console.error("Error:", error);
-                    alert("An unexpected error occurred. Please try again.");
-                });
-        });
-    });
-});

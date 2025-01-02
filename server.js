@@ -41,7 +41,9 @@ const riderRoutes = require('./routes/riderRoutes');
 app.use('/api/rider', riderRoutes);
 const stakeholderRoutes = require('./routes/stakeholderRoutes');
 app.use('/api/stakeholder', stakeholderRoutes);
+const adminRoutes = require("./routes/adminRoutes");
 
+app.use("/admin", adminRoutes);
 
 
 
@@ -51,7 +53,7 @@ app.use(restaurantRoutes);
 
 // Routes
 //app.use('/api/admin', require('./routes/adminRoutes'));
-//app.use('/api/consumer', require('./routes/consumerRoutes'));
+app.use('/api/consumer', require('./routes/consumerRoutes'));
 app.use('/api/restaurant', require('./routes/restaurantRoutes'));
 //app.use('/api/rider', require('./routes/riderRoutes'));
 //app.use('/api/order', require('./routes/orderRoutes'));

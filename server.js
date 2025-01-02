@@ -7,6 +7,8 @@ const mysql = require('mysql');
 const pool = require('./config/configdb');
 const authRoutes = require('./routes/authRoutes');
 const restaurantRoutes = require('./routes/restaurantRoutes');
+const ordersRouter = require('./routes/orderRoutes');
+const consumersRouter = require('./routes/consumerRoutes');
 
 
 // Initialize dotenv for environment variables
@@ -45,8 +47,9 @@ const adminRoutes = require("./routes/adminRoutes");
 
 app.use("/admin", adminRoutes);
 
+app.use('/api', ordersRouter);
 
-
+app.use('/api', consumersRouter);
 
 // Use the restaurant routes
 app.use(restaurantRoutes);

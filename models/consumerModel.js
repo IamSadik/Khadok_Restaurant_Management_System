@@ -13,3 +13,25 @@ exports.createConsumer = async (name, email, password) => {
     });
 };
 
+
+
+const getCustomerNameFromDB = async () => {
+    const query = `
+        SELECT 
+            name FROM consumer;
+    `;
+
+    return new Promise((resolve, reject) => {
+        pool.query(query, (error, results) => {
+            if (error) {
+                reject(error);
+            } else {
+                resolve(results);
+            }
+        });
+    });
+};
+
+
+
+module.exports = { getCustomerNameFromDB };

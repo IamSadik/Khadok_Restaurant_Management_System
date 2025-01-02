@@ -105,7 +105,7 @@
                 <div class="card">
                     <div>
                         <div class="numbers">1,504</div>
-                        <div class="cardName">Total Delevary</div>
+                        <div class="cardName">Total Delivery</div>
                     </div>
 
                     <div class="iconBx">
@@ -167,73 +167,43 @@
                                 <td>Status</td>
                             </tr>
                         </thead>
-
-                        <tbody>
-                            <tr>
-                                <td>Yeamine</td>
-                                <td>250</td>
-                                <td>18.01.24</td>
-                                <td>Paid</td>
-                                <td><span class="status delivered">Delivered</span></td>
-                            </tr>
-
-                            <tr>
-                                <td>Sorol</td>
-                                <td>300</td>
-                                <td>19.01.24</td>
-                                <td>Due</td>
-                                <td><span class="status pending">Pending</span></td>
-                            </tr>
-
-                            <tr>
-                                <td>Sadik</td>
-                                <td>1200</td>
-                                <td>18.01.24</td>
-                                <td>Paid</td>
-                                <td><span class="status return">Return</span></td>
-                            </tr>
-
-                            <tr>
-                                <td>Nuhil</td>
-                                <td>620</td>
-                                <td>28.01.24</td>
-                                <td>Due</td>
-                                <td><span class="status pending">pending</span></td>
-                            </tr>
-
-                            <tr>
-                                <td>Tuba</td>
-                                <td>100</td>
-                                <td>18.01.24</td>
-                                <td>Paid</td>
-                                <td><span class="status delivered">Delivered</span></td>
-                            </tr>
-
-                            <tr>
-                                <td>Tanjim</td>
-                                <td>110</td>
-                                <td>18.01.24</td>
-                                <td>Due</td>
-                                <td><span class="status pending">Pending</span></td>
-                            </tr>
-
-                            <tr>
-                                <td>Mahmud</td>
-                                <td>120</td>
-                                <td>18.01.24</td>
-                                <td>Paid</td>
-                                <td><span class="status return">Return</span></td>
-                            </tr>
-
-                            <tr>
-                                <td>Hai</td>
-                                <td>620</td>
-                                <td>13.01.24</td>
-                                <td>Due</td>
-                                <td><span class="status pending">pending</span></td>
-                            </tr>
+                        <tbody id="orders-table-body">
+                            <!-- Dynamic rows will be inserted here -->
                         </tbody>
                     </table>
+                
+                    <script>
+                               document.addEventListener('DOMContentLoaded', () => {
+                                const tableBody = document.getElementById('orders-table-body');
+
+                            // Fetch data from the API
+                            fetch('/api/get-order-details')
+                                .then(response => response.json())
+                                .then(data => {
+                                    if (data.error) {
+                                        console.error('Error:', data.error);
+                                        return;
+                                    }
+
+                                    // Populate table rows dynamically
+                                    data.forEach(order => {
+                                        const statusClass = order.status ? order.status.toLowerCase() : 'unknown';
+                                        const tableRow = `
+                                            <tr>
+                                                <td>${order.consumer_name}</td>
+                                                <td>${order.total_amount}</td>
+                                                <td>${order.order_date}</td>
+                                                <td>${order.status === 'Paid' ? 'Paid' : 'Due'}</td>
+                                                <td><span class="status ${statusClass}">${order.status}</span></td>
+                                            </tr>
+                                        `;
+                                        tableBody.innerHTML += tableRow;
+                                    });
+                                })
+                                .catch(error => console.error('Fetch Error:', error));
+                        });
+
+                    </script>
                 </div>
 
                 <!-- ================= New Customers ================ -->
@@ -242,79 +212,46 @@
                         <h2>Recent Customers</h2>
                     </div>
 
-                    <table>
-                        <tr>
-                            <td width="60px">
-                                <div class="imgBx"><img src="assets/imgs/customer02.jpg" alt=""></div>
-                            </td>
-                            <td>
-                                <h4>Mahmud <br> <span>Sonirakhra</span></h4>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td width="60px">
-                                <div class="imgBx"><img src="assets/imgs/customer01.jpg" alt=""></div>
-                            </td>
-                            <td>
-                                <h4>Sadik <br> <span>Azimpur</span></h4>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td width="60px">
-                                <div class="imgBx"><img src="assets/imgs/customer02.jpg" alt=""></div>
-                            </td>
-                            <td>
-                                <h4>Hai <br> <span>Dhanmondi</span></h4>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td width="60px">
-                                <div class="imgBx"><img src="assets/imgs/customer01.jpg" alt=""></div>
-                            </td>
-                            <td>
-                                <h4>Tanjim <br> <span>Lalbag</span></h4>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td width="60px">
-                                <div class="imgBx"><img src="assets/imgs/customer02.jpg" alt=""></div>
-                            </td>
-                            <td>
-                                <h4>Fayes <br> <span>Bongshal</span></h4>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td width="60px">
-                                <div class="imgBx"><img src="assets/imgs/customer01.jpg" alt=""></div>
-                            </td>
-                            <td>
-                                <h4>Nuhil <br> <span>Zigatola</span></h4>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td width="60px">
-                                <div class="imgBx"><img src="assets/imgs/customer01.jpg" alt=""></div>
-                            </td>
-                            <td>
-                                <h4>Yeamine <br> <span>New Market</span></h4>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td width="60px">
-                                <div class="imgBx"><img src="assets/imgs/customer02.jpg" alt=""></div>
-                            </td>
-                            <td>
-                                <h4>Sorol <br> <span>Nilkhet</span></h4>
-                            </td>
-                        </tr>
+                    <table id="customer-table">
+                        <!-- Dynamic rows will be inserted here -->
                     </table>
+                
+                    <script>
+                        document.addEventListener('DOMContentLoaded', () => {
+                            const table = document.getElementById('customer-table');
+                
+                            // Fetch data from the API
+                            fetch('/api/get-Name-details')
+                                .then(response => response.json())
+                                .then(data => {
+                                    if (data.error) {
+                                        console.error('Error:', data.error);
+                                        return;
+                                    }
+                
+                                    // Populate table rows dynamically
+                                    data.forEach((customer, index) => {
+                                        const imgSrc = index % 2 === 0 
+                                            ? 'assets/imgs/customer01.jpg' 
+                                            : 'assets/imgs/customer02.jpg';
+                                        const tableRow = `
+                                            <tr>
+                                                <td width="60px">
+                                                    <div class="imgBx">
+                                                        <img src="${imgSrc}" alt="Customer Image">
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <h4>${customer.name} <br> <span></span></h4>
+                                                </td>
+                                            </tr>
+                                        `;
+                                        table.innerHTML += tableRow;
+                                    });
+                                })
+                                .catch(error => console.error('Fetch Error:', error));
+                        });
+                    </script>
                 </div>
             </div>
         </div>

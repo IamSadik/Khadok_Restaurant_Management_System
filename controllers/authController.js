@@ -7,7 +7,6 @@ const bcrypt = require('bcrypt');
 let consumerEmail = null;
 let stakeholderEmail = null;
 
-
 exports.loginConsumer = async (req, res) => {
     const { email, password } = req.body;
 
@@ -15,47 +14,49 @@ exports.loginConsumer = async (req, res) => {
         const consumer = await getConsumerByEmail(email);
 
         if (!consumer) {
-            return res.status(404).send('Consumer not found');
+            return res.status(404).json({ message: 'Consumer not found' });
         }
 
-
-        // Directly compare passwords since they are not hashed
-        if (password !== consumer.password) {
+        // Compare the provided password with the hashed password
+        const isPasswordValid = await bcrypt.compare(password, consumer.password);
+        if (!isPasswordValid) {
             return res.status(401).json({ message: 'Invalid email or password' });
         }
-          // Simulate successful authentication
+
+        // Store consumer email (if necessary)
         if (email) {
-            consumerEmail = email; // Store consumer email
-           
+            consumerEmail = email; // You may want to use session management instead
         }
 
-        // redirect to dashboard
+        // Redirect to dashboard
         res.redirect('/consumer/khadok.consumer.dashboard.html');
     } catch (error) {
         console.error('Error in consumer login:', error);
-        res.status(500).send('Internal Server Error');
+        res.status(500).json({ message: 'Internal Server Error' });
     }
 };
-
 exports.loginStakeholder = async (req, res) => {
     const { email, password } = req.body;
+
     try {
         const stakeholder = await getStakeholderByEmail(email);
         if (!stakeholder) {
             return res.status(404).json({ message: 'Stakeholder not found' });
         }
 
-        // Directly compare passwords since they are not hashed
-        if (password !== stakeholder.password) {
+        // Compare the provided password with the hashed password
+        const isPasswordValid = await bcrypt.compare(password, stakeholder.password);
+        if (!isPasswordValid) {
             return res.status(401).json({ message: 'Invalid email or password' });
         }
+
+        // Store stakeholder email for session or other usage
         if (email) {
-            stakeholderEmail = email; // Store stakeholder email
-            
+            stakeholderEmail = email; // You may want to use session management instead
         }
-       
-         // redirect to dashboard
-         res.redirect('/stakeholder/khadok.stakeholder.index.html');
+
+        // Redirect to dashboard
+        res.redirect('/stakeholder/khadok.stakeholder.index.html');
     } catch (error) {
         console.error('Error in stakeholder login:', error);
         res.status(500).json({ message: 'Internal Server Error' });
@@ -67,22 +68,21 @@ exports.loginRider = async (req, res) => {
     const { email, password } = req.body;
 
     try {
-        // Fetch Rider by email
         const rider = await getRiderByEmail(email);
 
-        // Check if Rider exists
         if (!rider) {
             return res.status(404).json({ message: 'Rider not found' });
         }
 
-        // Directly compare passwords since they are not hashed
-        if (password !== rider.password) {
+        // Compare the provided password with the hashed password
+        const isPasswordValid = await bcrypt.compare(password, rider.password);
+        if (!isPasswordValid) {
             return res.status(401).json({ message: 'Invalid email or password' });
         }
 
-        // Store Rider email (if necessary)
+        // Store rider email (if necessary)
         if (email) {
-            riderEmail = email; // Store Rider email for session or other uses
+            riderEmail = email; // You may want to use session management instead
         }
 
         // Redirect to Rider dashboard
@@ -92,8 +92,6 @@ exports.loginRider = async (req, res) => {
         res.status(500).json({ message: 'Internal Server Error' });
     }
 };
-
-
 
 // Logout Handler
 exports.logout = (req, res) => {

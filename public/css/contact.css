@@ -309,6 +309,7 @@ header nav ul li a:hover {
   margin-top: 12px;
 }
 .right-side .button input[type="button"]{
+  margin-top: -100px;
   color: #fff;
   font-size: 18px;
   outline: none;

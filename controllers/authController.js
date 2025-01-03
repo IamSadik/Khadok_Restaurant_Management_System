@@ -27,7 +27,9 @@ exports.loginConsumer = async (req, res) => {
         if (email) {
             consumerEmail = email; // You may want to use session management instead
         }
-
+        // Save user details in the session
+        req.session.user = { id: consumer.consumer_id, email: consumer.email, type: 'consumer' };
+        console.log('Session data:', req.session.user); // Debugging
         // Redirect to dashboard
         res.redirect('/consumer/khadok.consumer.dashboard.html');
     } catch (error) {
@@ -43,20 +45,21 @@ exports.loginStakeholder = async (req, res) => {
         if (!stakeholder) {
             return res.status(404).json({ message: 'Stakeholder not found' });
         }
-
+        
         // Compare the provided password with the hashed password
         const isPasswordValid = await bcrypt.compare(password, stakeholder.password);
         if (!isPasswordValid) {
             return res.status(401).json({ message: 'Invalid email or password' });
         }
 
-        // Store stakeholder email for session or other usage
-        if (email) {
-            stakeholderEmail = email; // You may want to use session management instead
-        }
+       
+        req.session.user = { id: stakeholder.stakeholder_id, email: stakeholder.email, type: 'stakeholder' };
 
+        console.log('Session data:', req.session.user); // Debugging
+              
         // Redirect to dashboard
-        res.redirect('/stakeholder/khadok.stakeholder.index.html');
+        res.redirect('/stakeholder/khadok.stakeholder.index.html', );
+        
     } catch (error) {
         console.error('Error in stakeholder login:', error);
         res.status(500).json({ message: 'Internal Server Error' });
@@ -80,10 +83,10 @@ exports.loginRider = async (req, res) => {
             return res.status(401).json({ message: 'Invalid email or password' });
         }
 
-        // Store rider email (if necessary)
-        if (email) {
-            riderEmail = email; // You may want to use session management instead
-        }
+        req.session.user = { id: rider.rider_id, email: rider.email, type: 'rider' };
+
+        console.log('Session data:', req.session.user); // Debugging
+
 
         // Redirect to Rider dashboard
         res.redirect('/rider/index.html');
@@ -93,15 +96,53 @@ exports.loginRider = async (req, res) => {
     }
 };
 
-// Logout Handler
 exports.logout = (req, res) => {
-    // Clear the logged-in email based on user type
-    const userType = req.query.type; // Assume type is passed as a query parameter (e.g., /auth/logout?type=consumer)
+    req.session.destroy((err) => {
+        if (err) {
+            console.error('Error destroying session:', err);
+            return res.status(500).json({ message: 'Failed to logout' });
+        }
+
+        res.clearCookie('session_cookie_name');
+        res.status(200).json({ message: 'Logout successful' });
+    });
+};
+exports.getStakeholderId = async (req, res) => {
+    try {
+        if (!stakeholderEmail) {
+            return res.status(401).json({ message: 'No stakeholder logged in' });
+        }
+
+        const stakeholder = await getStakeholderByEmail(stakeholderEmail);
+        if (!stakeholder) {
+            return res.status(404).json({ message: 'Stakeholder not found' });
+        }
+
+        res.status(200).json({ stakeholder_id: stakeholder.stakeholder_id });
+    } catch (error) {
+        console.error('Error fetching stakeholder ID:', error);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+};
+
+
+
+// Get Email Endpoint
+exports.getEmail = (req, res) => {
+    if (req.session.user) {
+        res.status(200).json({ email: req.session.user.email });
+    } else {
+        res.status(401).json({ message: 'Not logged in' });
+    }
+};
+
+exports.logoutHandler = (req, res) => {
+    const userType = req.query.type;
 
     if (userType === 'consumer') {
-        consumerEmail = null; // Clear consumer email
-    } else  {
-        stakeholderEmail = null; // Clear stakeholder email
+        req.session.consumer = null;  // Clear consumer session data
+    } else if (userType === 'stakeholder') {
+        req.session.stakeholder = null;  // Clear stakeholder session data
     }
 
     res.status(200).json({ message: 'Logout successful' });
@@ -109,24 +150,3 @@ exports.logout = (req, res) => {
 
 
 
-
-// Get Email Endpoint
-exports.getEmail = (req, res) => {
-    const userType = req.query.type; // Assume type is passed as a query parameter (e.g., /auth/email?type=consumer)
-
-    if (userType === 'consumer') {
-        return res.status(200).json({ email: consumerEmail });
-    } else if (userType === 'stakeholder') {
-        return res.status(200).json({ email: stakeholderEmail });
-    }
-
-    res.status(400).json({ message: 'Invalid user type' });
-};
-
-exports.logoutHandler = (req, res) => {
-    // Simply return a success response with the redirect URL
-    res.json({
-        message: 'Logout successful!',
-        redirectURL: '../login.html', // URL for your dedicated logout page
-    });
-};

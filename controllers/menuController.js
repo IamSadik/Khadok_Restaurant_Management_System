@@ -35,6 +35,10 @@ const addMenuItem = async (req, res) => {
     const { stakeholder_id, item_name, category, item_price, description } = req.body;
     const item_picture = req.file ? req.file.filename : null;
 
+    // Debugging logs
+    console.log('Request body:', req.body);
+    console.log('Uploaded file:', req.file);
+
     try {
         if (!stakeholder_id || !item_name || !category || !item_price) {
             return res.status(400).json({ error: 'Required fields are missing' });
@@ -55,6 +59,7 @@ const addMenuItem = async (req, res) => {
         res.status(500).json({ error: 'Failed to add menu item' });
     }
 };
+
 
 // Update a menu item
 const updateMenuItem = async (req, res) => {

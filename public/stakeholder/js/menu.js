@@ -87,41 +87,64 @@ document.addEventListener("DOMContentLoaded", function () {
         formTitle.innerText = 'Edit Menu Item';
     };
 
-    // Function to handle adding or updating a menu item
-    menuForm.addEventListener('submit', async (event) => {
-        event.preventDefault();
+    
+
+// Function to handle adding or updating a menu item
+menuForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    try {
+        // Fetch stakeholder ID directly
+        const stakeholderResponse = await fetch('/auth/stakeholder-id');
+        if (!stakeholderResponse.ok) {
+            throw new Error('Failed to fetch stakeholder ID');
+        }
+
+        const stakeholderData = await stakeholderResponse.json();
+        const stakeholderId = stakeholderData.stakeholder_id;
+
+        if (!stakeholderId) {
+            alert('Stakeholder ID not found. Please try again.');
+            return;
+        }
 
         const formData = new FormData(menuForm);
+        formData.append('stakeholder_id', stakeholderId); // Append stakeholder_id to form data
 
-        
         const menuId = menuIdInput.value;
 
-        try {
-            let response;
-            if (menuId) {
-                // Update menu item
-                response = await fetch(`/api/menu/${menuId}`, {
-                    method: 'PUT',
-                    body: formData
-                });
-            } else {
-                // Add new menu item
-                response = await fetch('/api/menu', {
-                    method: 'POST',
-                    body: formData
-                });
-            }
-
-            const data = await response.json();
-            alert(data.message);
-            fetchMenuItems(); // Refresh the menu list
-            menuForm.reset(); // Reset the form
-            menuIdInput.value = ''; // Clear the menu ID
-            formTitle.innerText = 'Add New Menu Item'; // Reset form title
-        } catch (error) {
-            console.error('Error saving menu item:', error);
+        let response;
+        if (menuId) {
+            // Update menu item
+            response = await fetch(`/api/menu/${menuId}`, {
+                method: 'PUT',
+                body: formData
+            });
+        } else {
+            // Add new menu item
+            response = await fetch('/api/menu', {
+                method: 'POST',
+                body: formData
+            });
         }
-    });
+
+        const data = await response.json();
+        if (!response.ok) {
+            throw new Error(data.error || 'Failed to save menu item');
+        }
+
+        alert(data.message);
+        fetchMenuItems(); // Refresh the menu list
+        menuForm.reset(); // Reset the form
+        menuIdInput.value = ''; // Clear the menu ID
+        formTitle.innerText = 'Add New Menu Item'; // Reset form title
+    } catch (error) {
+        console.error('Error saving menu item:', error);
+        alert('Error: ' + error.message);
+    }
+});
+
+    
 
     // Initial fetch of the menu items
     fetchMenuItems();

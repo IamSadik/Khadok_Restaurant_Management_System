@@ -1,0 +1,126 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Realtime Location Tracking</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+     crossorigin=""/>
+     <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.1.0/remixicon.css" integrity="sha512-dUOcWaHA4sUKJgO7lxAQ0ugZiWjiDraYNeNJeRKGOIpEq4vroj1DpKcS3jP0K4Js4v6bXk31AAxAxaYt3Oi9xw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link rel="stylesheet" href="styles/style.css">
+    <!-- <link rel="stylesheet" href="./public/styles/style.css"> -->
+</head>
+<body>
+
+    <div id="map"></div>
+    <div class="app-contents">
+        <div class="bottom-card hide"></div>
+        <div class="my-latlon"></div>
+    </div>
+    
+    <div class="client-container animate__animated animate__fadeOutRight animate__faster">
+        <div class="close-client animate__animated animate__fadeInLeft"><i class="ri-arrow-right-s-line"></i></div>
+    <div id="clients" class="clients"></div>
+    </div>
+
+<div class="splash">
+    <div class="form">
+        <div class="logo"><img src="images/3d-navigation.png"> <div class="logo-title">Real Time Tracker</div></div>
+        <div class="loc-state">Location State: <span id="loc-state">Waiting...<br><small>Please allow location service from your browser. Make sure your device's gps is turned on.</small></span></div>
+        <form id="form" class="hide">
+           <div class="input-field">
+            <input name="username" type="text" placeholder="Your Name" required>
+           </div>
+           <div class="input-field check">
+            <input name="check" type="checkbox" checked="checked"> <span>Save for the nextime.</span>
+           </div>
+            
+           <button class="btn">Go</button>
+           <a href="customer.html" class="return-link">Return</a>
+
+        </form>
+    </div>
+</div>
+
+<div class="menu-container">
+    <div class="menu-wrap animate__animated animate__bounceInUp">
+    <ul id="menu">
+         <a class="menu-button icon-plus" id="open-menu" href="#menu" title="Show navigation"> <i class="ri-layout-grid-fill"></i></a>
+         <a class="menu-button icon-minus" href="#0" title="Hide navigation"><i class="ri-layout-grid-fill"></i> Quick Menu</a>
+         <li class="menu-item myposition">
+             <a href="#menu">
+                <i class="ri-navigation-fill"></i>
+             </a>
+         </li>
+         <li class="menu-item open-client">
+             <a href="#menu">
+                <i class="ri-map-pin-user-fill"></i>
+             </a>
+         </li>
+         <li class="menu-item go">
+             <a href="#menu">
+                <i class="ri-road-map-fill"></i>
+             </a>
+         </li>
+         <li class="menu-item" id="reset-username">
+             <a href="#menu">
+                <i class="ri-refresh-fill"></i>
+             </a>
+         </li>
+     </ul>
+    </div>
+</div>
+
+
+<div class="view-container animate__animated animate__fadeInLeft">
+    <div class="satellite view" id="sat"></div>
+    <a href="customer.html" class="return-link">Return</a>
+</div>
+  
+
+<div class="recomend-container">
+    <div class="recomends animate__animated animate__slideInRight">
+    </div>
+    <div class="rec-close"><i class="ri-close-line"></i></div>
+    <a href="customer.html" class="return-link">Return</a>
+</div>
+
+<!-- WARNING -->
+<div class="warning-container">
+    <div class="warnings">
+    </div>
+</div>
+    
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.4/socket.io.js" integrity="sha512-tE1z+95+lMCGwy+9PnKgUSIeHhvioC9lMlI7rLWU0Ps3XTdjRygLcy4mLuL0JAoK4TLdQEyP0yOl/9dMOqpH/Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""></script>
+    <script src="
+https://cdn.jsdelivr.net/npm/leaflet-geometryutil@0.10.3/src/leaflet.geometryutil.min.js
+"></script>
+
+   
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/platform/1.3.6/platform.min.js" integrity="sha512-eYPrm8TgYWg3aa6tvSRZjN4v0Z9Qx69q3RhfSj+Mf89QqwOMqmwSlsVqfp4N8NVAcZe/YeUhh9x/nM2CAOp6cA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="scripts/coords.js"></script>
+    <script src="scripts/methods.js"></script>
+    <script src="scripts/script.js"></script>
+    <script src="scripts/control.js"></script>
+    
+
+    <!-- <script src="./public/scripts/coords.js"></script>
+    <script src="./public/scripts/methods.js"></script>
+    <script src="./public/scripts/script.js"></script>
+    <script src="./public/scripts/control.js"></script> -->
+
+    
+    
+</body>
+</html>

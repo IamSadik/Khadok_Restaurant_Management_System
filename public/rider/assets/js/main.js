@@ -20,28 +20,6 @@ toggle.onclick = function () {
   main.classList.toggle("active");
 };
 
-// Initialize Google Map
-function initMap() {
-  const riderLocation = { lat: 37.7749, lng: -122.4194 }; // Example Rider Location
-  const customerLocation = { lat: 37.7849, lng: -122.4294 }; // Example Customer Location
-
-  const map = new google.maps.Map(document.getElementById("map"), {
-      zoom: 14,
-      center: riderLocation,
-  });
-
-  new google.maps.Marker({
-      position: riderLocation,
-      map: map,
-      title: "Rider Location",
-  });
-
-  new google.maps.Marker({
-      position: customerLocation,
-      map: map,
-      title: "Customer Location",
-  });
-}
 let countdownInterval;
 
 function startCountdown(durationInMinutes) {

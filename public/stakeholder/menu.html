@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Management</title>
+    <link rel="stylesheet" href="css/menu.css">
+</head>
+<body>
+    <header>
+        <h1>Menu Management</h1>
+    </header>
+    <main>
+        <section id="menu-list">
+            <h2>Existing Menu Items</h2>
+            <div id="menu-items-container">
+                <!-- Existing menu items will be dynamically added here -->
+            </div>
+        </section>
+        <section id="menu-form-section">
+            <h2 id="form-title">Add New Menu Item</h2>
+            <form id="menu-form">
+                <input type="hidden" id="menu-id" name="menu_id">
+                <label for="item-name">Item Name:</label>
+                <input type="text" id="item-name" name="item_name" required>
+
+                <label for="category">Category:</label>
+                <input type="text" id="category" name="category" required>
+
+                <label for="price">Price:</label>
+                <input type="number" id="price" name="item_price" required>
+
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" required></textarea>
+
+                <label for="item-picture">Picture:</label>
+                <input type="file" id="item-picture" name="item_picture">
+
+                <button type="submit">Save Item</button>
+            </form>
+        </section>
+    </main>
+    <script src="js/menu.js"></script>
+</body>
+</html>

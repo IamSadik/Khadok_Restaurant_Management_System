@@ -193,7 +193,7 @@
             <li data-title="Profile"><i class="fas fa-user"></i> <span>Profile</span></li>
             <li data-title="Settings"><i class="fas fa-cog"></i> <span>Settings</span></li>
         </ul>
-        <div class="logout-btn" id="logoutButton" >
+        <div class="logout-btn" onclick="window.location.href='logout.php'">
             <i class="fas fa-sign-out-alt"></i>
         </div>
     </div>
@@ -202,8 +202,7 @@
     <div class="main-content">
     <!-- Header Section -->
         <div class="header">
-            <p id="email-display">Logged in as: <span>Loading...</span></p>
-
+            <p id="email-display">Logged in as: <span>< %= email %></span></p>
             <h1>Welcome, [Stakeholder Name]</h1>
             
             <p>Here's a summary of your restaurant's performance.</p>
@@ -281,25 +280,6 @@
     </div>
 
     <script>
-        document.getElementById('logoutButton').addEventListener('click', async () => {
-            try {
-                const response = await fetch('/auth/logout?type=stakeholder', {
-                    method: 'GET',
-                });
-    
-                if (response.ok) {
-                    alert('Logout successful');
-                    window.location.href = '../login.html';
-                } else {
-                    alert('Error during logout');
-                }
-            } catch (error) {
-                console.error('Error logging out:', error);
-            }
-        });
-    </script>
-
-    <script>
         const stakeholderEmail = "<%= email %>";
         localStorage.setItem('stakeholderEmail', stakeholderEmail);
     </script>
@@ -315,31 +295,31 @@
             mainContent.classList.toggle('expanded');
         });
     </script>
-    
-
     <script>
-    // Function to fetch and display the stakeholder's email
-        async function displayStakeholderEmail() {
-            try {
-                const response = await fetch('/auth/email?type=stakeholder');
-                const data = await response.json();
+        document.querySelector('.logout-btn').addEventListener('click', async () => {
+        try {
+            const response = await fetch('/auth/logout', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
 
-                if (response.ok && data.email) {
-                    // Update the email display section with the fetched email
-                    document.getElementById('email-display').innerHTML = `Logged in as: <span>${data.email}</span>`;
-                } else {
-                    console.error('Error fetching stakeholder email:', data.message || 'Unknown error');
-                }
-            } catch (error) {
-                console.error('Error in displayStakeholderEmail:', error);
+            const result = await response.json();
+
+            if (response.ok) {
+                // Redirect to the logout page
+                window.location.href = result.redirectURL;
+            } else {
+                alert(result.message || 'Logout failed');
             }
+        } catch (error) {
+            console.error('Error during logout:', error);
+            alert('An error occurred while logging out');
         }
+    });
 
-        // Call the function when the page loads
-        document.addEventListener('DOMContentLoaded', displayStakeholderEmail);
     </script>
-
-
     <script>
         const getStakeholderId = async () => {
         const email = localStorage.getItem('stakeholderEmail');

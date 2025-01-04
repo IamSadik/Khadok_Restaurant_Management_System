@@ -1,12 +1,19 @@
 const bcrypt = require('bcrypt');
-const { createStakeholder } = require('../models/stakeholderModel');
+const { getUniqueStakeholderId, createStakeholder } = require('../models/stakeholderModel');
 
 const signupStakeholder = async (req, res) => {
     const { name, email, password, restaurant_name } = req.body;
 
     try {
+        // Generate unique stakeholder_id
+        const stakeholderId = await getUniqueStakeholderId();
+
+        // Hash password
         const hashedPassword = await bcrypt.hash(password, 10);
-        await createStakeholder(name, email, hashedPassword, restaurant_name);
+
+        // Insert stakeholder into database
+        await createStakeholder(stakeholderId, name, email, hashedPassword, restaurant_name);
+
         res.status(201).json({ message: 'Stakeholder registered successfully' });
     } catch (error) {
         console.error(error);

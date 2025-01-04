@@ -1,0 +1,238 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+}
+
+header {
+    background-color: #343a40;
+    color: #ffffff;
+    padding: 1rem;
+    text-align: center;
+}
+
+main {
+    padding: 2rem;
+}
+
+#menu-list, #menu-form-section {
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+h2 {
+    margin-top: 0;
+}
+
+#menu-items-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.menu-item-card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 1rem;
+    width: calc(33.333% - 1rem);
+    background-color: #ffffff;
+}
+
+.menu-item-card img {
+    max-width: 100%;
+    border-radius: 8px;
+}
+
+.menu-item-card button {
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    border: none;
+    background-color: #007bff;
+    color: #ffffff;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.menu-item-card button.edit {
+    background-color: #28a745;
+}
+
+.menu-item-card button.delete {
+    background-color: #dc3545;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+form label {
+    font-weight: bold;
+}
+
+form input, form textarea, form button {
+    padding: 0.5rem;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+
+
+
+/* Sidebar styles */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 80px; /* Default collapsed width */
+    height: 100%;
+    background-color: #2a3d66; /* Main sidebar color */
+    color: #f0f0f0;
+    transition: width 0.3s ease-in-out;
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center-align icons */
+}
+
+.sidebar.expanded {
+    width: 260px; /* Expanded width */
+    align-items: flex-start; /* Align to left for expanded state */
+}
+
+
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%; /* Full width for clickable area */
+}
+
+.sidebar ul li {
+    position: relative; /* Position for tooltip */
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center icons in collapsed state */
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out, transform 0.2s;
+    text-decoration: none;
+    color: #f0f0f0; /* Ensure consistent text color */
+}
+
+
+.sidebar.expanded ul li {
+    justify-content: flex-start; /* Align to left in expanded state */
+   
+}
+
+.sidebar ul li i {
+    font-size: 1.2rem;
+    color: inherit; /* Ensure consistent icon color */
+}
+
+.sidebar ul li span {
+    display: none; /* Hide names in collapsed state */
+    text-decoration: none; /* Remove underline */
+    
+}
+
+.sidebar.expanded ul li span {
+    display: inline; /* Show names in expanded state */
+    margin-left: 15px; /* Add space for expanded state */
+    text-decoration: none;
+}
+
+/* Tooltip for hover in collapsed mode only */
+.sidebar:not(.expanded) ul li:hover::after {
+    content: attr(data-title); /* Display the text from the data-title attribute */
+    position: absolute;
+    left: 90px;
+    top: 50%;
+    transform: translateY(-50%) scale(0.8); /* Smooth animation */
+    background-color: #4c5a88; /* Tooltip background */
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    white-space: nowrap;
+    font-size: 0.9rem;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    
+}
+
+.sidebar:not(.expanded) ul li:hover::after {
+    opacity: 1;
+    transform: translateY(-50%) scale(1); /* Grow animation */
+    
+
+}
+
+/* Sidebar hover effects */
+.sidebar ul li:hover {
+    background-color: #4c5a88; /* New hover color */
+    transform: scale(1.05);
+    text-decoration: none; /* Ensure no underline on hover */
+}
+
+/* Toggle button styles */
+.toggle-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 15px 20px;
+    background-color: #1f2c4a;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.toggle-btn i {
+    font-size: 1.5rem;
+}
+
+.toggle-btn:hover {
+    background-color: #354870; /* Hover effect */
+}
+
+  /* Logout button styles */
+  .logout-btn {
+    margin-top: auto; /* Push to bottom */
+    width: 100%;
+    text-align: center;
+    padding: 15px 0;
+    background-color: #1f2c4a;
+    color: #f0f0f0;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    align-items: center;
+}
+
+.logout-btn:hover {
+    background-color: #354870;
+}
+
+.logout-btn i {
+    font-size: 1.2rem;
+    margin-right: 10px;
+}
+/* Page content adjustment */
+.main-content {
+    margin-left: 80px; /* Adjusted for default collapsed state */
+    padding: 20px;
+    transition: margin-left 0.3s ease-in-out;
+}
+
+.main-content.expanded {
+    margin-left: 260px; /* Adjusted for expanded state */
+}

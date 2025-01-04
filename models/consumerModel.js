@@ -1,17 +1,16 @@
-const pool = require('../config/configdb');
+const db = require('../config/configdb');
 
-exports.createConsumer = async (name, email, password) => {
+// Fetch the maximum consumer_id from the database
+const getMaxConsumerId = async () => {
+    const query = 'SELECT MAX(consumer_id) AS max_id FROM consumer';
     return new Promise((resolve, reject) => {
-        pool.query(
-            'INSERT INTO consumer (name, email, password) VALUES (?, ?, ?)',
-            [name, email, password],
-            (err, results) => {
-                if (err) return reject(err);
-                resolve(results);
-            }
-        );
+        db.query(query, (err, results) => {
+            if (err) return reject(err);
+            resolve(results[0]?.max_id || null);
+        });
     });
 };
+
 
 
 
@@ -35,3 +34,17 @@ const getCustomerNameFromDB = async () => {
 
 
 module.exports = { getCustomerNameFromDB };
+
+// Insert a new consumer into the database
+const createConsumer = async (consumerId, name, email, hashedPassword, phoneNumber) => {
+    const query = 'INSERT INTO consumer (consumer_id, name, email, password, phone_number) VALUES (?, ?, ?, ?, ?)';
+    return new Promise((resolve, reject) => {
+        db.query(query, [consumerId, name, email, hashedPassword, phoneNumber], (err, results) => {
+            if (err) return reject(err);
+            resolve(results);
+        });
+    });
+};
+
+module.exports = { getMaxConsumerId, createConsumer };
+

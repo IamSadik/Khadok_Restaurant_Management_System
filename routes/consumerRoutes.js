@@ -1,4 +1,5 @@
 const express = require('express');
+
 const router = express.Router();
 const {
     getNames
@@ -10,5 +11,11 @@ const { loginHandler } = require('../controllers/consumerController');
 
 router.get('/get-Name-details', getNames);
 
-module.exports = router;
+const { signupConsumer } = require('../controllers/consumerController');
 
+const router = express.Router();
+
+router.post('/signup', signupConsumer);
+
+
+module.exports = router;

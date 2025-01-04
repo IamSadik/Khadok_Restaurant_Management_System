@@ -4,11 +4,18 @@ const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 const path = require('path');
 const mysql = require('mysql');
+const session = require('express-session');
+const MySQLStore = require('express-mysql-session')(session);
 const pool = require('./config/configdb');
 const authRoutes = require('./routes/authRoutes');
 const restaurantRoutes = require('./routes/restaurantRoutes');
+
 const ordersRouter = require('./routes/orderRoutes');
 const consumersRouter = require('./routes/consumerRoutes');
+
+const menuRoutes = require('./routes/menuRoutes');
+const sessionMiddleware = require('./middlewares/sessionMiddleware');
+
 
 
 // Initialize dotenv for environment variables
@@ -16,13 +23,40 @@ dotenv.config();
 
 const app = express();
 
+// MySQL Session Store
+const sessionStore = new MySQLStore({}, pool);
+
+// Session Middleware
+app.use(session({
+    key: 'session_cookie_name',
+    secret: 'yourSecretKey',
+    store: sessionStore,
+    resave: false,
+    saveUninitialized: false,
+    cookie: { secure: false } // Use `true` if you're using HTTPS
+}));
+
+
+
+// Session Middleware
+app.use(session({
+  secret: 'yourSecretKey',  // This is a secret key used to encrypt the session (change this to something random)
+  resave: false,  // Don't resave the session if it's not modified
+  saveUninitialized: true,  // Save a session even if it hasn't been modified
+  cookie: {
+    secure: false, // Set to true if using HTTPS
+    httpOnly: true
+}
+}));
+
 
 
 
 // Middleware
 app.use(cors({
-  origin: 'https://your-frontend-url.com',
+  origin: 'http://localhost:3000',
   methods: 'GET,POST,PUT,DELETE',
+  credentials: true // Allow cookies to be sent with requests
 }));
 
 app.use(bodyParser.json());
@@ -34,7 +68,7 @@ app.use('/auth', authRoutes);
 app.use(express.static(path.join(__dirname, 'public')));
 
 // View engine
-app.set("views", path.join(__dirname, "views"));
+app.set("public", path.join(__dirname, "public"));
 app.set("view engine", "ejs");
 const consumerRoutes = require('./routes/consumerRoutes');
 app.use('/', consumerRoutes);
@@ -46,6 +80,7 @@ app.use('/api/stakeholder', stakeholderRoutes);
 const adminRoutes = require("./routes/adminRoutes");
 
 app.use("/admin", adminRoutes);
+app.use(sessionMiddleware);
 
 app.use('/api', ordersRouter);
 
@@ -56,8 +91,10 @@ app.use(restaurantRoutes);
 
 // Routes
 //app.use('/api/admin', require('./routes/adminRoutes'));
-//app.use('/api/consumer', require('./routes/consumerRoutes'));
+app.use('/api/consumer', require('./routes/consumerRoutes'));
 app.use('/api/restaurant', require('./routes/restaurantRoutes'));
+app.use('/api/menu', menuRoutes);
+
 //app.use('/api/rider', require('./routes/riderRoutes'));
 //app.use('/api/order', require('./routes/orderRoutes'));
 

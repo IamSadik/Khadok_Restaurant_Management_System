@@ -39,13 +39,28 @@ h2 {
 /* Styling the menu item container for horizontal scrolling */
 .menu-item-container {
     display: flex;
-    gap: 1rem; /* Space between menu items */
-    overflow-x: auto; /* Enables horizontal scrolling */
+    gap: 20px; /* Adjust spacing between items */
+    overflow-x: auto;
     scroll-behavior: smooth;
-    padding: 1rem 0;
-    white-space: nowrap;
+    padding: 10px 0;
+    margin: 0 10px; /* Adds margin to the grid itself */
+    border-left: 10px solid transparent; /* Visual margin on left */
+    border-right: 10px solid transparent; /* Visual margin on right */
   }
   
+  .menu-item-container::-webkit-scrollbar {
+    height: 8px;
+}
+
+.menu-item-container::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 5px;
+}
+
+.menu-item-container::-webkit-scrollbar-track {
+    background: #f5f5f5;
+}
+
   /* Styling individual menu items */
   .menu-item {
     flex: 0 0 250px; /* Fix width of each menu item */
@@ -78,6 +93,70 @@ h2 {
     visibility: visible;
   }
   
+
+/* Scroll Buttons */
+.scroll-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #254a5d;
+    border: none;
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 10;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.4s ease-in-out; /* Smooth hover effect */
+    opacity: 0; /* Initially hidden */
+    pointer-events: none; /* Disable clicks when hidden */
+}
+
+.scroll-btn.left {
+    left: 80px;
+}
+
+.scroll-btn.right {
+    right:0px;
+}
+
+.scroll-btn:hover {
+    background-color: #f8b400;
+    transform: scale(1.4); /* Slight zoom effect */
+}
+
+.horizontal-scroll-container:hover .scroll-btn {
+    opacity: 1; /* Show buttons on hover */
+    pointer-events: auto; /* Enable clicks when visible */
+}
+
+
+
+.category-filters {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.category-filters button {
+    padding: 10px 20px;
+    background-color: #f8b400;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.category-filters button:hover {
+    background-color: #e69a00;
+}
+
+
+
   /* Styling the menu item description */
   .menu-item-description {
     position: absolute;
@@ -178,6 +257,109 @@ form input, form textarea, form button {
 }
 
 
+/* Modern Menu Form Section */
+.menu-form-section-modern {
+    background: #f9f9f9;
+    padding: 3rem 2rem;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 2rem auto;
+    font-family: 'Inter', sans-serif;
+}
+
+.form-title-modern {
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.form-title-modern::after {
+    content: "";
+    width: 80px;
+    height: 4px;
+    background: #ff6f61;
+    display: block;
+    margin: 0.5rem auto 0;
+    border-radius: 2px;
+}
+
+/* Modern Form Styles */
+.menu-form-modern {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-group-modern {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-label-modern {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: #555;
+}
+
+.input-modern,
+.textarea-modern,
+.file-input-modern {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 0.9rem 1rem;
+    font-size: 1rem;
+    color: #333;
+    background: #fff;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.input-modern::placeholder,
+.textarea-modern::placeholder {
+    color: #aaa;
+}
+
+.input-modern:focus,
+.textarea-modern:focus {
+    border-color: #ff6f61;
+    box-shadow: 0 0 5px rgba(255, 111, 97, 0.4);
+    outline: none;
+}
+
+/* File Input Customization */
+.file-input-modern {
+    padding: 0.7rem 1rem;
+    font-size: 1rem;
+    color: #777;
+    border: 1px dashed #ccc;
+    cursor: pointer;
+}
+
+.file-input-modern:hover {
+    border-color: #ff6f61;
+}
+
+/* Modern Button */
+.btn-modern {
+    background: #ff6f61;
+    color: #fff;
+    border: none;
+    padding: 0.9rem 1.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s, box-shadow 0.3s;
+}
+
+.btn-modern:hover {
+    background: #e65b50;
+    box-shadow: 0 4px 10px rgba(255, 111, 97, 0.3);
+}
 
 
 

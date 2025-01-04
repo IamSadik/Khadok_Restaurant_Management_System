@@ -155,3 +155,54 @@ menuForm.addEventListener('submit', async (event) => {
 });
 
 
+// Fetch categories and display them as filter buttons
+async function fetchCategories() {
+    try {
+        const response = await fetch('/menu/categories');
+        const data = await response.json();
+
+        if (data.success) {
+            const filtersContainer = document.getElementById('category-filters');
+            filtersContainer.innerHTML = ''; // Clear existing buttons
+
+            data.categories.forEach(category => {
+                const button = document.createElement('button');
+                button.textContent = category;
+                button.addEventListener('click', () => filterMenuByCategory(category));
+                filtersContainer.appendChild(button);
+            });
+        }
+    } catch (error) {
+        console.error('Error fetching categories:', error);
+    }
+}
+
+// Fetch menu items by category
+async function filterMenuByCategory(category) {
+    try {
+        const response = await fetch(`/menu/items/${category}`);
+        const data = await response.json();
+
+        if (data.success) {
+            const menuContainer = document.getElementById('menu-items-container');
+            menuContainer.innerHTML = ''; // Clear existing menu items
+
+            data.menuItems.forEach(item => {
+                const itemElement = document.createElement('div');
+                itemElement.classList.add('menu-item');
+                itemElement.innerHTML = `
+                    <img src="${item.item_picture}" alt="${item.item_name}" class="menu-item-img">
+                    <h3>${item.item_name}</h3>
+                    <p>${item.description}</p>
+                    <p><strong>Price:</strong> ${item.item_price} Tk</p>
+                `;
+                menuContainer.appendChild(itemElement);
+            });
+        }
+    } catch (error) {
+        console.error('Error filtering menu:', error);
+    }
+}
+
+// Initialize by fetching categories
+fetchCategories();

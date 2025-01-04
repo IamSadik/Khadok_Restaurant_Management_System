@@ -6,6 +6,10 @@
     <title>Menu Management</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="css/menu.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+
 </head>
 <body>
     <!-- Sidebar -->
@@ -39,37 +43,76 @@
         <main>
             <section id="menu-list">
                 <h2>Existing Menu Items</h2>
-                <div id="menu-items-container" class="menu-item-container">
-                    <!-- Dynamic Menu Items Will Be Injected Here -->
+                 <!-- Container for Category Filter Buttons -->
+                 <div id="category-filters" class="category-filters">
+                    <!-- Dynamic category buttons will be injected here -->
+                </div>
+                
+                <div class="horizontal-scroll-container">
+                    <button class="scroll-btn left" id="menu-scroll-left" aria-label="Scroll Left">&lt;</button>
+                    <div id="menu-items-container" class="menu-item-container">
+                        <!-- Dynamic Menu Items Will Be Injected Here -->
+                    </div>
+                    <button class="scroll-btn right" id="menu-scroll-right" aria-label="Scroll Right">&gt;</button>
                 </div>
             </section>
-            <section id="menu-form-section">
-                <h2 id="form-title">Add New Menu Item</h2>
-                <form id="menu-form">
+            
+            <section id="menu-form-section" class="menu-form-section-modern">
+                <h2 id="form-title" class="form-title-modern">Add New Menu Item</h2>
+                <form id="menu-form" class="menu-form-modern">
                     <input type="hidden" id="menu-id" name="menu_id">
-                    <label for="item-name">Item Name:</label>
-                    <input type="text" id="item-name" name="item_name" required>
-
-                    <label for="category">Category:</label>
-                    <input type="text" id="category" name="category" required>
-
-                    <label for="price">Price:</label>
-                    <input type="number" id="price" name="item_price" required>
-
-                    <label for="description">Description:</label>
-                    <textarea id="description" name="description" required></textarea>
-
-                    <label for="item-picture">Picture:</label>
-                    <input type="file" id="item-picture" name="item_picture">
-
-                    <button type="submit">Save Item</button>
+                    
+                    <div class="form-group-modern">
+                        <label for="item-name" class="form-label-modern">Item Name:</label>
+                        <input type="text" id="item-name" name="item_name" placeholder="Enter the item name" class="input-modern" required>
+                    </div>
+            
+                    <div class="form-group-modern">
+                        <label for="category" class="form-label-modern">Category:</label>
+                        <input type="text" id="category" name="category" placeholder="E.g., Starter, Main Course" class="input-modern" required>
+                    </div>
+            
+                    <div class="form-group-modern">
+                        <label for="price" class="form-label-modern">Price:</label>
+                        <input type="number" id="price" name="item_price" placeholder="Enter the price" class="input-modern" required>
+                    </div>
+            
+                    <div class="form-group-modern">
+                        <label for="description" class="form-label-modern">Description:</label>
+                        <textarea id="description" name="description" placeholder="Write a short description..." class="textarea-modern" required></textarea>
+                    </div>
+            
+                    <div class="form-group-modern">
+                        <label for="item-picture" class="form-label-modern">Picture:</label>
+                        <input type="file" id="item-picture" name="item_picture" class="file-input-modern" accept="image/*">
+                    </div>
+            
+                    <button type="submit" class="btn-modern">Save Item</button>
                 </form>
             </section>
+            
         </main>
     </div>
 
 
     <script src="js/menu.js"></script>
+
+    <script>
+        // Menu Items Horizontal Scroll
+        const menuLeftBtn = document.getElementById('menu-scroll-left');
+        const menuRightBtn = document.getElementById('menu-scroll-right');
+        const menuItemsContainer = document.getElementById('menu-items-container');
+    
+        menuLeftBtn.addEventListener('click', () => {
+            menuItemsContainer.scrollBy({ left: -300, behavior: 'smooth' });
+        });
+    
+        menuRightBtn.addEventListener('click', () => {
+            menuItemsContainer.scrollBy({ left: 300, behavior: 'smooth' });
+        });
+    </script>
+    
+
     <script>
         // JavaScript for Sidebar Toggle
         const toggleBtn = document.getElementById('toggle-btn');

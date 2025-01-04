@@ -46,7 +46,15 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Routes
 app.use('/auth', authRoutes);
-app.use(express.static(path.join(__dirname, 'public')));  // Serve static files
+
+
+// Serve static files from 'public' folder
+app.use(express.static(path.join(__dirname, 'public')));
+// Serve static files from the uploads directory
+app.use('/uploads', express.static('uploads'));
+
+// View engine
+
 app.set("public", path.join(__dirname, "public"));
 app.set("view engine", "ejs");
 

@@ -38,30 +38,36 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     };
 
-    // Function to display the menu items in the UI
-    const displayMenuItems = (menuItems) => {
-        menuItemsContainer.innerHTML = ''; // Clear the current menu items
+    
 
-        if (menuItems.length === 0) {
-            menuItemsContainer.innerHTML = '<p>No menu items available</p>';
-            return;
-        }
+   // Function to display the menu items in the UI
+const displayMenuItems = (menuItems) => {
+    menuItemsContainer.innerHTML = ''; // Clear the current menu items
 
-        menuItems.forEach(item => {
-            const itemDiv = document.createElement('div');
-            itemDiv.classList.add('menu-item');
-            itemDiv.innerHTML = `
+    if (menuItems.length === 0) {
+        menuItemsContainer.innerHTML = '<p>No menu items available</p>';
+        return;
+    }
+
+    menuItems.forEach((item) => {
+        const itemDiv = document.createElement('div');
+        itemDiv.classList.add('menu-item');
+        itemDiv.innerHTML = `
+            <div class="menu-item-image" style="background-image: url('/uploads/${item.item_picture}');">
+                <div class="menu-item-description">${item.description}</div>
+            </div>
+            <div class="menu-item-details">
                 <h3>${item.item_name}</h3>
                 <p>Category: ${item.category}</p>
                 <p>Price: $${item.item_price}</p>
-                <p>Description: ${item.description}</p>
-                <img src="/uploads/${item.item_picture}" alt="${item.item_name}" width="100">
-                <button onclick="deleteMenuItem(${item.menu_id})">Delete</button>
-                <button onclick="editMenuItem(${item.menu_id}, '${item.item_name}', '${item.category}', ${item.item_price}, '${item.description}', '${item.item_picture}')">Edit</button>
-            `;
-            menuItemsContainer.appendChild(itemDiv);
-        });
-    };
+                <button class="btn edit" onclick="editMenuItem(${item.menu_id}, '${item.item_name}', '${item.category}', ${item.item_price}, '${item.description}', '${item.item_picture}')">Edit</button>
+                <button class="btn delete" onclick="deleteMenuItem(${item.menu_id})">Delete</button>
+            </div>
+        `;
+        menuItemsContainer.appendChild(itemDiv);
+    });
+};
+
 
     // Function to delete a menu item
     const deleteMenuItem = async (menuId) => {
@@ -149,3 +155,81 @@ menuForm.addEventListener('submit', async (event) => {
     // Initial fetch of the menu items
     fetchMenuItems();
 });
+
+
+// Function to fetch categories and display them as filter buttons
+async function fetchCategories() {
+    try {
+        const response = await fetch('/menu/categories');
+        const data = await response.json();
+
+        if (data.success) {
+            const filtersContainer = document.getElementById('category-filters');
+            filtersContainer.innerHTML = ''; // Clear existing buttons
+
+            // Add "All" button first
+            const allButton = document.createElement('button');
+            allButton.textContent = 'All';
+            allButton.addEventListener('click', () => location.reload()); // Refresh the whole page
+            filtersContainer.appendChild(allButton);
+
+
+            // Sort categories alphabetically (case-insensitive)
+            const sortedCategories = data.categories.sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()));
+
+            // Create buttons for each category
+            sortedCategories.forEach(category => {
+                const button = document.createElement('button');
+                button.textContent = category;
+                button.addEventListener('click', () => filterMenuByCategory(category));
+                filtersContainer.appendChild(button);
+            });
+        }
+    } catch (error) {
+        console.error('Error fetching categories:', error);
+    }
+}
+
+// Fetch menu items by category and display them using the same structure as displayMenuItems
+async function filterMenuByCategory(category) {
+    try {
+        const response = await fetch(`/menu/items/${category}`);
+        const data = await response.json();
+
+        if (data.success) {
+            menuItemsContainer.innerHTML = ''; // Clear the current menu items
+
+            if (data.menuItems.length === 0) {
+                menuItemsContainer.innerHTML = '<p>No menu items available in this category</p>';
+                return;
+            }
+
+            data.menuItems.forEach((item) => {
+                const itemDiv = document.createElement('div');
+                itemDiv.classList.add('menu-item');
+                itemDiv.innerHTML = `
+                    <div class="menu-item-image" style="background-image: url('/uploads/${item.item_picture}');">
+                        <div class="menu-item-description">${item.description}</div>
+                    </div>
+                    <div class="menu-item-details">
+                        <h3>${item.item_name}</h3>
+                        <p>Category: ${item.category}</p>
+                        <p>Price: $${item.item_price}</p>
+                        <button class="btn edit" onclick="editMenuItem(${item.menu_id}, '${item.item_name}', '${item.category}', ${item.item_price}, '${item.description}', '${item.item_picture}')">Edit</button>
+                        <button class="btn delete" onclick="deleteMenuItem(${item.menu_id})">Delete</button>
+                    </div>
+                `;
+                menuItemsContainer.appendChild(itemDiv);
+            });
+        } else {
+            menuItemsContainer.innerHTML = '<p>Failed to fetch items for this category</p>';
+        }
+    } catch (error) {
+        console.error('Error filtering menu:', error);
+        menuItemsContainer.innerHTML = '<p>Error fetching menu items. Please try again later.</p>';
+    }
+}
+
+
+// Initialize by fetching categories
+fetchCategories();

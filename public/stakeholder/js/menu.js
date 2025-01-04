@@ -149,3 +149,5 @@ menuForm.addEventListener('submit', async (event) => {
     // Initial fetch of the menu items
     fetchMenuItems();
 });
+
+

@@ -4,42 +4,100 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu Management</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="css/menu.css">
 </head>
 <body>
-    <header>
-        <h1>Menu Management</h1>
-    </header>
-    <main>
-        <section id="menu-list">
-            <h2>Existing Menu Items</h2>
-            <div id="menu-items-container">
-                <!-- Existing menu items will be dynamically added here -->
-            </div>
-        </section>
-        <section id="menu-form-section">
-            <h2 id="form-title">Add New Menu Item</h2>
-            <form id="menu-form">
-                <input type="hidden" id="menu-id" name="menu_id">
-                <label for="item-name">Item Name:</label>
-                <input type="text" id="item-name" name="item_name" required>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <button class="toggle-btn" id="toggle-btn">
+            <i class="fas fa-bars"></i>
+        </button>
+        <ul>
+            <li data-title="Dashboard"><a href="khadok.stakeholder.index.html"><i class="fas fa-home"></i> <span>Dashboard</span></li>
+            <li data-title="Menu Management"><a href="menu.html"><i class="fas fa-utensils"></i> <span>Menu Management</span></a></li>
+            <li data-title="3D Interior View"><i class="fas fa-cube"></i> <span>3D Interior View</span></li>
+            <li data-title="Live Kitchen Feed"><i class="fas fa-video"></i> <span>Live Kitchen Feed</span></li>
+            <li data-title="Orders"><i class="fas fa-box"></i> <span>Orders</span></li>
+            <li data-title="Reservations"><i class="fas fa-calendar-check"></i> <span>Reservations</span></li>
+            <li data-title="Reviews & Feedback"><i class="fas fa-comment-alt"></i> <span>Reviews & Feedback</span></li>
+            <li data-title="Analytics"><i class="fas fa-chart-line"></i> <span>Analytics</span></li>
+            <li data-title="Promotions"><i class="fas fa-tags"></i> <span>Promotions</span></li>
+            <li data-title="Profile"><i class="fas fa-user"></i> <span>Profile</span></li>
+            <li data-title="Settings"><i class="fas fa-cog"></i> <span>Settings</span></li>
+        </ul>
+        <div class="logout-btn" id="logoutButton">
+            <i class="fas fa-sign-out-alt"></i>
+        </div>
+    </div>
 
-                <label for="category">Category:</label>
-                <input type="text" id="category" name="category" required>
+    <!-- Main Content -->
+    <div class="main-content">
+        <header>
+            <h1>Menu Management</h1>
+        </header>
+        <main>
+            <section id="menu-list">
+                <h2>Existing Menu Items</h2>
+                <div id="menu-items-container">
+                    <!-- Existing menu items will be dynamically added here -->
+                </div>
+            </section>
+            <section id="menu-form-section">
+                <h2 id="form-title">Add New Menu Item</h2>
+                <form id="menu-form">
+                    <input type="hidden" id="menu-id" name="menu_id">
+                    <label for="item-name">Item Name:</label>
+                    <input type="text" id="item-name" name="item_name" required>
 
-                <label for="price">Price:</label>
-                <input type="number" id="price" name="item_price" required>
+                    <label for="category">Category:</label>
+                    <input type="text" id="category" name="category" required>
 
-                <label for="description">Description:</label>
-                <textarea id="description" name="description" required></textarea>
+                    <label for="price">Price:</label>
+                    <input type="number" id="price" name="item_price" required>
 
-                <label for="item-picture">Picture:</label>
-                <input type="file" id="item-picture" name="item_picture">
+                    <label for="description">Description:</label>
+                    <textarea id="description" name="description" required></textarea>
 
-                <button type="submit">Save Item</button>
-            </form>
-        </section>
-    </main>
+                    <label for="item-picture">Picture:</label>
+                    <input type="file" id="item-picture" name="item_picture">
+
+                    <button type="submit">Save Item</button>
+                </form>
+            </section>
+        </main>
+    </div>
+
     <script src="js/menu.js"></script>
+    <script>
+        // JavaScript for Sidebar Toggle
+        const toggleBtn = document.getElementById('toggle-btn');
+        const sidebar = document.getElementById('sidebar');
+        const mainContent = document.querySelector('.main-content'); // Fix to target the main content correctly
+
+        toggleBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('expanded');
+            mainContent.classList.toggle('expanded');
+        });
+    </script>
+    <script>
+        document.getElementById('logoutButton').addEventListener('click', async () => {
+            try {
+                const response = await fetch('/auth/logout?type=stakeholder', {
+                    method: 'GET',
+                });
+    
+                if (response.ok) {
+                    alert('Logout successful');
+                    window.location.href = '../login.html';
+                } else {
+                    alert('Error during logout');
+                }
+            } catch (error) {
+                console.error('Error logging out:', error);
+            }
+        });
+    </script>
 </body>
+
 </html>

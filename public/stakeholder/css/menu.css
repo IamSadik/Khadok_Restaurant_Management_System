@@ -1,21 +1,29 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f8f9fa;
-}
-
+/* Header */
 header {
     background-color: #343a40;
     color: #ffffff;
     padding: 1rem;
     text-align: center;
+    margin: 2rem;
+    border-radius: 12px;
 }
 
+header.expanded {
+    margin-left: 260px; /* Adjusted for expanded sidebar */
+}
+
+/* Main Content */
 main {
     padding: 2rem;
+    
+    transition: margin-left 0.3s ease-in-out;
 }
 
+main.expanded {
+    margin-left: 260px; /* Adjusted for expanded sidebar */
+}
+
+/* Menu List and Form Section */
 #menu-list, #menu-form-section {
     margin-bottom: 2rem;
     padding: 1rem;
@@ -32,6 +40,11 @@ h2 {
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
+}
+
+a{
+    list-style: none;
+    text-decoration: none;
 }
 
 .menu-item-card {
@@ -80,21 +93,29 @@ form input, form textarea, form button {
     border-radius: 4px;
     border: 1px solid #ccc;
 }
+/* General Page Styles */
+html {
+    font-size: 80%;
+}
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    transition: grid-template-columns 0.3s ease-in-out;
+}
 
-
-
-
-/* Sidebar styles */
+/* Sidebar Styles */
 .sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 80px; /* Default collapsed width */
-    height: 100%;
+    position: relative;
+    grid-column: 1 / 2;
+    height: 100vh;
     background-color: #2a3d66; /* Main sidebar color */
     color: #f0f0f0;
     transition: width 0.3s ease-in-out;
-    overflow-y: auto;
+    width: 80px; /* Default collapsed width */
     overflow-x: hidden;
     display: flex;
     flex-direction: column;
@@ -103,10 +124,7 @@ form input, form textarea, form button {
 
 .sidebar.expanded {
     width: 260px; /* Expanded width */
-    align-items: flex-start; /* Align to left for expanded state */
 }
-
-
 
 .sidebar ul {
     list-style: none;
@@ -115,24 +133,23 @@ form input, form textarea, form button {
     width: 100%; /* Full width for clickable area */
 }
 
+/* Sidebar hover effects */
 .sidebar ul li {
-    position: relative; /* Position for tooltip */
     padding: 15px 20px;
     display: flex;
     align-items: center;
     justify-content: center; /* Center icons in collapsed state */
     cursor: pointer;
-    transition: background-color 0.2s ease-in-out, transform 0.2s;
     text-decoration: none;
     color: #f0f0f0; /* Ensure consistent text color */
+    transition: background-color 0.2s ease-in-out, transform 0.2s;
 }
-
-
 .sidebar.expanded ul li {
-    justify-content: flex-start; /* Align to left in expanded state */
-   
+    justify-content: flex-start;
 }
-
+.sidebar ul li:hover {
+    background-color: #4c5a88;
+}
 .sidebar ul li i {
     font-size: 1.2rem;
     color: inherit; /* Ensure consistent icon color */
@@ -140,24 +157,21 @@ form input, form textarea, form button {
 
 .sidebar ul li span {
     display: none; /* Hide names in collapsed state */
-    text-decoration: none; /* Remove underline */
-    
 }
 
 .sidebar.expanded ul li span {
     display: inline; /* Show names in expanded state */
     margin-left: 15px; /* Add space for expanded state */
-    text-decoration: none;
 }
 
 /* Tooltip for hover in collapsed mode only */
 .sidebar:not(.expanded) ul li:hover::after {
-    content: attr(data-title); /* Display the text from the data-title attribute */
+    content: attr(data-title);
     position: absolute;
     left: 90px;
     top: 50%;
-    transform: translateY(-50%) scale(0.8); /* Smooth animation */
-    background-color: #4c5a88; /* Tooltip background */
+    transform: translateY(-50%);
+    background-color: #4c5a88;
     color: #fff;
     padding: 5px 10px;
     border-radius: 5px;
@@ -165,24 +179,20 @@ form input, form textarea, form button {
     font-size: 0.9rem;
     opacity: 0;
     transition: opacity 0.3s ease, transform 0.3s ease;
-    
 }
 
 .sidebar:not(.expanded) ul li:hover::after {
     opacity: 1;
-    transform: translateY(-50%) scale(1); /* Grow animation */
-    
-
+    transform: translateY(-50%) scale(1);
 }
 
 /* Sidebar hover effects */
 .sidebar ul li:hover {
-    background-color: #4c5a88; /* New hover color */
+    background-color: #4c5a88;
     transform: scale(1.05);
-    text-decoration: none; /* Ensure no underline on hover */
 }
 
-/* Toggle button styles */
+/* Sidebar Toggle Button */
 .toggle-btn {
     display: flex;
     align-items: center;
@@ -195,18 +205,17 @@ form input, form textarea, form button {
     outline: none;
     transition: background-color 0.3s ease-in-out;
 }
-
 .toggle-btn i {
     font-size: 1.5rem;
 }
-
 .toggle-btn:hover {
-    background-color: #354870; /* Hover effect */
+    background-color: #354870;
 }
 
-  /* Logout button styles */
-  .logout-btn {
-    margin-top: auto; /* Push to bottom */
+
+/* Logout Button */
+.logout-btn {
+    margin-top: auto;
     width: 100%;
     text-align: center;
     padding: 15px 0;
@@ -215,7 +224,6 @@ form input, form textarea, form button {
     font-size: 1rem;
     cursor: pointer;
     transition: background-color 0.3s ease-in-out;
-    align-items: center;
 }
 
 .logout-btn:hover {
@@ -225,14 +233,4 @@ form input, form textarea, form button {
 .logout-btn i {
     font-size: 1.2rem;
     margin-right: 10px;
-}
-/* Page content adjustment */
-.main-content {
-    margin-left: 80px; /* Adjusted for default collapsed state */
-    padding: 20px;
-    transition: margin-left 0.3s ease-in-out;
-}
-
-.main-content.expanded {
-    margin-left: 260px; /* Adjusted for expanded state */
 }

@@ -38,6 +38,8 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     };
 
+    
+
    // Function to display the menu items in the UI
 const displayMenuItems = (menuItems) => {
     menuItemsContainer.innerHTML = ''; // Clear the current menu items
@@ -155,7 +157,7 @@ menuForm.addEventListener('submit', async (event) => {
 });
 
 
-// Fetch categories and display them as filter buttons
+// Function to fetch categories and display them as filter buttons
 async function fetchCategories() {
     try {
         const response = await fetch('/menu/categories');
@@ -165,7 +167,18 @@ async function fetchCategories() {
             const filtersContainer = document.getElementById('category-filters');
             filtersContainer.innerHTML = ''; // Clear existing buttons
 
-            data.categories.forEach(category => {
+            // Add "All" button first
+            const allButton = document.createElement('button');
+            allButton.textContent = 'All';
+            allButton.addEventListener('click', () => location.reload()); // Refresh the whole page
+            filtersContainer.appendChild(allButton);
+
+
+            // Sort categories alphabetically (case-insensitive)
+            const sortedCategories = data.categories.sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()));
+
+            // Create buttons for each category
+            sortedCategories.forEach(category => {
                 const button = document.createElement('button');
                 button.textContent = category;
                 button.addEventListener('click', () => filterMenuByCategory(category));
@@ -177,32 +190,46 @@ async function fetchCategories() {
     }
 }
 
-// Fetch menu items by category
+// Fetch menu items by category and display them using the same structure as displayMenuItems
 async function filterMenuByCategory(category) {
     try {
         const response = await fetch(`/menu/items/${category}`);
         const data = await response.json();
 
         if (data.success) {
-            const menuContainer = document.getElementById('menu-items-container');
-            menuContainer.innerHTML = ''; // Clear existing menu items
+            menuItemsContainer.innerHTML = ''; // Clear the current menu items
 
-            data.menuItems.forEach(item => {
-                const itemElement = document.createElement('div');
-                itemElement.classList.add('menu-item');
-                itemElement.innerHTML = `
-                    <img src="${item.item_picture}" alt="${item.item_name}" class="menu-item-img">
-                    <h3>${item.item_name}</h3>
-                    <p>${item.description}</p>
-                    <p><strong>Price:</strong> ${item.item_price} Tk</p>
+            if (data.menuItems.length === 0) {
+                menuItemsContainer.innerHTML = '<p>No menu items available in this category</p>';
+                return;
+            }
+
+            data.menuItems.forEach((item) => {
+                const itemDiv = document.createElement('div');
+                itemDiv.classList.add('menu-item');
+                itemDiv.innerHTML = `
+                    <div class="menu-item-image" style="background-image: url('/uploads/${item.item_picture}');">
+                        <div class="menu-item-description">${item.description}</div>
+                    </div>
+                    <div class="menu-item-details">
+                        <h3>${item.item_name}</h3>
+                        <p>Category: ${item.category}</p>
+                        <p>Price: $${item.item_price}</p>
+                        <button class="btn edit" onclick="editMenuItem(${item.menu_id}, '${item.item_name}', '${item.category}', ${item.item_price}, '${item.description}', '${item.item_picture}')">Edit</button>
+                        <button class="btn delete" onclick="deleteMenuItem(${item.menu_id})">Delete</button>
+                    </div>
                 `;
-                menuContainer.appendChild(itemElement);
+                menuItemsContainer.appendChild(itemDiv);
             });
+        } else {
+            menuItemsContainer.innerHTML = '<p>Failed to fetch items for this category</p>';
         }
     } catch (error) {
         console.error('Error filtering menu:', error);
+        menuItemsContainer.innerHTML = '<p>Error fetching menu items. Please try again later.</p>';
     }
 }
+
 
 // Initialize by fetching categories
 fetchCategories();

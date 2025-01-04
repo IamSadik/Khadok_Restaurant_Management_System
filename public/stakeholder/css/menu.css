@@ -36,11 +36,94 @@ h2 {
     margin-top: 0;
 }
 
-#menu-items-container {
+/* Styling the menu item container for horizontal scrolling */
+.menu-item-container {
     display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-}
+    gap: 1rem; /* Space between menu items */
+    overflow-x: auto; /* Enables horizontal scrolling */
+    scroll-behavior: smooth;
+    padding: 1rem 0;
+    white-space: nowrap;
+  }
+  
+  /* Styling individual menu items */
+  .menu-item {
+    flex: 0 0 250px; /* Fix width of each menu item */
+    text-align: center;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+  }
+  
+  /* Styling the image container with hover effect */
+  .menu-item-image {
+    width: 100%;
+    height: 200px; /* Fix height for consistency */
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.3s ease-in-out;
+    position: relative;
+  }
+  
+  /* On hover, zoom out the image and show description */
+  .menu-item-image:hover {
+    transform: scale(0.9);
+  }
+  
+  .menu-item-image:hover .menu-item-description {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  /* Styling the menu item description */
+  .menu-item-description {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7); /* Semi-transparent overlay */
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out;
+    font-size: 0.9rem;
+    padding: 1rem;
+    text-align: center;
+  }
+  
+  /* Styling the details section below the image */
+  .menu-item-details {
+    padding: 0.5rem;
+  }
+  
+  .menu-item-details h3 {
+    font-size: 1rem;
+    margin: 0.5rem 0;
+    color: #333;
+  }
+  
+  .btn {
+    background: #007bff;
+    border: none;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    margin: 0.2rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .btn:hover {
+    background: #0056b3;
+  }
+  
 
 a{
     list-style: none;
@@ -93,6 +176,12 @@ form input, form textarea, form button {
     border-radius: 4px;
     border: 1px solid #ccc;
 }
+
+
+
+
+
+
 /* General Page Styles */
 html {
     font-size: 80%;

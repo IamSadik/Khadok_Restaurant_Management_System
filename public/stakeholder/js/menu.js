@@ -38,30 +38,34 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     };
 
-    // Function to display the menu items in the UI
-    const displayMenuItems = (menuItems) => {
-        menuItemsContainer.innerHTML = ''; // Clear the current menu items
+   // Function to display the menu items in the UI
+const displayMenuItems = (menuItems) => {
+    menuItemsContainer.innerHTML = ''; // Clear the current menu items
 
-        if (menuItems.length === 0) {
-            menuItemsContainer.innerHTML = '<p>No menu items available</p>';
-            return;
-        }
+    if (menuItems.length === 0) {
+        menuItemsContainer.innerHTML = '<p>No menu items available</p>';
+        return;
+    }
 
-        menuItems.forEach(item => {
-            const itemDiv = document.createElement('div');
-            itemDiv.classList.add('menu-item');
-            itemDiv.innerHTML = `
+    menuItems.forEach((item) => {
+        const itemDiv = document.createElement('div');
+        itemDiv.classList.add('menu-item');
+        itemDiv.innerHTML = `
+            <div class="menu-item-image" style="background-image: url('/uploads/${item.item_picture}');">
+                <div class="menu-item-description">${item.description}</div>
+            </div>
+            <div class="menu-item-details">
                 <h3>${item.item_name}</h3>
                 <p>Category: ${item.category}</p>
                 <p>Price: $${item.item_price}</p>
-                <p>Description: ${item.description}</p>
-                <img src="/uploads/${item.item_picture}" alt="${item.item_name}" width="100">
-                <button onclick="deleteMenuItem(${item.menu_id})">Delete</button>
-                <button onclick="editMenuItem(${item.menu_id}, '${item.item_name}', '${item.category}', ${item.item_price}, '${item.description}', '${item.item_picture}')">Edit</button>
-            `;
-            menuItemsContainer.appendChild(itemDiv);
-        });
-    };
+                <button class="btn edit" onclick="editMenuItem(${item.menu_id}, '${item.item_name}', '${item.category}', ${item.item_price}, '${item.description}', '${item.item_picture}')">Edit</button>
+                <button class="btn delete" onclick="deleteMenuItem(${item.menu_id})">Delete</button>
+            </div>
+        `;
+        menuItemsContainer.appendChild(itemDiv);
+    });
+};
+
 
     // Function to delete a menu item
     const deleteMenuItem = async (menuId) => {

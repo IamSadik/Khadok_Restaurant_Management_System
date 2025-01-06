@@ -369,7 +369,7 @@ html {
     font-size: 80%;
 }
 body {
-    font-family: Arial, sans-serif;
+    font-family: Poppins, sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f8f9fa;
@@ -415,6 +415,13 @@ body {
     color: #f0f0f0; /* Ensure consistent text color */
     transition: background-color 0.2s ease-in-out, transform 0.2s;
 }
+.sidebar ul li a{
+    list-style: none;
+    text-decoration: none;
+    color: #f0f0f0;
+
+}
+
 .sidebar.expanded ul li {
     justify-content: flex-start;
 }

@@ -9,9 +9,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="css/interior-setup.css">
     <link rel="stylesheet" href="js/khadok.stakeholder.dashboard.js">
-     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    
+    <script src="./js/panolens.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/panolens@0.12.1/dist/panolens.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/105/three.min.js" integrity="sha512-uWKImujbh9CwNa8Eey5s8vlHDB4o1HhrVszkympkm5ciYTnUEQv3t4QHU02CUqPtdKTg62FsHo12x63q6u0wmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://pchen66.github.io/js/three/three.min.js"></script>
+    <script src="https://pchen66.github.io/js/panolens/panolens.min.js"></script>
+
    
 </head>
 <body>
@@ -21,10 +27,9 @@
             <i class="fas fa-bars"></i>
         </button>
         <ul>
-            <li data-title="Dashboard"><a href="./khadok.stakeholder.index.html"><i class="fas fa-home"></i> <span>Dashboard</span></a></li>
-            <li data-title="Menu Management"><a href="./menu.html"><i class="fas fa-utensils"></i> <span>Menu Management</span></a></li>
-
-            <li data-title="3D Interior View"><a href="./interior-setup.html"><i class="fas fa-cube"></i> <span>3D Interior View</span></a></li>
+            <a href="khadok.stakeholder.index.html"><li data-title="Dashboard"><i class="fas fa-home"></i> <span>Dashboard</span></li></a>
+            <a href="menu.html"><li data-title="Menu Management"><i class="fas fa-utensils"></i> <span>Menu Management</span></li></a>
+            <a href="./interior-setup.html"><li data-title="3D Interior View"><i class="fas fa-cube"></i> <span>3D Interior View</span></li></a>
             <li data-title="Live Kitchen Feed"><i class="fas fa-video"></i> <span>Live Kitchen Feed</span></li>
             <li data-title="Orders"><i class="fas fa-box"></i> <span>Orders</span></li>
             <li data-title="Reservations"><i class="fas fa-calendar-check"></i> <span>Reservations</span></li>
@@ -39,80 +44,177 @@
         </div>
     </div>
 
-    <!-- Page Content -->
-    <div class="main-content">
-        <div class="container py-5">
-            <h1 class="text-center mb-4">Set Up Your Restaurant Interior</h1>
-    
-            <!-- Table Setup Section -->
-            <div class="card mb-5">
-                <div class="card-header">
-                    <h3>Choose Your Tables</h3>
-                </div>
-                <div class="card-body">
-                    <form id="table-setup-form">
-                        <div class="mb-3">
-                            <label for="table-count" class="form-label">How many tables do you have?</label>
-                            <input type="number" class="form-control" id="table-count" min="1" placeholder="Enter number of tables" required>
-                        </div>
-                        <div class="mb-3" id="table-types">
-                            <label class="form-label">Choose table types:</label>
-                            <div class="d-flex flex-wrap">
-                                <div class="form-check m-2">
-                                    <input class="form-check-input" type="checkbox" value="2-person" id="table-2">
-                                    <label class="form-check-label" for="table-2">2 Person</label>
-                                </div>
-                                <div class="form-check m-2">
-                                    <input class="form-check-input" type="checkbox" value="4-person" id="table-4">
-                                    <label class="form-check-label" for="table-4">4 Person</label>
-                                </div>
-                                <div class="form-check m-2">
-                                    <input class="form-check-input" type="checkbox" value="8-person" id="table-8">
-                                    <label class="form-check-label" for="table-8">8 Person</label>
-                                </div>
-                                <div class="form-check m-2">
-                                    <input class="form-check-input" type="checkbox" value="round-5" id="table-round">
-                                    <label class="form-check-label" for="table-round">Round Table (5 Person)</label>
-                                </div>
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Save Table Setup</button>
-                    </form>
-                </div>
-            </div>
-    
-            <!-- Image Upload Section -->
-            <div class="card mb-5">
-                <div class="card-header">
-                    <h3>Upload Your Interior Images</h3>
-                </div>
-                <div class="card-body">
-                    <form id="image-upload-form" enctype="multipart/form-data">
-                        <div class="mb-3">
-                            <label for="interior-image" class="form-label">Choose Image</label>
-                            <input type="file" class="form-control" id="interior-image" accept="image/*" required>
-                        </div>
-                        <button type="submit" class="btn btn-success">Upload Image</button>
-                    </form>
-                </div>
-            </div>
-    
-            <!-- 3D Street View Section -->
-            <div class="card mb-5">
-                <div class="card-header">
-                    <h3>3D Interior View</h3>
-                </div>
-                <div class="card-body text-center">
-                    <div id="street-view-container">
-                        <h4>Preview your restaurant in 3D view below:</h4>
-                        <div id="street-view"></div>
+    <!-- Main Content -->
+<div class="main-content">
+    <div class="container mt-4">
+        <!-- Section 0: 3D Animated Floor and Table Count Display -->
+<div class="section mb-5" id="floorSection">
+    <h2 class="section-title text-center">Interactive 3D Floor</h2>
+    <div id="floor-Container"></div>
+    <div class="row">
+        
+        <div class="col-md-4">
+            <div id="tableInfo">
+                <h4>Table Info</h4>
+                <div id="tableCountDisplay" class="table-count-display">
+                    <div class="table-count-item">
+                        <div class="table-icon" style="background-color: #007bff;"></div>
+                        <p style="color: #007bff;">
+                            <strong>2 Person:</strong>
+                            <span id="twoPersonCount" data-table-type="2">0</span>
+                        </p>
                     </div>
-                    <button id="load-3d" class="btn btn-info mt-3">Load 3D Street View</button>
+                    <div class="table-count-item">
+                        <div class="table-icon" style="background-color: #198754;"></div>
+                        <p style="color: #198754;">
+                            <strong>4 Person:</strong>
+                            <span id="fourPersonCount" data-table-type="4">0</span>
+                        </p>
+                    </div>
+                    <div class="table-count-item">
+                        <div class="table-icon" style="background-color: #0DCAF0;"></div>
+                        <p style="color: #0DCAF0;">
+                            <strong>8 Person:</strong>
+                            <span id="eightPersonCount" data-table-type="8">0</span>
+                        </p>
+                    </div>
+                    <div class="table-count-item">
+                        <div class="table-icon" style="background-color: #FFC13C;"></div>
+                        <p style="color: #FFC13C;">
+                            <strong>16 Person:</strong>
+                            <span id="sixteenPersonCount" data-table-type="16">0</span>
+                        </p>
+                    </div>
+                    <div class="table-count-item">
+                        <div class="table-icon" style="background-color: #C82333;"></div>
+                        <p style="color: #C82333;">
+                            <strong>Round Table:</strong>
+                            <span id="roundTableCount" data-table-type="5">0</span>
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
-    
+        
     </div>
+</div>
+
+
+      <!-- Section 1: Adding Tables -->
+<div class="section mb-5">
+    <h2 class="section-title text-center">Add Tables to Database</h2>
+    <form id="tableForm">
+        <div id="tableFields">
+            <div class="row align-items-center mb-3">
+                <div class="col-md-8">
+                    <div class="btn-group d-flex" role="group">
+                        <input type="radio" class="btn-check" name="tableType-0" id="twoPerson-0" value="2" required>
+                        <label class="btn btn-outline-primary" for="twoPerson-0"><i class="fas fa-chair"></i> 2 Person</label>
+
+                        <input type="radio" class="btn-check" name="tableType-0" id="fourPerson-0" value="4">
+                        <label class="btn btn-outline-success" for="fourPerson-0"><i class="fas fa-couch"></i> 4 Person</label>
+
+                        <input type="radio" class="btn-check" name="tableType-0" id="eightPerson-0" value="8">
+                        <label class="btn btn-outline-info" for="eightPerson-0"><i class="fas fa-table"></i> 8 Person</label>
+
+                        <input type="radio" class="btn-check" name="tableType-0" id="sixteenPerson-0" value="16">
+                        <label class="btn btn-outline-warning" for="sixteenPerson-0"><i class="fas fa-table-cells"></i> 16 Person</label>
+
+                        <input type="radio" class="btn-check" name="tableType-0" id="roundTable-0" value="5">
+                        <label class="btn btn-outline-danger" for="roundTable-0"><i class="fas fa-circle-notch"></i> Round Table(5)</label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <input type="number" class="form-control" name="tableCount" placeholder="Number of Tables" required>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-between">
+            <div>
+                <button type="button" class="btn btn-primary" id="addMore"><i class="fas fa-plus"></i> Add More</button>
+                <button type="button" class="btn btn-danger d-none" id="removeLast"><i class="fas fa-trash-alt"></i>  Remove</button>
+            </div>
+            <button type="submit" class="btn btn-success"><i class="fas fa-save"></i> Save</button>
+        </div>
+    </form>
+</div>
+
+
+<!-- Section 1.1: Removing Tables -->
+<div class="section mb-5">
+    <h2 class="section-title text-center">Remove Tables from Database</h2>
+    <form id="removeTableForm">
+        <div id="removeTableFields">
+            <div class="row align-items-center mb-3">
+                <div class="col-md-8">
+                    <div class="btn-group d-flex" role="group">
+                        <input type="radio" class="btn-check" name="removeTableType" id="removeTwoPerson" value="2" required>
+                        <label class="btn btn-outline-primary" for="removeTwoPerson"><i class="fas fa-chair"></i> 2 Person</label>
+
+                        <input type="radio" class="btn-check" name="removeTableType" id="removeFourPerson" value="4">
+                        <label class="btn btn-outline-success" for="removeFourPerson"><i class="fas fa-couch"></i> 4 Person</label>
+
+                        <input type="radio" class="btn-check" name="removeTableType" id="removeEightPerson" value="8">
+                        <label class="btn btn-outline-info" for="removeEightPerson"><i class="fas fa-table"></i> 8 Person</label>
+
+                        <input type="radio" class="btn-check" name="removeTableType" id="removeSixteenPerson" value="16">
+                        <label class="btn btn-outline-warning" for="removeSixteenPerson"><i class="fas fa-table-cells"></i> 16 Person</label>
+
+                        <input type="radio" class="btn-check" name="removeTableType" id="removeRoundTable" value="5">
+                        <label class="btn btn-outline-danger" for="removeRoundTable"><i class="fas fa-circle-notch"></i> Round Table(5)</label>
+                    </div>
+                </div>
+                <div class="col-md-4 d-flex align-items-center">
+                    <button type="button" class="btn btn-outline-secondary me-2" id="decrementTableCount">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <input type="number" class="form-control" id="removeTableCount" name="removeTableCount" placeholder="Remove Number of Tables" value="1" min="1" required>
+                    <button type="button" class="btn btn-outline-secondary ms-2" id="incrementTableCount">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-end">
+            <button type="submit" class="btn btn-danger" id="removeTableButton"><i class="fas fa-recycle"></i> Remove</button>
+        </div>
+    </form>
+</div>
+
+
+       <!-- Section 2: Uploading 360 Image -->
+<div class="section mb-5">
+    <h2 class="section-title text-center">Upload 360 Interior Image</h2>
+    <div class="example-gallery mb-4" id="preview" style="height: 200px; background-size: cover;"></div>
+    <!-- Warning Section -->
+    <div class="warning-container">
+        <i class="fas fa-info-circle warning-icon"></i>
+        <span class="warning-text">
+            Please upload a 360° image or panorama. Otherwise, the 3D view may not be accurate.
+        </span>
+    </div>
+    <form id="imageUploadForm">
+        <div class="mb-3">
+            <label for="interiorImage" class="form-label">Choose a 360 Image:</label>
+            <input type="file" class="form-control" id="interiorImage" accept="image/*" required>
+        </div>
+        <button type="submit" class="btn btn-info"><i class="fas fa-upload"></i> Upload</button>
+    </form>
+</div>
+
+
+        <!-- Section 3: Generating 360 View -->
+        <div class="section mb-5">
+            <h2 class="section-title text-center">Generate 360 Interior View</h2>
+            <div id="panolens-container" class="image-container" style="width: 100%; height: 500px;"></div>
+
+                <p class="text-muted">Your 360 view will appear here</p>
+            </div>
+            <button class="btn btn-warning mt-3" id="load360View"><i class="fas fa-trash-alt"></i> Delete 360 View</button>
+        </div>
+    </div>
+</div>
+
     
 
     
@@ -150,7 +252,7 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-<script src="/js/interior.js"></script>
+<script src="./js/interior.js"></script>
 
 </body>
 </html>

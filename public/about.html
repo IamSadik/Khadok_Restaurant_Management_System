@@ -1,79 +1,129 @@
 <!DOCTYPE html>
-<!-- Created By CodingLab - www.codinglabweb.com -->
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="UTF-8">
-    <title> Responsive Contact Us Form  | CodingLab </title>
-    <link rel="stylesheet" href="css/about.css">
-    <!-- Fontawesome CDN Link -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   </head>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us | Khadok</title>
+  <link rel="stylesheet" href="css/about.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+</head>
 <body>
-  <header class="nav-bar">
-    <div class="logo">
-        <a href="index.html" class="logo-link">
-            <img src="images/khadok2.png" alt="Brand Logo" class="brand-logo">
-            <span class="logo-text">Khadok</span>
+<header class="nav-bar">
+  <div class="logo">
+    <a href="index.html" class="logo-link">
+      <img src="images/khadok2.png" alt="Brand Logo" class="brand-logo">
+      <span class="logo-text">Khadok</span>
+    </a>
+  </div>
+  <nav>
+    <ul>
+      <li><a href="index.html" class="about-btn">Home</a></li>
+      <li><a href="admin_login.html" class="contact-btn">Admin</a></li>
+      <li><a href="rider_login.html" class="login-btn">Rider</a></li>
+      <li><a href="signup.html" class="signup-btn">Sign up</a></li>
+    </ul>
+  </nav>
+  <ul>
+    <li class="user-icon">
+      <a href="login.html">
+        <i class="fas fa-user-circle"></i>
+      </a>
+    </li>
+  </ul>
+</header>
+
+<div class="container">
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Welcome to Khadok</h1>
+      <p>Revolutionizing the way you experience food, one meal at a time.</p>
+    </div>
+    <div class="overlay"></div>
+  </section>
+
+  <!-- Mission and Vision Section -->
+  <section class="mission-vision">
+    <h2>Our Mission & Vision</h2>
+    <div class="content">
+      <div class="box mission">
+        <div class="icon">
+          <i class="fas fa-bullseye"></i>
+        </div>
+        <h3>Our Mission</h3>
+        <p>To bring joy through food by creating a seamless platform for dining, delivery, and memorable culinary experiences.</p>
+      </div>
+      <div class="box vision">
+        <div class="icon">
+          <i class="fas fa-eye"></i>
+        </div>
+        <h3>Our Vision</h3>
+        <p>To be the world’s leading food platform, fostering connections between people and the flavors they cherish.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Journey Section -->
+<section class="journey">
+  <div class="journey-text-container">
+    <h2>Our Journey</h2>
+    <p>Founded with the belief that food brings people together, Khadok aims to transform the way we connect over meals. From small beginnings to a thriving platform, our journey is driven by passion, innovation, and a love for all things delicious.</p>
+  </div>
+  <div class="journey-images">
+    <img src="images/food2.jpg" alt="Journey Image 1">
+    <img src="images/food.jpg" alt="Journey Image 2">
+  </div>
+</section>
+
+
+  <!-- Team Section -->
+  <section class="team">
+    <h2>Meet Our Team</h2>
+    <div class="team-gallery">
+      <div class="team-member">
+        <img src="images/profile.png" alt="Team Member 1">
+        <h3>Sadik Mahmud</h3>
+        <p>Founder & CEO</p>
+      </div>
+      <div class="team-member">
+        <img src="images/man.png" alt="Team Member 2">
+        <h3>John Doe</h3>
+        <p>Head of Operations</p>
+      </div>
+      <div class="team-member">
+        <img src="images/programmer.png" alt="Team Member 3">
+        <h3>Jane Smith</h3>
+        <p>Lead Developer</p>
+      </div>
+    </div>
+  </section>
+  <footer>
+    <hr class="footer-divider" style="width: 100%;"/>
+    <div class="footer-content">
+     <p>&copy; 2024 Khadok. All rights reserved.</p>
+     <div class="footer-links">
+         <a href="terms.html">Terms & Conditions</a>
+            <a href="privacy.html">Privacy Policy</a>
+         <a href="contact.html">Contact Us</a>
+    </div>
+    <div class="social-media-icons">
+        <a href="https://facebook.com/iamsadikmahmud" target="_blank" aria-label="Facebook">
+            <i class="fab fa-facebook"></i>
+        </a>
+        <a href="https://twitter.com/iamsadikmahmud" target="_blank" aria-label="Twitter">
+            <i class="fab fa-twitter"></i>
+        </a>
+        <a href="https://instagram.com/iamsadikmahmud" target="_blank" aria-label="Instagram">
+            <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn">
+            <i class="fab fa-linkedin"></i>
         </a>
     </div>
-    <nav>
-        <ul>
-            <li><a href="index.html" class="about-btn">Home</a></li>
-            <li><a href="admin_login.html" class="contact-btn">Admin</a></li>
-            <li><a href="rider_login.html" class="login-btn">Rider</a></li>
-            <li><a href="signup.html" class="signup-btn">Sign up</a></li>
-        </ul>
-    </nav>
-    <ul>
-      <li class="user-icon">
-          <a href="login.html">
-              <i class="fas fa-user-circle"></i>
-          </a>
-      </li> 
-  </ul>
-  </header>
-  <div class="container">
-    <div class="content">
-      <div class="left-side">
-        <div class="address details">
-          <i class="fas fa-map-marker-alt"></i>
-          <div class="topic">Address</div>
-          <div class="text-one">Shonik Akhra</div>
-          <div class="text-two">Jatrabari, Dhaka </div>
-        </div>
-        <div class="phone details">
-          <i class="fas fa-phone-alt"></i>
-          <div class="topic">Phone</div>
-          <div class="text-one">+880 1937893430</div>
-          <div class="text-two">+0096 3434 5678</div>
-        </div>
-        <div class="email details">
-          <i class="fas fa-envelope"></i>
-          <div class="topic">Email</div>
-          <div class="text-one">sadikmahmud01@gmail.com</div>
-          <div class="text-two">smahmud221113@bscse.uiu.ac.bd</div>
-        </div>
-      </div>
-      <div class="right-side">
-        <div class="topic-text">Send us a message</div>
-        <p>Let us know about you and your business, you can send us message from here. It's our pleasure to serve you.</p>
-      <form action="#">
-        <div class="input-box">
-          <input type="text" placeholder="Enter your name">
-        </div>
-        <div class="input-box">
-          <input type="text" placeholder="Enter your email">
-        </div>
-        <div class="input-box message-box">
-          
-        </div>
-        <div class="button">
-          <input type="button" value="Send Now" >
-        </div>
-      </form>
     </div>
-    </div>
-  </div>
+</footer>
+</div>
+
 </body>
+
 </html>

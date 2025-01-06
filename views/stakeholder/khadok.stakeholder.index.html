@@ -1,0 +1,338 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stakeholder Sidebar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/khadok.stakeholder.dashboard.css">
+    <link rel="stylesheet" href="js/khadok.stakeholder.dashboard.js">
+    <style>
+        html{
+            font-size: 80%;
+        }
+        /* General styles */
+        body {
+            margin: 0;
+            font-family: Poppins, sans-serif;
+        }
+
+        /* Sidebar styles */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 80px; /* Default collapsed width */
+            height: 100%;
+            background-color: #2a3d66; /* Main sidebar color */
+            color: #f0f0f0;
+            transition: width 0.3s ease-in-out;
+            overflow-y: auto;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center-align icons */
+        }
+
+        .sidebar.expanded {
+            width: 260px; /* Expanded width */
+            align-items: flex-start; /* Align to left for expanded state */
+        }
+        
+        
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            width: 100%; /* Full width for clickable area */
+        }
+
+        .sidebar ul li {
+            position: relative; /* Position for tooltip */
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center; /* Center icons in collapsed state */
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out, transform 0.2s;
+            text-decoration: none;
+            color: #f0f0f0; /* Ensure consistent text color */
+        }
+
+        
+        .sidebar.expanded ul li {
+            justify-content: flex-start; /* Align to left in expanded state */
+           
+        }
+
+        .sidebar ul li i {
+            font-size: 1.2rem;
+            color: inherit; /* Ensure consistent icon color */
+        }
+
+        .sidebar ul li span {
+            display: none; /* Hide names in collapsed state */
+            text-decoration: none; /* Remove underline */
+            
+        }
+        
+        .sidebar.expanded ul li span {
+            display: inline; /* Show names in expanded state */
+            margin-left: 15px; /* Add space for expanded state */
+            text-decoration: none;
+        }
+
+        /* Tooltip for hover in collapsed mode only */
+        .sidebar:not(.expanded) ul li:hover::after {
+            content: attr(data-title); /* Display the text from the data-title attribute */
+            position: absolute;
+            left: 90px;
+            top: 50%;
+            transform: translateY(-50%) scale(0.8); /* Smooth animation */
+            background-color: #4c5a88; /* Tooltip background */
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            white-space: nowrap;
+            font-size: 0.9rem;
+            opacity: 0;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            
+        }
+
+        .sidebar:not(.expanded) ul li:hover::after {
+            opacity: 1;
+            transform: translateY(-50%) scale(1); /* Grow animation */
+            
+        
+        }
+
+        /* Sidebar hover effects */
+        .sidebar ul li:hover {
+            background-color: #4c5a88; /* New hover color */
+            transform: scale(1.05);
+            text-decoration: none; /* Ensure no underline on hover */
+        }
+
+        /* Toggle button styles */
+        .toggle-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 15px 20px;
+            background-color: #1f2c4a;
+            border: none;
+            cursor: pointer;
+            outline: none;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .toggle-btn i {
+            font-size: 1.5rem;
+        }
+
+        .toggle-btn:hover {
+            background-color: #354870; /* Hover effect */
+        }
+
+          /* Logout button styles */
+          .logout-btn {
+            margin-top: auto; /* Push to bottom */
+            width: 100%;
+            text-align: center;
+            padding: 15px 0;
+            background-color: #1f2c4a;
+            color: #f0f0f0;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+            align-items: center;
+        }
+
+        .logout-btn:hover {
+            background-color: #354870;
+        }
+
+        .logout-btn i {
+            font-size: 1.2rem;
+            margin-right: 10px;
+        }
+        /* Page content adjustment */
+        .main-content {
+            margin-left: 80px; /* Adjusted for default collapsed state */
+            padding: 20px;
+            transition: margin-left 0.3s ease-in-out;
+        }
+
+        .main-content.expanded {
+            margin-left: 260px; /* Adjusted for expanded state */
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <button class="toggle-btn" id="toggle-btn">
+            <i class="fas fa-bars"></i>
+        </button>
+        <ul>
+            <li data-title="Dashboard"><i class="fas fa-home"></i> <span>Dashboard</span></li>
+            <li data-title="Menu Management"><a href="menu.html"><i class="fas fa-utensils"></i> <span>Menu Management</span></a></li>
+
+            <li data-title="3D Interior View"><i class="fas fa-cube"></i> <span>3D Interior View</span></li>
+            <li data-title="Live Kitchen Feed"><i class="fas fa-video"></i> <span>Live Kitchen Feed</span></li>
+            <li data-title="Orders"><i class="fas fa-box"></i> <span>Orders</span></li>
+            <li data-title="Reservations"><i class="fas fa-calendar-check"></i> <span>Reservations</span></li>
+            <li data-title="Reviews & Feedback"><i class="fas fa-comment-alt"></i> <span>Reviews & Feedback</span></li>
+            <li data-title="Analytics"><i class="fas fa-chart-line"></i> <span>Analytics</span></li>
+            <li data-title="Promotions"><i class="fas fa-tags"></i> <span>Promotions</span></li>
+            <li data-title="Profile"><i class="fas fa-user"></i> <span>Profile</span></li>
+            <li data-title="Settings"><i class="fas fa-cog"></i> <span>Settings</span></li>
+        </ul>
+        <div class="logout-btn" onclick="window.location.href='logout.php'">
+            <i class="fas fa-sign-out-alt"></i>
+        </div>
+    </div>
+
+    <!-- Page Content -->
+    <div class="main-content">
+    <!-- Header Section -->
+        <div class="header">
+            <p id="email-display">Logged in as: <span>< %= email %></span></p>
+            <h1>Welcome, [Stakeholder Name]</h1>
+            
+            <p>Here's a summary of your restaurant's performance.</p>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="quick-actions">
+            <div class="action-card">
+                <i class="fas fa-utensils"></i>
+                <h3>Manage Menu</h3>
+                <p>Organize and update your menu items.</p>
+            </div>
+            <div class="action-card">
+                <i class="fas fa-cube"></i>
+                <h3>3D Interiors</h3>
+                <p>Upload and showcase your restaurant interiors.</p>
+            </div>
+            <div class="action-card">
+                <i class="fas fa-video"></i>
+                <h3>Live Kitchen</h3>
+                <p>Stream your live kitchen feed.</p>
+            </div>
+            <div class="action-card">
+                <i class="fas fa-tags"></i>
+                <h3>Promotions</h3>
+                <p>Create and manage promotional offers.</p>
+            </div>
+        </div>
+
+        <!-- Statistics Section -->
+        <div class="statistics">
+            <div class="stat-card">
+                <h3>150</h3>
+                <p>Total Orders</p>
+            </div>
+            <div class="stat-card">
+                <h3>50</h3>
+                <p>Reservations</p>
+            </div>
+            <div class="stat-card">
+                <h3>4.8</h3>
+                <p>Average Rating</p>
+            </div>
+            <div class="stat-card">
+                <h3>$3,200</h3>
+                <p>Monthly Earnings</p>
+            </div>
+        </div>
+
+        <!-- Recent Activities Section -->
+        <div class="recent-activities">
+            <h2>Recent Activities</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Activity</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>2024-11-30</td>
+                        <td>Order</td>
+                        <td>Order #123 by John Doe</td>
+                    </tr>
+                    <tr>
+                        <td>2024-11-29</td>
+                        <td>Review</td>
+                        <td>4.5-star review for Pasta</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        const stakeholderEmail = "<%= email %>";
+        localStorage.setItem('stakeholderEmail', stakeholderEmail);
+    </script>
+    
+    <script>
+        // JavaScript for Sidebar Toggle
+        const toggleBtn = document.getElementById('toggle-btn');
+        const sidebar = document.getElementById('sidebar');
+        const mainContent = document.querySelector('.main-content'); // Fix to target the main content correctly
+
+        toggleBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('expanded');
+            mainContent.classList.toggle('expanded');
+        });
+    </script>
+    <script>
+        document.querySelector('.logout-btn').addEventListener('click', async () => {
+        try {
+            const response = await fetch('/auth/logout', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+                // Redirect to the logout page
+                window.location.href = result.redirectURL;
+            } else {
+                alert(result.message || 'Logout failed');
+            }
+        } catch (error) {
+            console.error('Error during logout:', error);
+            alert('An error occurred while logging out');
+        }
+    });
+
+    </script>
+    <script>
+        const getStakeholderId = async () => {
+        const email = localStorage.getItem('stakeholderEmail');
+        try {
+            const response = await fetch(`/api/stakeholder-id?email=${email}`);
+            const data = await response.json();
+            return data.stakeholder_id; // Assuming the API returns this field
+        } catch (error) {
+            console.error('Error fetching stakeholder ID:', error);
+        }
+    };
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,156 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stakeholder Sidebar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/interior-setup.css">
+    <link rel="stylesheet" href="js/khadok.stakeholder.dashboard.js">
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    
+   
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <button class="toggle-btn" id="toggle-btn">
+            <i class="fas fa-bars"></i>
+        </button>
+        <ul>
+            <li data-title="Dashboard"><a href="./khadok.stakeholder.index.html"><i class="fas fa-home"></i> <span>Dashboard</span></a></li>
+            <li data-title="Menu Management"><a href="./menu.html"><i class="fas fa-utensils"></i> <span>Menu Management</span></a></li>
+
+            <li data-title="3D Interior View"><a href="./interior-setup.html"><i class="fas fa-cube"></i> <span>3D Interior View</span></a></li>
+            <li data-title="Live Kitchen Feed"><i class="fas fa-video"></i> <span>Live Kitchen Feed</span></li>
+            <li data-title="Orders"><i class="fas fa-box"></i> <span>Orders</span></li>
+            <li data-title="Reservations"><i class="fas fa-calendar-check"></i> <span>Reservations</span></li>
+            <li data-title="Reviews & Feedback"><i class="fas fa-comment-alt"></i> <span>Reviews & Feedback</span></li>
+            <li data-title="Analytics"><i class="fas fa-chart-line"></i> <span>Analytics</span></li>
+            <li data-title="Promotions"><i class="fas fa-tags"></i> <span>Promotions</span></li>
+            <li data-title="Profile"><i class="fas fa-user"></i> <span>Profile</span></li>
+            <li data-title="Settings"><i class="fas fa-cog"></i> <span>Settings</span></li>
+        </ul>
+        <div class="logout-btn" id="logoutButton" >
+            <i class="fas fa-sign-out-alt"></i>
+        </div>
+    </div>
+
+    <!-- Page Content -->
+    <div class="main-content">
+        <div class="container py-5">
+            <h1 class="text-center mb-4">Set Up Your Restaurant Interior</h1>
+    
+            <!-- Table Setup Section -->
+            <div class="card mb-5">
+                <div class="card-header">
+                    <h3>Choose Your Tables</h3>
+                </div>
+                <div class="card-body">
+                    <form id="table-setup-form">
+                        <div class="mb-3">
+                            <label for="table-count" class="form-label">How many tables do you have?</label>
+                            <input type="number" class="form-control" id="table-count" min="1" placeholder="Enter number of tables" required>
+                        </div>
+                        <div class="mb-3" id="table-types">
+                            <label class="form-label">Choose table types:</label>
+                            <div class="d-flex flex-wrap">
+                                <div class="form-check m-2">
+                                    <input class="form-check-input" type="checkbox" value="2-person" id="table-2">
+                                    <label class="form-check-label" for="table-2">2 Person</label>
+                                </div>
+                                <div class="form-check m-2">
+                                    <input class="form-check-input" type="checkbox" value="4-person" id="table-4">
+                                    <label class="form-check-label" for="table-4">4 Person</label>
+                                </div>
+                                <div class="form-check m-2">
+                                    <input class="form-check-input" type="checkbox" value="8-person" id="table-8">
+                                    <label class="form-check-label" for="table-8">8 Person</label>
+                                </div>
+                                <div class="form-check m-2">
+                                    <input class="form-check-input" type="checkbox" value="round-5" id="table-round">
+                                    <label class="form-check-label" for="table-round">Round Table (5 Person)</label>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save Table Setup</button>
+                    </form>
+                </div>
+            </div>
+    
+            <!-- Image Upload Section -->
+            <div class="card mb-5">
+                <div class="card-header">
+                    <h3>Upload Your Interior Images</h3>
+                </div>
+                <div class="card-body">
+                    <form id="image-upload-form" enctype="multipart/form-data">
+                        <div class="mb-3">
+                            <label for="interior-image" class="form-label">Choose Image</label>
+                            <input type="file" class="form-control" id="interior-image" accept="image/*" required>
+                        </div>
+                        <button type="submit" class="btn btn-success">Upload Image</button>
+                    </form>
+                </div>
+            </div>
+    
+            <!-- 3D Street View Section -->
+            <div class="card mb-5">
+                <div class="card-header">
+                    <h3>3D Interior View</h3>
+                </div>
+                <div class="card-body text-center">
+                    <div id="street-view-container">
+                        <h4>Preview your restaurant in 3D view below:</h4>
+                        <div id="street-view"></div>
+                    </div>
+                    <button id="load-3d" class="btn btn-info mt-3">Load 3D Street View</button>
+                </div>
+            </div>
+        </div>
+    
+    </div>
+    
+
+    
+
+       
+    <script>
+        document.getElementById('logoutButton').addEventListener('click', async () => {
+            try {
+                const response = await fetch('/auth/logout?type=stakeholder', {
+                    method: 'GET',
+                });
+    
+                if (response.ok) {
+                    alert('Logout successful');
+                    window.location.href = '../login.html';
+                } else {
+                    alert('Error during logout');
+                }
+            } catch (error) {
+                console.error('Error logging out:', error);
+            }
+        });
+    </script>
+     <script>
+        // JavaScript for Sidebar Toggle
+        const toggleBtn = document.getElementById('toggle-btn');
+        const sidebar = document.getElementById('sidebar');
+        const mainContent = document.querySelector('.main-content'); // Fix to target the main content correctly
+
+        toggleBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('expanded');
+            mainContent.classList.toggle('expanded');
+        });
+    </script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/js/interior.js"></script>
+
+</body>
+</html>

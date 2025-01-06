@@ -1,0 +1,507 @@
+/* Header */
+header {
+    background-color: #343a40;
+    color: #ffffff;
+    padding: 1rem;
+    text-align: center;
+    margin: 2rem;
+    border-radius: 12px;
+}
+
+header.expanded {
+    margin-left: 260px; /* Adjusted for expanded sidebar */
+}
+
+/* Main Content */
+main {
+    padding: 2rem;
+    
+    transition: margin-left 0.3s ease-in-out;
+}
+
+main.expanded {
+    margin-left: 260px; /* Adjusted for expanded sidebar */
+}
+
+/* Menu List and Form Section */
+#menu-list, #menu-form-section {
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+h2 {
+    margin-top: 0;
+}
+
+/* Styling the menu item container for horizontal scrolling */
+.menu-item-container {
+    display: flex;
+    gap: 20px; /* Adjust spacing between items */
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding: 10px 0;
+    margin: 0 10px; /* Adds margin to the grid itself */
+    border-left: 10px solid transparent; /* Visual margin on left */
+    border-right: 10px solid transparent; /* Visual margin on right */
+  }
+  
+  .menu-item-container::-webkit-scrollbar {
+    height: 8px;
+}
+
+.menu-item-container::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 5px;
+}
+
+.menu-item-container::-webkit-scrollbar-track {
+    background: #f5f5f5;
+}
+
+  /* Styling individual menu items */
+  .menu-item {
+    flex: 0 0 250px; /* Fix width of each menu item */
+    text-align: center;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+  }
+  
+  /* Styling the image container with hover effect */
+  .menu-item-image {
+    width: 100%;
+    height: 200px; /* Fix height for consistency */
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.3s ease-in-out;
+    position: relative;
+  }
+  
+  /* On hover, zoom out the image and show description */
+  .menu-item-image:hover {
+    transform: scale(0.9);
+  }
+  
+  .menu-item-image:hover .menu-item-description {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+
+/* Scroll Buttons */
+.scroll-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #254a5d;
+    border: none;
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 10;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.4s ease-in-out; /* Smooth hover effect */
+    opacity: 0; /* Initially hidden */
+    pointer-events: none; /* Disable clicks when hidden */
+}
+
+.scroll-btn.left {
+    left: 80px;
+}
+
+.scroll-btn.right {
+    right:0px;
+}
+
+.scroll-btn:hover {
+    background-color: #f8b400;
+    transform: scale(1.4); /* Slight zoom effect */
+}
+
+.horizontal-scroll-container:hover .scroll-btn {
+    opacity: 1; /* Show buttons on hover */
+    pointer-events: auto; /* Enable clicks when visible */
+}
+
+
+
+.category-filters {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.category-filters button {
+    padding: 10px 20px;
+    background-color: #f8b400;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.category-filters button:hover {
+    background-color: #e69a00;
+}
+
+
+
+  /* Styling the menu item description */
+  .menu-item-description {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7); /* Semi-transparent overlay */
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out;
+    font-size: 0.9rem;
+    padding: 1rem;
+    text-align: center;
+  }
+  
+  /* Styling the details section below the image */
+  .menu-item-details {
+    padding: 0.5rem;
+  }
+  
+  .menu-item-details h3 {
+    font-size: 1rem;
+    margin: 0.5rem 0;
+    color: #333;
+  }
+  
+  .btn {
+    background: #007bff;
+    border: none;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    margin: 0.2rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .btn:hover {
+    background: #0056b3;
+  }
+  
+
+a{
+    list-style: none;
+    text-decoration: none;
+}
+
+.menu-item-card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 1rem;
+    width: calc(33.333% - 1rem);
+    background-color: #ffffff;
+}
+
+.menu-item-card img {
+    max-width: 100%;
+    border-radius: 8px;
+}
+
+.menu-item-card button {
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    border: none;
+    background-color: #007bff;
+    color: #ffffff;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.menu-item-card button.edit {
+    background-color: #28a745;
+}
+
+.menu-item-card button.delete {
+    background-color: #dc3545;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+form label {
+    font-weight: bold;
+}
+
+form input, form textarea, form button {
+    padding: 0.5rem;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+
+/* Modern Menu Form Section */
+.menu-form-section-modern {
+    background: #f9f9f9;
+    padding: 3rem 2rem;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 2rem auto;
+    font-family: 'Inter', sans-serif;
+}
+
+.form-title-modern {
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.form-title-modern::after {
+    content: "";
+    width: 80px;
+    height: 4px;
+    background: #ff6f61;
+    display: block;
+    margin: 0.5rem auto 0;
+    border-radius: 2px;
+}
+
+/* Modern Form Styles */
+.menu-form-modern {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-group-modern {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-label-modern {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: #555;
+}
+
+.input-modern,
+.textarea-modern,
+.file-input-modern {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 0.9rem 1rem;
+    font-size: 1rem;
+    color: #333;
+    background: #fff;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.input-modern::placeholder,
+.textarea-modern::placeholder {
+    color: #aaa;
+}
+
+.input-modern:focus,
+.textarea-modern:focus {
+    border-color: #ff6f61;
+    box-shadow: 0 0 5px rgba(255, 111, 97, 0.4);
+    outline: none;
+}
+
+/* File Input Customization */
+.file-input-modern {
+    padding: 0.7rem 1rem;
+    font-size: 1rem;
+    color: #777;
+    border: 1px dashed #ccc;
+    cursor: pointer;
+}
+
+.file-input-modern:hover {
+    border-color: #ff6f61;
+}
+
+/* Modern Button */
+.btn-modern {
+    background: #ff6f61;
+    color: #fff;
+    border: none;
+    padding: 0.9rem 1.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s, box-shadow 0.3s;
+}
+
+.btn-modern:hover {
+    background: #e65b50;
+    box-shadow: 0 4px 10px rgba(255, 111, 97, 0.3);
+}
+
+
+
+
+/* General Page Styles */
+html {
+    font-size: 80%;
+}
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    transition: grid-template-columns 0.3s ease-in-out;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    position: relative;
+    grid-column: 1 / 2;
+    height: 100vh;
+    background-color: #2a3d66; /* Main sidebar color */
+    color: #f0f0f0;
+    transition: width 0.3s ease-in-out;
+    width: 80px; /* Default collapsed width */
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center-align icons */
+}
+
+.sidebar.expanded {
+    width: 260px; /* Expanded width */
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%; /* Full width for clickable area */
+}
+
+/* Sidebar hover effects */
+.sidebar ul li {
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center icons in collapsed state */
+    cursor: pointer;
+    text-decoration: none;
+    color: #f0f0f0; /* Ensure consistent text color */
+    transition: background-color 0.2s ease-in-out, transform 0.2s;
+}
+.sidebar.expanded ul li {
+    justify-content: flex-start;
+}
+.sidebar ul li:hover {
+    background-color: #4c5a88;
+}
+.sidebar ul li i {
+    font-size: 1.2rem;
+    color: inherit; /* Ensure consistent icon color */
+}
+
+.sidebar ul li span {
+    display: none; /* Hide names in collapsed state */
+}
+
+.sidebar.expanded ul li span {
+    display: inline; /* Show names in expanded state */
+    margin-left: 15px; /* Add space for expanded state */
+}
+
+/* Tooltip for hover in collapsed mode only */
+.sidebar:not(.expanded) ul li:hover::after {
+    content: attr(data-title);
+    position: absolute;
+    left: 90px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #4c5a88;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    white-space: nowrap;
+    font-size: 0.9rem;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.sidebar:not(.expanded) ul li:hover::after {
+    opacity: 1;
+    transform: translateY(-50%) scale(1);
+}
+
+/* Sidebar hover effects */
+.sidebar ul li:hover {
+    background-color: #4c5a88;
+    transform: scale(1.05);
+}
+
+/* Sidebar Toggle Button */
+.toggle-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 15px 20px;
+    background-color: #1f2c4a;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.3s ease-in-out;
+}
+.toggle-btn i {
+    font-size: 1.5rem;
+}
+.toggle-btn:hover {
+    background-color: #354870;
+}
+
+
+/* Logout Button */
+.logout-btn {
+    margin-top: auto;
+    width: 100%;
+    text-align: center;
+    padding: 15px 0;
+    background-color: #1f2c4a;
+    color: #f0f0f0;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.logout-btn:hover {
+    background-color: #354870;
+}
+
+.logout-btn i {
+    font-size: 1.2rem;
+    margin-right: 10px;
+}

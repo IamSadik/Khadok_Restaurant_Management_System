@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Builder</title>
+    <link rel="stylesheet" href="./css/menu.css">
+    <script defer src="./js/menu.js"></script>
+</head>
+<body>
+    <div class="menu-container">
+        <h1>Menu Builder</h1>
+        <div id="existing-menu">
+            <h2>Existing Menu</h2>
+            <ul id="menu-list"></ul>
+        </div>
+        <div id="menu-builder">
+            <h2>Add New Menu Item</h2>
+            <form id="menu-form">
+                <input type="text" id="item_name" placeholder="Item Name" required>
+                <input type="text" id="category" placeholder="Category" required>
+                <input type="number" id="item_price" placeholder="Price" required>
+                <textarea id="description" placeholder="Description"></textarea>
+                <input type="file" id="item_picture" accept="image/*" required>
+                <button type="submit">Add Item</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

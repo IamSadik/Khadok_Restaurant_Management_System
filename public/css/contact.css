@@ -1,0 +1,359 @@
+/* Google Font CDN Link */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto" , sans-serif;
+}
+body{
+  min-height: 100vh;
+  width: 100%;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+header {
+  top: 25px;
+  margin-top: -30px; /* Move the header upwards */
+  height: 80px; /* Allow the height to adjust to content */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 20px;
+  border-bottom: 1px solid #ddd;
+  background: rgba(255, 255, 255, 0.2); /* Transparent white */
+  backdrop-filter: blur(10px); /* Frosted glass effect */
+  z-index: 10;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3); /* Optional: subtle border */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: shadow for depth */
+  position: fixed;
+  width: 100%;
+}
+
+.logo-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none; /* Ensure there's no underline */
+  margin-left: 50px;
+}
+
+.brand-logo {
+  width: 40px; /* Adjust size of the logo image */
+  height: auto;
+  margin-right: 5px; /* Add some space between the image and the text */
+  margin-top: 5px;
+}
+
+.logo-text {
+
+  font-size: 24px; /* Adjust text size */
+  font-weight: 700; /* Make the logo name bold */
+  font-family: 'Playfair Display', serif; /* Make sure the font matches your design */
+  color: #254a5d;
+  margin-top: -2px;
+  
+  
+}
+header .logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #333;
+  
+}
+nav {
+  display: flex;
+  justify-content: center; /* Centers items horizontally */
+  align-items: center; /* Ensures vertical centering */
+  height: 100%; /* Ensure it uses the full height of the navigation bar */
+  flex: 1;
+}
+
+header nav ul {
+  list-style: none;
+  display: flex;
+  gap: 10px;
+  margin-bottom: auto;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  margin-left: -56px;
+  margin-top: -7px;
+}
+
+header nav ul li {
+  font-size: 1rem;
+  padding: 5px;
+ 
+  text-decoration: none;
+  font-size: 1rem;
+  padding: 5px;
+  margin: 10px auto; /* Space out the navigation items */
+  list-style: none;
+  display: inline-block; /* Ensure items align horizontally */
+  text-align: center; /* Center content within each list item */
+  
+}
+
+header nav ul li a {
+  text-decoration: none;
+  color: #254a5d;
+  
+  transition: color 0.4s ease-in-out;
+  
+  
+}
+
+header nav ul li a:hover {
+   background: rgba(255, 255, 255, 0.3); /* Hover effect */
+  color:#f4f4f4;
+}
+
+.logo-link {
+  text-decoration: none; /* Remove the underline */
+  color: inherit; /* Keep the current color, so it doesn’t change */
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.about-btn{
+  display: inline-block;
+  padding: 5px 10px; /* Adjust the padding to increase size */
+  font-size: 16px; /* Adjust the font size for better readability */
+  text-decoration: none;
+  color: #254a5d; /* Ensure the text color is visible */
+  
+  
+  text-align: center; /* Center the text within the button */
+  transition: .4s ease;
+}
+.about-btn:hover{
+  background: none;
+  scale: 1.15;
+  color: #1d1b31;
+  
+}
+
+.contact-btn{
+  display: inline-block;
+  padding: 5px 10px; /* Adjust the padding to increase size */
+  font-size: 16px; /* Adjust the font size for better readability */
+  text-decoration: none;
+  color: #254a5d; /* Ensure the text color is visible */
+  
+  text-align: center; /* Center the text within the button */
+  transition: .4s ease;
+}
+.contact-btn:hover{
+  background: none;
+  scale: 1.15;
+  color: #1d1b31;
+}
+
+
+.login-btn{
+  display: inline-block;
+  padding: 5px 10px; /* Adjust the padding to increase size */
+  font-size: 16px; /* Adjust the font size for better readability */
+  text-decoration: none;
+  color: #254a5d; /* Ensure the text color is visible */
+  
+  text-align: center; /* Center the text within the button */
+  transition: .4s ease;
+}
+.login-btn:hover{
+  background: none;
+  scale: 1.15;
+  color: #1d1b31;
+}
+
+
+.signup-btn {
+  display: inline-block;
+  padding: 5px 10px; /* Adjust the padding to increase size */
+  font-size: 16px; /* Adjust the font size for better readability */
+  text-decoration: none;
+  color: #254a5d; /* Ensure the text color is visible */
+ 
+  text-align: center; /* Center the text within the button */
+  transition: .4s ease;
+}
+.signup-btn:hover{
+  background: none;
+  scale: 1.15;
+  color: #1d1b31;
+}
+
+
+.user-icon {
+  margin-top:10px; /* Adjusted for better alignment */
+  margin-right: 47px; /* Brought slightly to the left from the far-right edge */
+  text-decoration: none;
+  list-style: none;
+  color: #0078d7; /* Updated to a more vibrant color */
+  font-size: 30px; /* Increased size for better visibility */
+  cursor: pointer;
+  text-align: center;
+}
+
+.user-icon a {
+  text-decoration: none;
+  color: #254a5d; /* Icon color */
+  font-size: 30px; /* Icon size for better visibility */
+  display: inline-block; /* Ensures proper rendering */
+}
+
+.user-icon a:hover {
+  color: #0078d7; /* Slightly darker color on hover for effect */
+}
+
+
+
+
+
+
+.container{
+  width: 85%;
+  background: linear-gradient(to right,#D9EAFD, #9AA6B2);
+  border-radius: 6px;
+  padding: 30px 60px 30px 40px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+.container .content{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.container .content .left-side{
+  width: 25%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 15px;
+  position: relative;
+}
+.content .left-side::before{
+  content: '';
+  position: absolute;
+  height: 70%;
+  width: 2px;
+  right: -15px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #afafb6;
+}
+.content .left-side .details{
+  margin: 14px;
+  text-align: center;
+}
+.content .left-side .details i{
+  font-size: 30px;
+  color: #254a5d;
+  margin-bottom: 10px;
+}
+.content .left-side .details .topic{
+  font-size: 18px;
+  font-weight: 500;
+}
+.content .left-side .details .text-one,
+.content .left-side .details .text-two{
+  font-size: 14px;
+  color: #afafb6;
+}
+.container .content .right-side{
+  width: 75%;
+  margin-left: 75px;
+}
+.content .right-side .topic-text{
+  font-size: 23px;
+  font-weight: 600;
+  color: #254a5d;
+}
+.right-side .input-box{
+  height: 50px;
+  width: 100%;
+  margin: 12px 0;
+}
+
+
+.right-side .input-box input,
+.right-side .input-box textarea{
+  height: 100%;
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  background: #F0F1F8;
+  border-radius: 6px;
+  padding: 0 15px;
+  resize: none;
+}
+.right-side .message-box{
+  min-height: 110px;
+}
+.right-side .input-box textarea{
+  padding-top: 6px;
+}
+.right-side .button{
+  
+  margin-top: 12px;
+}
+.right-side .button input[type="button"]{
+  margin-top: -100px;
+  color: #fff;
+  font-size: 18px;
+  outline: none;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  background: #254a5d;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.button input[type="button"]:hover{
+  background: #356c85;
+}
+
+@media (max-width: 950px) {
+  .container{
+    width: 90%;
+    padding: 30px 40px 40px 35px ;
+  }
+  .container .content .right-side{
+   width: 75%;
+   margin-left: 55px;
+}
+}
+@media (max-width: 820px) {
+  .container{
+    margin: 40px 0;
+    height: 100%;
+  }
+  .container .content{
+    flex-direction: column-reverse;
+  }
+ .container .content .left-side{
+   width: 100%;
+   flex-direction: row;
+   margin-top: 40px;
+   justify-content: center;
+   flex-wrap: wrap;
+ }
+ .container .content .left-side::before{
+   display: none;
+ }
+ .container .content .right-side{
+   width: 100%;
+   margin-left: 0;
+ }
+}

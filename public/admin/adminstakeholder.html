@@ -82,6 +82,105 @@
 
  <main>
         <h1>Stakeholder Details</h1>
+        <div class="form-profile-reviews-container">
+            <!-- Form Section -->
+            <div class="form-container">
+                <h2>Stakeholder Details</h2>
+                <form id="stakeholderForm">
+                    <!-- Dropdown Selector -->
+                    <div class="form-group">
+                        <label for="category">Select Category:</label>
+                        <select id="category" name="category" required>
+                            <option value="">Restaurant Name</option>
+                            <option value="rating">Kudos</option>
+                            <option value="name">Chillox</option>
+                            <option value="restaurantName">Khanas</option>
+                        </select>
+                    </div>
+        
+                    <!-- Stakeholder ID -->
+                    <div class="form-group">
+                        <label for="stakeholderId">Stakeholder ID:</label>
+                        <input type="text" id="stakeholderId" name="stakeholderId" placeholder="Enter Stakeholder ID" required>
+                    </div>
+        
+                    <!-- Name -->
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" name="name" placeholder="Enter Full Name" required>
+                    </div>
+        
+                    <!-- Email -->
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" placeholder="Enter Email" required>
+                    </div>
+        
+                    <!-- Restaurant Name -->
+                    <div class="form-group">
+                        <label for="restaurantName">Restaurant Name:</label>
+                        <input type="text" id="restaurantName" name="restaurantName" placeholder="Enter Restaurant Name" required>
+                    </div>
+        
+                    <!-- Ratings -->
+                    <div class="form-group">
+                        <label for="ratings">Ratings:</label>
+                        <select id="ratings" name="ratings" required>
+                            <option value="">Select Rating</option>
+                            <option value="1">1 Star</option>
+                            <option value="2">2 Stars</option>
+                            <option value="3">3 Stars</option>
+                            <option value="4">4 Stars</option>
+                            <option value="5">5 Stars</option>
+                        </select>
+                    </div>
+        
+                    <!-- Area -->
+                    <div class="form-group">
+                        <label for="area">Area:</label>
+                        <input type="text" id="area" name="area" placeholder="Enter Area" required>
+                    </div>
+        
+                    <!-- Submit Button -->
+                    <div class="form-group">
+                        <button type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+        
+            <!-- Stakeholder Profile Section -->
+            <div class="stakeholder-profile">
+                <h2>Stakeholder Profile</h2>
+                <div class="profile-details">
+                    <div class="profile-item">
+                        <span class="label">Stakeholder ID:</span>
+                        <span class="value" id="profile-id">#12345</span>
+                    </div>
+                    <div class="profile-item">
+                        <span class="label">Name:</span>
+                        <span class="value" id="profile-name">John Doe</span>
+                    </div>
+                    <div class="profile-item">
+                        <span class="label">Email:</span>
+                        <span class="value" id="profile-email">john.doe@example.com</span>
+                    </div>
+                    <div class="profile-item">
+                        <span class="label">Restaurant Name:</span>
+                        <span class="value" id="profile-restaurant">Kudos Bistro</span>
+                    </div>
+                    <div class="profile-item">
+                        <span class="label">Ratings:</span>
+                        <span class="value" id="profile-ratings">5 Stars</span>
+                    </div>
+                    <div class="profile-item">
+                        <span class="label">Area:</span>
+                        <span class="value" id="profile-area">Downtown</span>
+                    </div>
+                </div>
+            </div>
+        
+           
+        </div>
     </main>
         <!-- Right Section -->
         <div class="right-section">
@@ -112,7 +211,45 @@
 
             </div>
             <!-- End of Nav -->
-
+    <!-- Reviews Section -->
+    <div class="reviews-section">
+        <h2>Customer Reviews</h2>
+    
+        <!-- Review 1 -->
+        <div class="review-card">
+            <div class="review-header">
+                <span class="reviewer-name">Jane Doe</span>
+                <span class="review-rating">⭐⭐⭐⭐⭐</span>
+            </div>
+            <p class="review-text">
+                "Great food and excellent service! Will definitely order again."
+            </p>
+        </div>
+    
+        <!-- Review 2 -->
+        <div class="review-card">
+            <div class="review-header">
+                <span class="reviewer-name">John Smith</span>
+                <span class="review-rating">⭐⭐⭐⭐</span>
+            </div>
+            <p class="review-text">
+                "Food was good, but delivery took a little longer than expected."
+            </p>
+        </div>
+    
+        <!-- Review 3 -->
+        <div class="review-card">
+            <div class="review-header">
+                <span class="reviewer-name">Alice Brown</span>
+                <span class="review-rating">⭐⭐⭐⭐⭐</span>
+            </div>
+            <p class="review-text">
+                "Absolutely amazing experience! Highly recommend this place."
+            </p>
+        </div>
+    
+        <!-- Add more reviews here -->
+    </div>
            
 
 

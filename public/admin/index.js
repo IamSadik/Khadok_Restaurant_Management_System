@@ -31,3 +31,22 @@ Orders.forEach(order => {
     tr.innerHTML = trContent;
     document.querySelector('table tbody').appendChild(tr);
 });
+document.getElementById("category").addEventListener("change", function () {
+    const selectedCategory = this.value;
+    console.log("Selected Category:", selectedCategory);
+  
+    // You can add logic here to dynamically show/hide fields based on the selected category.
+    if (selectedCategory === "rating") {
+      alert("You selected Rating!");
+    } else if (selectedCategory === "name") {
+      alert("You selected Name!");
+    } else if (selectedCategory === "restaurantName") {
+      alert("You selected Restaurant Name!");
+    }
+  });
+  document.getElementById("profile-id").textContent = "New Stakeholder ID";
+document.getElementById("profile-name").textContent = "New Name";
+document.getElementById("profile-email").textContent = "new.email@example.com";
+document.getElementById("profile-restaurant").textContent = "New Restaurant";
+document.getElementById("profile-ratings").textContent = "4 Stars";
+document.getElementById("profile-area").textContent = "New Area";

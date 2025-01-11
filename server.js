@@ -13,6 +13,8 @@ const authRoutes = require('./routes/authRoutes');
 const restaurantRoutes = require('./routes/restaurantRoutes');
 const menuRoutes = require('./routes/menuRoutes');
 const sessionMiddleware = require('./middlewares/sessionMiddleware');
+const interiorRoutes = require('./routes/interiorRoutes');
+
 
 // Initialize dotenv for environment variables
 dotenv.config();
@@ -34,7 +36,7 @@ app.use(session({
 
 // CORS configuration
 const corsOptions = {
-    origin: 'https://locationreal.onrender.com/',
+    origin: ['https://locationreal.onrender.com', 'http://localhost:3000'],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
 };
@@ -51,8 +53,7 @@ app.use('/auth', authRoutes);
 // Serve static files from 'public' folder
 app.use(express.static(path.join(__dirname, 'public')));
 // Serve static files from the uploads directory
-app.use('/uploads', express.static('uploads'));
-
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 // View engine
 
 app.set("public", path.join(__dirname, "public"));
@@ -75,6 +76,9 @@ app.use(restaurantRoutes);
 app.use('/api/consumer', require('./routes/consumerRoutes'));
 app.use('/api/restaurant', require('./routes/restaurantRoutes'));
 app.use('/api/menu', menuRoutes);
+app.use('/interior', interiorRoutes);
+
+
 
 // Home route
 app.get('/', (req, res) => {

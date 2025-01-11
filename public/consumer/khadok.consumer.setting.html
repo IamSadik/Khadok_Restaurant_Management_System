@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/khadok.consumer.setting.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">   
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    
 </head>
 <body>
     <div class="sidebar">
@@ -87,14 +88,10 @@
                         <div class="job">Consumer</div>
                     </div>
                 </div>
-                    <li>
-                        <a href="logout.php">
-                            <i class='bx bx-log-out-circle' id="log_out"></i>
-                            <span class="links_name">Logout</span>
-                        </a>
-                        
-                    </li>
-
+                <button id="logoutButton" class="logout_button">
+                    <i class='bx bx-log-out-circle' id="log_out"></i>
+                    <span class="links_name">Logout</span>
+                </button>
             </div>
         </div>
 
@@ -229,5 +226,35 @@
     </div>
 
     <script src="js/khadok.consumer.setting.js"></script>
+    <script>
+        let btn = document.querySelector("#btn"); 
+        let sidebar = document.querySelector(".sidebar");
+        let searchBtn = document.querySelector(".bx-search-alt");  
+
+        btn.onclick = function(){
+            sidebar.classList.toggle("active");
+        }
+        searchBtn.onclick = function(){
+            sidebar.classList.toggle("active");
+        }
+    </script>
+    <script>
+        document.getElementById('logoutButton').addEventListener('click', async () => {
+           try {
+               const response = await fetch('/auth/logout?type=consumer', {
+                   method: 'GET',
+               });
+   
+               if (response.ok) {
+                   alert('Logout successful');
+                   window.location.href = '../login.html';
+               } else {
+                   alert('Error during logout');
+               }
+           } catch (error) {
+               console.error('Error logging out:', error);
+           }
+       });
+   </script>
 </body>
 </html>

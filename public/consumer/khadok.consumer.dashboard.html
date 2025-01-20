@@ -57,7 +57,7 @@
             <li>
                 <a href="map.html">
                     <i class='bx bx-navigation'></i>
-                    <span class="links_name">User</span>
+                    <span class="links_name">Map</span>
                 </a>
                 <span class="tooltip">Map</span>
             </li>
@@ -169,7 +169,33 @@
             </div>
         </section>
         <div id="active-orders-section"></div>
-
+        <section id="restaurant-section">
+            <h2>Restaurants</h2>
+            <div class="filter-container">
+                <label>Sort By:</label>
+                <div class="radio-group">
+                    <label class="radio-option">
+                        <input type="radio" name="sort-option" value="relevance" checked />
+                        Relevance
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="sort-option" value="ratings" />
+                        Ratings
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="sort-option" value="name" />
+                        Name
+                    </label>
+                </div>
+            </div>
+            <div id="restaurants-container" class="restaurants-container">
+                <p>Loading restaurants...</p>
+            </div>
+        </section>
+        
+        
+        
+        
     </div>
     </div>
     

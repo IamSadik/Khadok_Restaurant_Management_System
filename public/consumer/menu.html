@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khadok - Menu</title>
+    <link rel="stylesheet" href="css/menu.css">
+    <link rel="stylesheet" href="css/khadok.consumer.sidebar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">   
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+    <script src="js/menu.js" defer></script>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo_content">
+            <div class="logo">
+                <div class="logo_name">Khadok</div>
+            </div>
+            <i class="bx bx-menu" id="btn"></i>
+        </div>
+        <ul class="nav_list">
+            <li>
+                <i class="bx bx-search-alt"></i>
+                <input type="text" placeholder="Search...">
+                <span class="tooltip">Search</span>
+            </li>
+            <li>
+                <a href="khadok.consumer.dashboard.html">
+                    <i class="bx bxs-grid-alt"></i>
+                    <span class="links_name">Dashboard</span>
+                </a>
+                <span class="tooltip">Dashboard</span>
+            </li>
+            <li>
+                <a href="khadok.consumer.user.html">
+                    <i class="bx bxs-user-circle"></i>
+                    <span class="links_name">User</span>
+                </a>
+                <span class="tooltip">User</span>
+            </li>
+            <li>
+                <a href="map.html">
+                    <i class="bx bx-navigation"></i>
+                    <span class="links_name">Map</span>
+                </a>
+                <span class="tooltip">Map</span>
+            </li>
+            <li>
+                <a href="khadok.consumer.chat.html">
+                    <i class="bx bxs-chat"></i>
+                    <span class="links_name">Messages</span>
+                </a>
+                <span class="tooltip">Messages</span>
+            </li>
+            <li>
+                <a href="khadok.consumer.order.html">
+                    <i class="bx bxs-package"></i>
+                    <span class="links_name">Orders</span>
+                </a>
+                <span class="tooltip">Orders</span>
+            </li>
+            <li>
+                <a href="khadok.consumer.cart.html">
+                    <i class="bx bxs-cart"></i>
+                    <span class="links_name">Cart</span>
+                </a>
+                <span class="tooltip">Cart</span>
+            </li>
+            <li>
+                <a href="khadok.consumer.setting.html">
+                    <i class="bx bxs-cog"></i>
+                    <span class="links_name">Settings</span>
+                </a>
+                <span class="tooltip">Settings</span>
+            </li>
+        </ul>
+        <div class="profile_content">
+            <div class="profile">
+                <div class="profile_details">
+                    <div class="name_job">
+                        <div class="name">Logout</div>
+                        <div class="job">Consumer</div>
+                    </div>
+                </div>
+                <button id="logoutButton" class="logout_button">
+                    <i class="bx bx-log-out-circle" id="log_out"></i>
+                    <span class="links_name">Logout</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <section id="menu-list">
+        <h2>Menu Items</h2>
+        <!-- Container for Category Filter Buttons -->
+        <div id="category-filters" class="category-filters">
+            <!-- Dynamic category buttons will be injected here -->
+        </div>
+    
+        <div class="horizontal-scroll-container">
+            <button class="scroll-btn left" id="menu-scroll-left" aria-label="Scroll Left">&lt;</button>
+            <div id="menu-items-container" class="menu-item-container">
+                <!-- Dynamic Menu Items Will Be Injected Here -->
+            </div>
+            <button class="scroll-btn right" id="menu-scroll-right" aria-label="Scroll Right">&gt;</button>
+        </div>
+    </section>
+    
+    
+    <script>
+        let btn = document.querySelector("#btn"); 
+        let sidebar = document.querySelector(".sidebar");
+        let searchBtn = document.querySelector(".bx-search-alt");  
+
+        btn.onclick = function(){
+            sidebar.classList.toggle("active");
+        }
+        searchBtn.onclick = function(){
+            sidebar.classList.toggle("active");
+        }
+    </script>
+
+    <script>
+        document.getElementById('logoutButton').addEventListener('click', async () => {
+            try {
+                const response = await fetch('/auth/logout?type=consumer', {
+                    method: 'GET',
+                });
+
+                if (response.ok) {
+                    alert('Logout successful');
+                    window.location.href = '../login.html';
+                } else {
+                    alert('Error during logout');
+                }
+            } catch (error) {
+                console.error('Error logging out:', error);
+            }
+        });
+    </script>
+      
+    
+</body>
+</html>

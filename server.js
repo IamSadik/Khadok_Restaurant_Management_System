@@ -14,7 +14,7 @@ const restaurantRoutes = require('./routes/restaurantRoutes');
 const menuRoutes = require('./routes/menuRoutes');
 const sessionMiddleware = require('./middlewares/sessionMiddleware');
 const interiorRoutes = require('./routes/interiorRoutes');
-
+const consumerMenuRoutes = require("./routes/consumerMenuRoutes"); // Import consumerMenuRoutes
 
 // Initialize dotenv for environment variables
 dotenv.config();

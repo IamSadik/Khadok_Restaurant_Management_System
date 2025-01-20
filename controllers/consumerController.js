@@ -1,3 +1,7 @@
+
+const bcrypt = require('bcrypt');
+const { createConsumer, getMaxConsumerId } = require('../models/consumerModel');
+const db = require('../config/configdb');
 exports.loginHandler = async (req, res) => {
     const { username, password } = req.body;
 
@@ -15,8 +19,8 @@ exports.loginHandler = async (req, res) => {
     }
 };
 
-const bcrypt = require('bcrypt');
-const { createConsumer, getMaxConsumerId } = require('../models/consumerModel');
+
+
 
 const signupConsumer = async (req, res) => {
     const { name, email, password, phone_number } = req.body;
@@ -39,4 +43,27 @@ const signupConsumer = async (req, res) => {
     }
 };
 
-module.exports = { signupConsumer };
+
+// Add item to cart handler
+const addToCart = (req, res) => {
+    const { item_id, item_name, stakeholder_id } = req.body;
+    const consumer_id = req.session.user.id;  // Fetching logged-in consumer ID from session
+   
+    const quantity = 1;  // Default quantity
+    const timestamp = new Date();  // Current timestamp
+
+    const query = `
+        INSERT INTO cart (consumer_id, item_id, quantity, added_at, updated_at, stakeholder_id, item_name)
+        VALUES (?, ?, ?, ?, ?, ?, ?)
+    `;
+
+    db.query(query, [consumer_id, item_id, quantity, timestamp, timestamp, stakeholder_id, item_name], (error, results) => {
+        if (error) {
+            console.error('Error adding item to cart:', error);
+            return res.status(500).json({ success: false, message: 'Failed to add item to cart' });
+        }
+        res.status(200).json({ success: true, message: 'Item added to cart successfully' });
+    });
+};
+// Export functions for use in routes
+module.exports = { signupConsumer, addToCart };

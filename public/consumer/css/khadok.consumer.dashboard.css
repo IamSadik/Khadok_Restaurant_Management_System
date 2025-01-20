@@ -244,3 +244,88 @@ header h1 {
     font-weight: bold;
     margin-top: 10px;
 }
+
+
+
+.restaurants-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.restaurant-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    width: 250px;
+    text-align: center;
+    background: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+.restaurant-card h3 {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.restaurant-card p {
+    color: #555;
+    font-size: 14px;
+}
+.filter-container {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.radio-group {
+    display: flex;
+    gap: 15px;
+}
+
+.radio-option {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Arial', sans-serif;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.radio-option input[type="radio"] {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #007bff;
+    border-radius: 50%;
+    outline: none;
+    background-color: transparent;
+    transition: all 0.3s ease;
+}
+
+.radio-option input[type="radio"]:checked {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.radio-option input[type="radio"]:checked::before {
+    content: '';
+    display: block;
+    width: 10px;
+    height: 10px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    margin: auto;
+    transition: all 0.3s ease;
+}
+
+.radio-option:hover input[type="radio"] {
+    border-color: #0056b3;
+}
+
+.radio-option:hover {
+    color: #0056b3;
+}

@@ -1,5 +1,5 @@
 const menuModel = require('../models/menuModel');
-
+const { fetchMenuByRestaurant } = require('../models/menuModel');
 // Get all menu items for a stakeholder
 const getMenuItems = async (req, res) => {
     const { stakeholder_id } = req.query;
@@ -104,4 +104,29 @@ const deleteMenuItem = async (req, res) => {
     }
 };
 
-module.exports = { getMenuItems, getMenuItemById, addMenuItem, updateMenuItem, deleteMenuItem };
+// Controller function to get menu items for a specific restaurant
+const getMenuByRestaurant = async (req, res) => {
+    const { stakeholder_id } = req.params;
+
+    try {
+        if (!stakeholder_id || isNaN(stakeholder_id)) {
+            return res.status(400).json({ success: false, message: 'Invalid restaurant ID.' });
+        }
+
+        console.log('Fetching menu for stakeholder_id:', stakeholder_id);
+
+        const menuItems = await fetchMenuByRestaurant(stakeholder_id);
+
+        if (!menuItems || menuItems.length === 0) {
+            return res.status(404).json({ success: false, message: 'No menu items found for this restaurant.' });
+        }
+
+        res.status(200).json({ success: true, menu: menuItems });
+    } catch (error) {
+        console.error('Error fetching menu:', error);
+        res.status(500).json({ success: false, message: 'Server error while fetching menu.' });
+    }
+};
+
+
+module.exports = { getMenuItems, getMenuItemById, addMenuItem, updateMenuItem, deleteMenuItem, getMenuByRestaurant };

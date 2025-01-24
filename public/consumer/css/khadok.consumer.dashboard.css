@@ -1,4 +1,8 @@
 /* General Styles */
+*{
+    margin: 0px;
+    padding: 0px;
+}
 html {
     font-size: 90%;
 }
@@ -328,4 +332,24 @@ header h1 {
 
 .radio-option:hover {
     color: #0056b3;
+}
+
+
+#dinein-section {
+    margin-top: 50px;
+   
+    background-color: #f8f8f8;
+    border-radius: 10px;
+}
+
+#dinein-section h2 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+#restaurant-section{
+    margin-top: 50px;
+   
+    background-color: #f8f8f8;
+    border-radius: 10px;
 }

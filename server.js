@@ -21,6 +21,7 @@ dotenv.config();
 
 const app = express();
 
+
 // MySQL Session Store
 const sessionStore = new MySQLStore({}, pool);
 
@@ -60,7 +61,8 @@ app.set("public", path.join(__dirname, "public"));
 app.set("view engine", "ejs");
 
 const consumerRoutes = require('./routes/consumerRoutes');
-app.use('/', consumerRoutes);
+app.use('/consumer', consumerRoutes);
+app.use('/api/consumer', consumerRoutes);
 
 const riderRoutes = require('./routes/riderRoutes');
 app.use('/api/rider', riderRoutes);
@@ -73,7 +75,8 @@ app.use("/admin", adminRoutes);
 
 app.use(sessionMiddleware);
 app.use(restaurantRoutes);
-app.use('/api/consumer', require('./routes/consumerRoutes'));
+
+
 app.use('/api/restaurant', require('./routes/restaurantRoutes'));
 app.use('/api/menu', menuRoutes);
 app.use('/interior', interiorRoutes);
@@ -114,6 +117,11 @@ io.on('connection', (socket) => {
         io.emit('client-join-server', { ...data, id: socket.id });
     });
 
+    socket.on('update-cart', (data) => {
+        // Broadcast updated cart count to all clients for the specific user
+        io.emit(`cart-update-${data.consumerId}`, { cartCount: data.cartCount });
+    });
+
     socket.on('disconnect', () => {
         console.log('User disconnected: ' + socket.id);
         io.emit('disconnected_user', { id: socket.id, username: current_users[socket.id] });
@@ -128,6 +136,16 @@ app.get('/rider/map/', (req, res) => {
 app.get('/consumer/map/', (req, res) => {
   res.sendFile(__dirname + '/public/consumer/map.html');
 });
+
+app.get('/session-test', (req, res) => {
+    if (!req.session.user) {
+        req.session.user = { id: 0 };  // Dummy consumer ID for testing
+    }
+    res.json({ session: req.session });
+});
+app.set('io', io);
+
+
 
 // Set up the server to listen on both HTTP and Socket.IO
 const port = process.env.PORT || 5000;

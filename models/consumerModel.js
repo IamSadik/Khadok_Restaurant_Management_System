@@ -12,14 +12,36 @@ const getMaxConsumerId = async () => {
 };
 
 // Insert a new consumer into the database
-const createConsumer = async (consumerId, name, email, hashedPassword, phoneNumber) => {
-    const query = 'INSERT INTO consumer (consumer_id, name, email, password, phone_number) VALUES (?, ?, ?, ?, ?)';
+const createConsumer = async (consumerId, name, email, hashedPassword) => {
+    const query = 'INSERT INTO consumer (consumer_id, name, email, password ) VALUES (?, ?, ?, ?)';
     return new Promise((resolve, reject) => {
-        db.query(query, [consumerId, name, email, hashedPassword, phoneNumber], (err, results) => {
+        db.query(query, [consumerId, name, email, hashedPassword], (err, results) => {
             if (err) return reject(err);
             resolve(results);
         });
     });
 };
 
-module.exports = { getMaxConsumerId, createConsumer };
+
+
+// Function to fetch cart items from the database
+const fetchCartItems = (consumer_id) => {
+    return new Promise((resolve, reject) => {
+        const query = `
+            SELECT item_name, quantity, item_price, item_id 
+            FROM cart 
+            WHERE consumer_id = ?
+        `;
+        db.query(query, [consumer_id], (error, results) => {
+            if (error) {
+                reject(error);
+            } else {
+                resolve(results);
+            }
+        });
+    });
+};
+
+// Export the function correctly
+
+module.exports = { getMaxConsumerId, createConsumer,fetchCartItems };

@@ -12,6 +12,10 @@
     <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
     <script src="js/menu.js" defer></script>
+    <link rel="stylesheet" href="css/cart.css">
+    <script src="/socket.io/socket.io.js"></script>
+
+   
 </head>
 <body>
     <div class="sidebar">
@@ -109,6 +113,18 @@
         </div>
     </section>
     
+     <!-- Cart icon and popup -->
+     <div class="cart-icon" id="cart-icon">
+        <i class="fas fa-shopping-cart"></i><span id="cart-count">0</span>
+    </div>
+    <div class="cart-popup" id="cart-popup">
+        <h3>Your Cart</h3>
+        <ul id="cart-items"></ul>
+        <div class="cart-footer">
+            <button id="checkout-delivery-btn">Checkout for Delivery</button>
+            <button id="checkout-pickup-btn">Checkout for Pickup</button>
+        </div>
+    </div>
     
     <script>
         let btn = document.querySelector("#btn"); 

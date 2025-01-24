@@ -1,0 +1,147 @@
+/* Cart icon */
+.cart-icon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #40e2ff;
+    color: #fff;
+    padding: 15px;
+    border-radius: 50%;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.cart-icon:hover{
+    background: #32b3ca;
+}
+.cart-icon i {
+    font-size: 24px;
+}
+
+.cart-popup {
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    background: #fff;
+    width: 350px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    border-radius: 10px;
+    display: none;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.cart-popup.show {
+    display: block;
+}
+
+.cart-popup ul {
+    list-style: none;
+    padding: 0;
+}
+
+.cart-popup li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+}
+
+.item-details {
+    flex-grow: 1;
+}
+
+.quantity-controls {
+    display: flex;
+    align-items: center;
+}
+
+.quantity-controls button {
+    background: #40e2ff;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.quantity-controls input {
+    width: 40px;
+    text-align: center;
+    border: none;
+    background: #f5f5f5;
+    margin: 0 10px;
+}
+
+.delete-btn {
+    color: #40e2ff;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.cart-footer {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.cart-footer button {
+    background: #40e2ff;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.cart-footer button:hover {
+    background: #31b2c9;
+}
+
+.empty-cart {
+    text-align: center;
+    color: #777;
+    font-size: 16px;
+}
+.delete-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #40e2ff;
+    font-size: 18px;
+    transition: color 0.3s;
+}
+
+.delete-btn:hover {
+    color: #e63946;
+}
+
+.delete-btn i {
+    font-size: 20px;
+}
+
+#checkout-delivery-btn{
+    margin-bottom: 5px;
+}
+#checkout-delivery-btn.disabled{
+    cursor: not-allowed;
+    opacity: 0.5;
+    pointer-events: none;
+}
+#checkout-pickup-btn.disabled{
+    cursor: not-allowed;
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+
+button.disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+    pointer-events: none;
+}

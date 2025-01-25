@@ -52,50 +52,92 @@
     <h2 class="section-title text-center">Interactive 3D Floor</h2>
     <div id="floor-Container"></div>
     <div class="row">
-        
         <div class="col-md-4">
             <div id="tableInfo">
-                <h4>Table Info</h4>
+                <h4>Table Availability</h4>
                 <div id="tableCountDisplay" class="table-count-display">
                     <div class="table-count-item">
                         <div class="table-icon" style="background-color: #007bff;"></div>
                         <p style="color: #007bff;">
                             <strong>2 Person:</strong>
-                            <span id="twoPersonCount" data-table-type="2">0</span>
+                            <span id="twoPersonTable" data-table-type="2">0</span>
                         </p>
                     </div>
                     <div class="table-count-item">
                         <div class="table-icon" style="background-color: #198754;"></div>
                         <p style="color: #198754;">
                             <strong>4 Person:</strong>
-                            <span id="fourPersonCount" data-table-type="4">0</span>
+                            <span id="fourPersonTable" data-table-type="4">0</span>
                         </p>
                     </div>
                     <div class="table-count-item">
                         <div class="table-icon" style="background-color: #0DCAF0;"></div>
                         <p style="color: #0DCAF0;">
                             <strong>8 Person:</strong>
-                            <span id="eightPersonCount" data-table-type="8">0</span>
+                            <span id="eightPersonTable" data-table-type="8">0</span>
                         </p>
                     </div>
                     <div class="table-count-item">
                         <div class="table-icon" style="background-color: #FFC13C;"></div>
                         <p style="color: #FFC13C;">
                             <strong>16 Person:</strong>
-                            <span id="sixteenPersonCount" data-table-type="16">0</span>
+                            <span id="sixteenPersonTable" data-table-type="16">0</span>
                         </p>
                     </div>
                     <div class="table-count-item">
                         <div class="table-icon" style="background-color: #C82333;"></div>
                         <p style="color: #C82333;">
                             <strong>Round Table:</strong>
-                            <span id="roundTableCount" data-table-type="5">0</span>
+                            <span id="roundTableTable" data-table-type="5">0</span>
                         </p>
                     </div>
                 </div>
             </div>
         </div>
-        
+    
+        <!-- New Bookable Table Section -->
+        <div class="col-md-4">
+            <div id="bookableTableInfo">
+                <h4>Bookable Table</h4>
+                <div id="bookableTableCountDisplay" class="table-count-display">
+                    <div class="table-count-item">
+                        <div class="table-icon" style="background-color: #007bff;"></div>
+                        <p style="color: #007bff;">
+                            <strong>2 Person:</strong>
+                            <span id="twoPersonBookable" data-booking="2">0</span>
+                        </p>
+                    </div>
+                    <div class="table-count-item">
+                        <div class="table-icon" style="background-color: #198754;"></div>
+                        <p style="color: #198754;">
+                            <strong>4 Person:</strong>
+                            <span id="fourPersonBookable" data-booking="4">0</span>
+                        </p>
+                    </div>
+                    <div class="table-count-item">
+                        <div class="table-icon" style="background-color: #0DCAF0;"></div>
+                        <p style="color: #0DCAF0;">
+                            <strong>8 Person:</strong>
+                            <span id="eightPersonBookable" data-booking="8">0</span>
+                        </p>
+                    </div>
+                    <div class="table-count-item">
+                        <div class="table-icon" style="background-color: #FFC13C;"></div>
+                        <p style="color: #FFC13C;">
+                            <strong>16 Person:</strong>
+                            <span id="sixteenPersonBookable" data-booking="16">0</span>
+                        </p>
+                    </div>
+                    <div class="table-count-item">
+                        <div class="table-icon" style="background-color: #C82333;"></div>
+                        <p style="color: #C82333;">
+                            <strong>Round Table:</strong>
+                            <span id="roundTableBookable" data-booking="5">0</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 

@@ -125,15 +125,22 @@ renderer.domElement.addEventListener("click", (event) => {
 
 // Start the animation loop
 animate();
-
+//fetch table info
 document.addEventListener('DOMContentLoaded', () => {
-    fetch('/interior/fetch-table-info')
+    const restaurantId = localStorage.getItem('selectedDineInRestaurantId');
+
+    if (!restaurantId) {
+        console.error('No restaurant selected.');
+        return;
+    }
+
+    fetch(`/interior/fetch-consumer-table-info?restaurantId=${restaurantId}`)
         .then(response => {
             console.log('Fetch response status:', response.status);
             return response.json();
         })
         .then(data => {
-            console.log('Fetched table data:', data);
+            console.log('Fetched consumer table data:', data);
 
             if (data.success) {
                 const tableData = data.data;
@@ -142,10 +149,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     span.textContent = tableData[tableType] || 0; // Default to 0 if not found
                 });
             } else {
-                console.error('Failed to fetch table data:', data.error);
+                console.error('Failed to fetch consumer table data:', data.error);
             }
         })
-        .catch(error => console.error('Error fetching table data:', error));
+        .catch(error => console.error('Error fetching consumer table data:', error));
 });
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -155,9 +162,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const imageContainer = document.querySelector('.image-container');
+    const restaurantId = localStorage.getItem('selectedDineInRestaurantId');
 
-    // Fetch the 360-degree image URL for the logged-in stakeholder
-    fetch('/interior/get-interior-image')
+    if (!restaurantId) {
+        console.error('No restaurant selected.');
+        return;
+    }
+
+    // Fetch the 360-degree image URL for the selected restaurant
+    fetch(`/interior/get-consumer-interior-image?restaurantId=${restaurantId}`)
         .then(response => response.json())
         .then(data => {
             if (data.success && data.imageUrl) {
@@ -178,3 +191,32 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
+// Fetch bookable table info
+document.addEventListener('DOMContentLoaded', () => {
+    const restaurantId = localStorage.getItem('selectedDineInRestaurantId');
+
+    if (!restaurantId) {
+        console.error('No restaurant selected.');
+        return;
+    }
+
+    fetch(`/interior/fetch-consumer-bookable-info?restaurantId=${restaurantId}`)
+        .then(response => {
+            console.log('Fetch response status:', response.status);
+            return response.json();
+        })
+        .then(data => {
+            console.log('Fetched consumer bookable data:', data);
+
+            if (data.success) {
+                const bookableData = data.data;
+                document.querySelectorAll('[data-booking]').forEach(span => {
+                    const bookingType = span.getAttribute('data-booking');
+                    span.textContent = bookableData[bookingType] || 0; // Default to 0 if not found
+                });
+            } else {
+                console.error('Failed to fetch bookable data:', data.error);
+            }
+        })
+        .catch(error => console.error('Error fetching bookable table data:', error));
+});

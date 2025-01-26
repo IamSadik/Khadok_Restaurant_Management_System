@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
     
             const data = await response.json();
             console.log("Fetched stakeholder ID:", data.stakeholder_id);
+            localStorage.setItem("stakeholder_id", data.stakeholder_id);
             return data.stakeholder_id;
         } catch (error) {
             console.error('Error fetching stakeholder ID:', error);

@@ -244,4 +244,24 @@ const getConsumerReservations = async (req, res) => {
     }
 };
 
-module.exports = { getReservations, bookTable , updateReservationStatus, updateInteriorBookable, placePickupOrder,getPickupOrders, getConsumerReservations };
+// Controller function to get orders for a stakeholder by status
+const getOrdersByStakeholderId = async (stakeholderId, status) => {
+    try {
+        const orders = await Order.getOrders(stakeholderId, status);
+        return orders;
+    } catch (error) {
+        throw new Error("Error fetching orders: " + error.message);
+    }
+};
+
+
+const getPickupsByStakeholderId = async (stakeholderId, status) => {
+    try {
+        const pickups = await Order.getPickups(stakeholderId, status);
+        return pickups;
+    } catch (error) {
+        throw new Error("Error fetching pickups: " + error.message);
+    }
+};
+
+module.exports = { getReservations, bookTable , updateReservationStatus, updateInteriorBookable, placePickupOrder,getPickupOrders, getConsumerReservations, getOrdersByStakeholderId , getPickupsByStakeholderId};

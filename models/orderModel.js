@@ -129,6 +129,7 @@ const getPickupOrders = ({ consumer_id, status }) => {
 
 
 
+// Function to get dine-in reservations based on consumer_id
 const getDineInReservations2 = async (query) => {
     let sql = `SELECT dine_in_id, table_size, quantity, booking_date, booking_time, status, message 
                FROM dine_in WHERE consumer_id = ?`;
@@ -139,7 +140,7 @@ const getDineInReservations2 = async (query) => {
         params.push(query.status);
     }
 
-    sql += " ORDER BY booking_date DESC";
+    sql += " ORDER BY booking_date DESC"; // Latest orders on top
 
     return new Promise((resolve, reject) => {
         db.query(sql, params, (err, results) => {
@@ -153,6 +154,46 @@ const getDineInReservations2 = async (query) => {
 };
 
 
+
+// Function to get orders for a stakeholder
+const getOrders = (stakeholderId, status) => {
+    return new Promise((resolve, reject) => {
+        let query = "SELECT * FROM orders WHERE stakeholder_id = ?";
+        const params = [stakeholderId];
+
+        if (status !== "all") {
+            query += " AND status = ?";
+            params.push(status);
+        }
+
+        db.query(query, params, (err, results) => {
+            if (err) {
+                return reject(err);
+            }
+            resolve(results);
+        });
+    });
+};
+
+// Function to get pickups for a stakeholder
+const getPickups = (stakeholderId, status) => {
+    return new Promise((resolve, reject) => {
+        let query = "SELECT * FROM pickup WHERE stakeholder_id = ?";
+        const params = [stakeholderId];
+
+        if (status !== "all") {
+            query += " AND status = ?";
+            params.push(status);
+        }
+
+        db.query(query, params, (err, results) => {
+            if (err) {
+                return reject(err);
+            }
+            resolve(results);
+        });
+    });
+};
 module.exports = {
     getTableAvailability,
     bookDineInTable,
@@ -161,5 +202,5 @@ module.exports = {
     createPickupOrder ,
     clearCart,
     getPickupOrders,
-    getDineInReservations2
+    getDineInReservations2, getOrders, getPickups
 };

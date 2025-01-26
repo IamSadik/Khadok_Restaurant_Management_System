@@ -43,4 +43,51 @@ const markConsumerAsDeleted = (consumerId) => {
     });
 };
 
-module.exports = { getAdminByEmail,fetchConsumers, markConsumerAsDeleted };
+
+
+// Fetch stakeholders
+const fetchStakeholders = () => {
+    return new Promise((resolve, reject) => {
+        const query = `
+            SELECT 
+                stakeholder_id, 
+                name, 
+                email, 
+                restaurant_name, 
+                ratings,area
+                
+            FROM stakeholder 
+            WHERE flag IS NULL OR flag = 0
+        `;
+        pool.query(query, (err, results) => {
+            if (err) {
+                console.error("Error fetching stakeholders from DB:", err);
+                reject(err);
+            } else {
+                resolve(results);
+            }
+        });
+    });
+};
+
+// Mark stakeholder as deleted
+const markStakeholderAsDeleted = (stakeholderId) => {
+    return new Promise((resolve, reject) => {
+        const query = `
+            UPDATE stakeholder 
+            SET flag = 1, email = 'abc@gmail.com' 
+            WHERE stakeholder_id = ?
+        `;
+        pool.query(query, [stakeholderId], (err, results) => {
+            if (err) {
+                console.error("Error updating stakeholder:", err);
+                reject(err);
+            } else {
+                resolve(results);
+            }
+        });
+    });
+};
+
+module.exports = { fetchConsumers, markConsumerAsDeleted, fetchStakeholders, markStakeholderAsDeleted,getAdminByEmail };
+

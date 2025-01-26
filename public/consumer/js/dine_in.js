@@ -220,3 +220,65 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .catch(error => console.error('Error fetching bookable table data:', error));
 });
+// Increment Button for Remove Number of Tables
+document.getElementById('incrementTableCount').addEventListener('click', function () {
+    const tableCountInput = document.getElementById('removeTableCount');
+    let currentValue = parseInt(tableCountInput.value) || 1;
+    tableCountInput.value = currentValue + 1;
+});
+
+// Decrement Button for Remove Number of Tables
+document.getElementById('decrementTableCount').addEventListener('click', function () {
+    const tableCountInput = document.getElementById('removeTableCount');
+    let currentValue = parseInt(tableCountInput.value) || 1;
+    if (currentValue > 1) {
+        tableCountInput.value = currentValue - 1;
+    }
+});
+
+document.getElementById('removeTableForm').addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    const consumer_id = localStorage.getItem('consumer_id');
+    const stakeholder_id = localStorage.getItem('selectedDineInRestaurantId');
+    const table_size = document.querySelector('input[name="removeTableType"]:checked')?.value;
+    const quantity = document.getElementById('removeTableCount').value;
+    const booking_date = document.getElementById('bookingDate').value;
+    const booking_time = document.getElementById('bookingTime').value;
+    const message = document.getElementById('reservationMessage').value.trim();
+
+    if (!consumer_id || !stakeholder_id || !table_size || !quantity || !booking_date || !booking_time) {
+        alert('Please fill all the required fields.');
+        return;
+    }
+
+    const requestData = {
+        consumer_id,
+        stakeholder_id,
+        table_size,
+        quantity,
+        booking_date,
+        booking_time,
+        message
+    };
+
+    try {
+        const response = await fetch('/api/order/book-table', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(requestData)
+        });
+
+        const result = await response.json();
+        if (response.ok) {
+            alert(result.message);
+            window.location.reload(); // Refresh page after booking success
+        } else {
+            alert(result.message);
+        }
+    } catch (error) {
+        console.error('Error booking table:', error);
+    }
+});

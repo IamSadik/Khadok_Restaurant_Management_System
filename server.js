@@ -73,6 +73,10 @@ app.use('/api/stakeholder', stakeholderRoutes);
 const adminRoutes = require("./routes/adminRoutes");
 app.use("/admin", adminRoutes);
 
+const orderRoutes = require("./routes/orderRoutes");
+app.use("/api/order", orderRoutes);
+
+
 app.use(sessionMiddleware);
 app.use(restaurantRoutes);
 

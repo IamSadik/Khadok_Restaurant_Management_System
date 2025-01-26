@@ -745,6 +745,30 @@ p {
     justify-self: center;
 }
 
+.reservation-message textarea {
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    font-size: 16px;
+    resize: none;
+    transition: all 0.3s ease-in-out;
+}
+
+.reservation-message textarea:focus {
+    border-color: #ff6347;
+    box-shadow: 0 0 10px rgba(255, 99, 71, 0.3);
+}
+
+span .input-group-text {
+    background: #ff6347;
+    color: white;
+    background-color: #ffffff;
+    border-radius: 8px 0 0 8px;
+    border: none;
+}
+input-group-text{
+    background-color: #ffffff;
+}
 
 
 

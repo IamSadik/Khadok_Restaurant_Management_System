@@ -887,3 +887,89 @@ button[type="submit"]:hover {
         padding: 10px;
     }
 }
+main h1 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Table container styling */
+#consumers-container {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+}
+
+/* Table styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+/* Table headers */
+thead tr {
+    background-color: #4cacaf;
+    color: white;
+    font-size: 1rem;
+}
+
+thead th {
+    padding: 12px 15px;
+    font-weight: bold;
+}
+
+/* Table rows */
+tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tbody tr:hover {
+    background-color: #eaf6ea;
+    cursor: pointer;
+}
+
+tbody td {
+    padding: 12px 15px;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+/* Add subtle borders between rows */
+tbody tr {
+    border-bottom: 1px solid #ddd;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    table {
+        font-size: 0.9rem;
+    }
+
+    main h1 {
+        font-size: 1.5rem;
+    }
+}
+/* Styling for the delete button */
+button.delete-btn {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+}
+
+button.delete-btn:hover {
+    background-color: #e60000;
+}
+
+/* Adjust table for action column */
+thead th:last-child, tbody td:last-child {
+    text-align: center;
+    width: 150px;
+}

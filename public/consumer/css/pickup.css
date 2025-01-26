@@ -1,0 +1,638 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+html {
+    font-size: 90%;
+}
+
+
+
+body{
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+ 
+    transform: scale(0.95);
+    transform-origin: top left;
+}
+
+.sidebar{
+    height: 105.5%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 78px;
+    background: #11101d;
+    padding: 6px 14px;
+    transition: all 0.5s ease;
+    overflow: visible; /* Ensure no clipping occurs */
+   
+}
+
+.sidebar.active{
+    width: 240px;
+
+}
+
+.sidebar .logo_content .logo{
+    color: #fff;
+    display: flex;
+    height: 50px;
+    width: 100%;
+    align-self: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.5s ease;
+}
+
+.sidebar.active .logo_content{
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
+.sidebar.active .logo_content .logo{
+    opacity: 1;
+    pointer-events: none;
+}
+
+.logo_content .logo i{
+    font-size: 28px;
+    margin-right: 5px; 
+}
+
+.logo_content .logo .logo_name{
+    font-size: 28px;
+    font-weight: 400;
+}
+
+.sidebar #btn{
+    position: absolute;
+    color: #fff;
+    left: 50%;
+    top: 6px;
+    font-size: 20px;
+    height: 50px;
+    width: 50px;
+    text-align: center;
+    line-height: 50px;
+    transform: translateX(-50%);
+
+}
+
+.sidebar.active #btn{
+    left: 90%;
+}
+
+.sidebar ul{
+    margin-top: 20px;
+}
+
+.sidebar ul li{
+    list-style: none;
+    line-height: 50px;
+    height: 50px;
+    width: 100%;
+    position: relative;
+    margin: 0 5px;
+    
+}
+
+.sidebar ul li a{
+    color: #fff;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    transition: all 0.4s ease;
+    border-radius: 12px;
+    white-space: nowrap;
+}
+
+.sidebar ul li .tooltip{
+    position: absolute;
+    left: 122px;
+    top: 0;
+    transform: translate(-50%,-50%);
+    border-radius: 6px;
+    height: 35px;
+    width: 122px;
+    line-height: 35px;
+    background: #fff;
+    text-align: center;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    transition: 0s;
+    opacity: 0;
+    pointer-events: none;
+    display: block;
+    z-index: 9999; /* Ensure it appears above all other elements */
+}
+
+.sidebar.active ul li .tooltip{
+    display: none;
+}
+
+.sidebar ul li:hover .tooltip{
+    transition: 0.5s ease;
+    top: 50%;
+    opacity: 1;
+    z-index: 9999; /* Brings the tooltip above other elements */
+}
+.sidebar ul li input{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    border-radius: 12px;
+    outline: none;
+    border: none;
+    background: #1d1b31;
+    padding-left: 50px;
+    font-size: 18px;
+    color: #fff;
+
+}
+
+.sidebar ul li .bx-search-alt{
+    position: absolute;
+    z-index: 99;
+    color: #fff;
+    font-size: 22px;
+    transition: 0.5 ease;
+}
+
+.sidebar ul li .bx-search-alt:hover{
+    background: #fff;
+    color: #1d1b31;
+}
+
+.sidebar ul li a:hover{
+    color: #11101d;
+    background: #fff;
+}
+.sidebar ul li i{
+    height: 50px;
+    min-width: 50px;
+    border-radius: 12px;
+    line-height: 50px;
+    text-align: center;
+}
+
+.sidebar .links_name{
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.5s ease;
+}
+
+
+.sidebar.active .links_name{
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.sidebar .profile_content{
+    position: absolute;
+    color: #fff;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+.sidebar .profile_content .profile{
+    position: relative;
+    padding: 10px 5px;
+    height: 60px;
+    background: none;
+    transition: all 0.4s ease;
+}
+
+.sidebar.active .profile_content .profile{
+    background: #1d1b31;
+}
+
+.profile_content .profile .profile_details{
+    display: flex;
+    align-items: center; 
+    opacity: 0;
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+.sidebar.active .profile .profile_details{
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.profile .profile_details img{
+    height: 45px;
+    width: 45px;
+    object-fit: cover;
+    border-radius: 12px;
+
+}
+
+.profile .profile_details .name_job{
+    margin-left: 10px;
+
+}
+
+.profile .profile_details .name{
+    font-size: 15px;
+    font-weight: 400;
+
+}
+
+.profile .profile_details .job{
+    font-size: 12px;
+}
+
+.profile #log_out{
+    position: absolute;
+    left: 50%;
+    bottom: 5px;
+    transform: translateX(-50%);
+    min-width: 50px;
+    line-height: 50px;
+    font-size: 20px;
+    border-radius: 12px;
+    text-align: center;
+    transition: all 0.4s ease;
+    background: #1d1b31;
+    pointer-events: fill;
+    color: #fff;
+}
+
+.sidebar.active .profile #log_out{
+    left: 88%;
+}
+.sidebar.active .profile #log_out{
+    background: none;
+}
+
+.home_content{
+    position: absolute;
+    height: 100%;
+    left: 78px;
+    width: calc(100%-78px);
+    transition: all 0.5s ease;
+}
+.home_content .text{
+    font-size: 25px;
+    font-weight: 500;
+    color: #1d1b31;
+    margin: 12px;
+
+}
+
+
+
+.sidebar.active ~ .home_content{
+    width: calc(100%-240px);
+    left: 240px;
+}
+
+
+
+
+/* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Main Content Styles */
+.main-content {
+    margin-left: 260px; /* Sidebar width */
+    padding: 20px;
+    transition: margin-left 0.3s ease;
+}
+
+.pickup-container {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.pickup-header {
+    display: flex;
+    align-items: center;
+    color: #4CAF50;
+    margin-bottom: 20px;
+}
+
+.pickup-header i {
+    font-size: 30px;
+    margin-right: 15px;
+}
+
+h2 {
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.location-details {
+    font-size: 18px;
+    color: #333;
+    margin-top: 20px;
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
+    .main-content {
+        margin-left: 0;
+    }
+
+    .pickup-container {
+        padding: 15px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    .location-details {
+        font-size: 16px;
+    }
+}
+/* Main Content Styles */
+.main-content {
+    padding: 20px;
+}
+
+/* Pickup Section */
+.pickup-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 60px;
+    margin-top: 5%;
+}
+
+.pickup-header {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    color: #333;
+}
+
+.pickup-header i {
+    margin-right: 10px;
+    font-size: 30px;
+}
+
+.location-details {
+    margin-top: 10px;
+    color: #555;
+}
+
+/* Personal Details Section */
+.personal-details-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 60px;
+}
+
+.personal-details-header {
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+}
+
+.personal-details .detail-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.personal-details i {
+    font-size: 22px;
+    margin-right: 15px;
+    color: #3b82f6;
+}
+
+.personal-details span {
+    font-size: 18px;
+    color: #555;
+}
+
+/* Loading State */
+.personal-details .detail-item span {
+    color: #999;
+}
+
+
+/* Cart Section */
+.cart-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 60px;
+}
+
+.cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.cart-header h3 {
+    margin: 0;
+    font-size: 1.5em;
+    color: #333;
+}
+
+.cart-count {
+    background: #ff6347;
+    color: #fff;
+    font-size: 1.2em;
+    padding: 5px 10px;
+    border-radius: 50%;
+}
+
+.cart-items-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+.item-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.item-name {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.quantity-controls button {
+    background: #007bff;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 1.1em;
+}
+
+.quantity-controls input {
+    width: 40px;
+    text-align: center;
+    font-size: 1.1em;
+}
+
+.item-price {
+    font-weight: bold;
+    color: #28a745;
+}
+
+.delete-btn {
+    background: none;
+    border: none;
+    color: #ff6347;
+    cursor: pointer;
+    font-size: 1.5em;
+}
+
+.cart-footer {
+    margin-top: 15px;
+    text-align: right;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+/* Payment Method Section */
+#payment-method {
+    margin-top: 40px;
+    padding: 30px;
+    background: #f8f9fa;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#payment-method h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+
+#payment-method h2 i {
+    margin-right: 10px;
+    color: #ff6600;
+}
+
+/* Payment Option Styling */
+.payment-option {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    color: #444;
+    font-weight: 500;
+}
+
+.payment-option label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+}
+
+.payment-option input[type="radio"] {
+    display: none;  /* Hide default radio button */
+}
+
+/* Custom radio button style */
+.payment-option .custom-radio {
+    width: 22px;
+    height: 22px;
+    border: 2px solid #ff6600;
+    border-radius: 50%;
+    margin-right: 10px;
+    position: relative;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Checked state of custom radio */
+.payment-option input[type="radio"]:checked + .custom-radio {
+    background-color: #ff6600;
+    border: 2px solid #ff6600;
+}
+
+.payment-option .custom-radio::before {
+    content: '';
+    width: 10px;
+    height: 10px;
+    background-color: white;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: all 0.3s ease-in-out;
+}
+
+/* Animation when selected */
+.payment-option input[type="radio"]:checked + .custom-radio::before {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+/* Place Pick-up Button */
+#place-pickup-btn {
+    width: 100%;
+    padding: 15px;
+    font-size: 20px;
+    font-weight: bold;
+    background: #ff6600;
+    border: none;
+    color: #fff;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#place-pickup-btn i {
+    margin-right: 10px;
+    font-size: 22px;
+}
+
+#place-pickup-btn:hover {
+    background: #e65c00;
+    box-shadow: 0 4px 12px rgba(255, 102, 0, 0.3);
+}

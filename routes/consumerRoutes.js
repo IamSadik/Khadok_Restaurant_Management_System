@@ -1,5 +1,5 @@
 const express = require('express');
-const { signupConsumer, addToCart, updateCartItem,deleteCartItem } = require('../controllers/consumerController');
+const { signupConsumer, addToCart, updateCartItem, deleteCartItem, getConsumerDetails } = require('../controllers/consumerController');
 const { getCartItems } = require('../controllers/consumerController');
 const router = express.Router();
 
@@ -23,6 +23,7 @@ router.post('/cart/update/:itemId', updateCartItem);
 // Route to delete a cart item
 router.delete('/cart/delete/:itemId', deleteCartItem);
 
+router.get('/details/:consumer_id', getConsumerDetails); // Add route to get consumer details
 
 // Export the router
 module.exports = router;

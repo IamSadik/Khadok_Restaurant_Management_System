@@ -1,4 +1,7 @@
 const Order = require('../models/orderModel');
+const Consumer = require("../models/consumerModel");
+const Pickup = require('../models/orderModel');
+const Cart = require('../models/orderModel'); // Assuming you have a cart model for database operations
 const fetch = require('node-fetch');
 const db = require('../config/configdb');
 const bookTable = async (req, res) => {
@@ -151,4 +154,94 @@ const updateInteriorBookable = async (req, res) => {
     }
 };
 
-module.exports = { getReservations, bookTable , updateReservationStatus, updateInteriorBookable};
+// Controller function to place a pick-up order
+const placePickupOrder = async (req, res) => {
+    try {
+        const { consumer_id, total_amount, stakeholder_id } = req.body;
+
+        if (!consumer_id || !total_amount || !stakeholder_id) {
+            return res.status(400).json({ success: false, message: 'Missing required fields.' });
+        }
+
+        const pickupData = {
+            consumer_id,
+            total_amount,
+            stakeholder_id,
+            status: 'pending'  // Default status
+        };
+
+        // Create the pickup order
+        const result = await Pickup.createPickupOrder(pickupData);
+
+        if (result.affectedRows > 0) {
+            // Empty the cart for the logged-in consumer
+            await Cart.clearCart(consumer_id);
+
+            res.status(201).json({ success: true, message: 'Pickup order placed successfully, and cart cleared.' });
+        } else {
+            res.status(500).json({ success: false, message: 'Failed to place pickup order.' });
+        }
+    } catch (error) {
+        console.error('Error placing pickup order:', error);
+        res.status(500).json({ success: false, message: 'Internal server error.' });
+    }
+};
+
+// Controller function to get pickup orders based on consumer_id and status filter
+const getPickupOrders = async (req, res) => {
+    try {
+        const { consumer_id, status } = req.query;
+
+        if (!consumer_id) {
+            return res.status(400).json({ success: false, message: "Consumer ID is required" });
+        }
+
+        let queryCondition = { consumer_id };
+
+        if (status && status !== "all") {
+            queryCondition.status = status;
+        }
+
+        // Fetch orders with the given conditions, sorted by latest first
+        const orders = await Order.getPickupOrders(queryCondition);
+
+        res.status(200).json({ success: true, orders });
+    } catch (error) {
+        console.error("Error fetching orders:", error);
+        res.status(500).json({ success: false, message: "Internal server error" });
+    }
+};
+
+// Get reservations for a consumer
+const getConsumerReservations = async (req, res) => {
+    try {
+        const consumerId = req.query.consumer_id;
+        const filter = req.query.filter || "all";
+
+        if (!consumerId) {
+            return res.status(400).json({ error: "Consumer ID is required" });
+        }
+
+        let query = { consumer_id: consumerId };
+
+        // Filter condition
+        if (filter === "upcoming") {
+            query.status = "pending";
+        } else if (filter === "past") {
+            query.status = "complete";
+        }
+
+        const reservations = await Order.getDineInReservations2(query);
+
+        if (!reservations.length) {
+            return res.status(200).json([]);
+        }
+
+        res.json(reservations);
+    } catch (error) {
+        console.error("Error fetching consumer reservations:", error);
+        res.status(500).json({ error: "Internal server error" });
+    }
+};
+
+module.exports = { getReservations, bookTable , updateReservationStatus, updateInteriorBookable, placePickupOrder,getPickupOrders, getConsumerReservations };

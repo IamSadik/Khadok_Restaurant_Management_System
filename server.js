@@ -75,7 +75,7 @@ app.use("/admin", adminRoutes);
 
 const orderRoutes = require("./routes/orderRoutes");
 app.use("/api/order", orderRoutes);
-
+app.use("/api/reservation", orderRoutes)
 
 app.use(sessionMiddleware);
 app.use(restaurantRoutes);

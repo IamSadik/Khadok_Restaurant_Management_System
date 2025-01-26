@@ -23,4 +23,23 @@ const createStakeholder = async (stakeholderId, name, email, hashedPassword, res
     });
 };
 
-module.exports = { getUniqueStakeholderId, createStakeholder };
+// Function to fetch location by stakeholder ID
+const getLocationById = async (stakeholderId) => {
+    const query = `SELECT area, address FROM stakeholder WHERE stakeholder_id = ?`;
+    const params = [stakeholderId];
+
+    return new Promise((resolve, reject) => {
+        db.query(query, params, (err, results) => {
+            if (err) {
+                reject(err);
+            } else if (results.length > 0) {
+                resolve(results[0]);
+            } else {
+                resolve(null);
+            }
+        });
+    });
+};
+
+
+module.exports = { getUniqueStakeholderId, createStakeholder , getLocationById};

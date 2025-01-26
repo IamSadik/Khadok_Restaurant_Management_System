@@ -1,127 +1,161 @@
-document.addEventListener("DOMContentLoaded", () => {
-    // Elements for Orders
+document.addEventListener("DOMContentLoaded", async () => {
     const orderList = document.getElementById("order-list");
     const orderInfo = document.getElementById("order-info");
-    const filterButtons = document.querySelectorAll(".filter-btn");
 
-    // Elements for Reservations
-    const reservationList = document.getElementById("reservation-list");
-    const reservationInfo = document.getElementById("reservation-info");
-    const reservationFilterButtons = document.querySelectorAll(".reservation-filter-btn");
+    const consumerId = localStorage.getItem("consumer_id");
 
-    // Demo Orders Data
-    const orders = [
-        { id: 1, status: "active", title: "Pizza Order", description: "Your pizza order is being prepared." },
-        { id: 2, status: "completed", title: "Burger Order", description: "Your burger order was delivered successfully." },
-        { id: 3, status: "active", title: "Pasta Order", description: "Your pasta order is being prepared." },
-        { id: 4, status: "completed", title: "Sushi Order", description: "Your sushi order was delivered successfully." },
-        { id: 5, status: "completed", title: "Sandwich Order", description: "Your sandwich order was delivered successfully." },
-        { id: 6, status: "active", title: "Taco Order", description: "Your taco order is being prepared." },
-        { id: 7, status: "active", title: "Salad Order", description: "Your salad order is being prepared." },
-    ];
+    if (!consumerId) {
+        orderList.innerHTML = "<p>Please log in to view your orders.</p>";
+        return;
+    }
 
-    // Demo Reservations Data
-    const reservations = [
-        { id: 1, status: "upcoming", title: "Dinner Reservation", description: "Table for 2 at 7 PM." },
-        { id: 2, status: "past", title: "Lunch Reservation", description: "Table for 4 at 1 PM." },
-        { id: 3, status: "upcoming", title: "Birthday Party Reservation", description: "Private hall reservation for 20 guests." },
-        { id: 4, status: "past", title: "Anniversary Dinner", description: "Table for 2 at 8 PM." },
-        { id: 5, status: "past", title: "Wedding Dinner", description: "Table for 2 at 8 PM." },
-        { id: 6, status: "past", title: "Wedding Dinner", description: "Table for 2 at 8 PM." },
-        { id: 7, status: "past", title: "Wedding Dinner", description: "Table for 2 at 8 PM." }
-    ];
+    // Fetch orders from the API
+    async function fetchOrders(statusFilter = "all") {
+        try {
+            const response = await fetch(`/api/order/pickup?consumer_id=${consumerId}&status=${statusFilter}`);
+            const data = await response.json();
 
-    // Function to render orders based on filter
-    const renderOrders = (status) => {
-        orderList.innerHTML = ""; // Clear current orders
-        const filteredOrders = status === "all" ? orders : orders.filter(order => order.status === status);
+            if (data.success) {
+                renderOrders(data.orders);
+            } else {
+                orderList.innerHTML = "<p>No orders found.</p>";
+            }
+        } catch (error) {
+            console.error("Error fetching orders:", error);
+            orderList.innerHTML = "<p>Failed to fetch orders. Try again later.</p>";
+        }
+    }
 
-        filteredOrders.forEach(order => {
+    // Render orders in the order list
+    function renderOrders(orders) {
+        orderList.innerHTML = "";
+
+        if (orders.length === 0) {
+            orderList.innerHTML = "<p>No orders available.</p>";
+            return;
+        }
+
+        orders.forEach(order => {
             const orderItem = document.createElement("div");
             orderItem.classList.add("order-item");
-            orderItem.dataset.id = order.id;
             orderItem.innerHTML = `
-                ${order.title}
-                <span class="order-status ${order.status}">${order.status}</span>
+                <p><strong>Pickup Date:</strong> ${new Date(order.pickup_date).toLocaleString()}</p>
             `;
+            orderItem.addEventListener("click", () => showOrderDetails(order));
             orderList.appendChild(orderItem);
         });
+    }
 
-        addOrderClickHandlers(); // Rebind click events
-    };
+    // Show order details when an order is clicked
+    function showOrderDetails(order) {
+        orderInfo.innerHTML = `
+            <p><strong>Status:</strong> ${order.status}</p>
+            <p><strong>Total Amount:</strong> $${order.total_amount}</p>
+        `;
+    }
 
-    // Function to handle order item click
-    const addOrderClickHandlers = () => {
-        const orderItems = document.querySelectorAll(".order-item");
-        orderItems.forEach(item => {
-            item.addEventListener("click", (e) => {
-                const orderId = e.currentTarget.dataset.id;
-                const order = orders.find(o => o.id === parseInt(orderId));
+    // Filter button click events
+    document.getElementById("all-filter").addEventListener("click", () => fetchOrders("all"));
+    document.getElementById("active-filter").addEventListener("click", () => fetchOrders("pending"));
+    document.getElementById("completed-filter").addEventListener("click", () => fetchOrders("complete"));
 
-                orderInfo.innerHTML = `
-                    <h5>${order.title}</h5>
-                    <p>${order.description}</p>
+    // Initial fetch on page load
+    fetchOrders();
+});
+
+document.addEventListener("DOMContentLoaded", async function () {
+    // Load all reservations initially
+    fetchReservations("all");
+
+    // Filter button event listeners
+    document.getElementById("all-reservation-filter").addEventListener("click", () => fetchReservations("all"));
+    document.getElementById("upcoming-reservation-filter").addEventListener("click", () => fetchReservations("upcoming"));
+    document.getElementById("past-reservation-filter").addEventListener("click", () => fetchReservations("past"));
+
+    // Handle filter button click and toggle active state
+    function handleFilterButtonClick(e) {
+        document.querySelectorAll(".reservation-filter-btn").forEach(button => {
+            button.classList.remove("active");
+        });
+        e.target.classList.add("active");
+        fetchReservations(e.target.dataset.filter);
+    }
+
+    // Fetch reservations based on filter type
+    async function fetchReservations(filterType = "all") {
+        const consumerId = localStorage.getItem("consumer_id");
+        if (!consumerId) {
+            console.error("Consumer ID not found in local storage.");
+            return;
+        }
+    
+        try {
+            const response = await fetch(`/api/reservation/reservation?filter=${filterType}&consumer_id=${consumerId}`);
+    
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+    
+            const contentType = response.headers.get("content-type");
+            if (!contentType || !contentType.includes("application/json")) {
+                throw new Error("Invalid response format, expected JSON");
+            }
+    
+            const reservations = await response.json();
+            const reservationList = document.getElementById("reservation-list");
+            reservationList.innerHTML = "";
+    
+            if (reservations.length === 0) {
+                reservationList.innerHTML = "<p>No reservations found.</p>";
+                return;
+            }
+    
+            reservations.forEach(res => {
+                const reservationItem = document.createElement("div");
+                reservationItem.classList.add("reservation-item");
+                reservationItem.innerHTML = `
+                    <div class="reservation-summary">
+                        <h4>${res.message}</h4>
+                        <p><i class="fas fa-calendar"></i> ${res.booking_date} at <i class="fas fa-clock"></i> ${res.booking_time}</p>
+                        <p>Status: <span class="${res.status.toLowerCase()}">${res.status}</span></p>
+                    </div>
                 `;
+    
+                reservationItem.addEventListener("click", () => showReservationDetails(res));
+                reservationList.appendChild(reservationItem);
             });
-        });
-    };
+        } catch (error) {
+            console.error("Error fetching reservations:", error);
+            document.getElementById("reservation-list").innerHTML = "<p>Failed to load reservations.</p>";
+        }
+    }
+    
 
-    // Function to render reservations based on filter
-    const renderReservations = (status) => {
-        reservationList.innerHTML = ""; // Clear current reservations
-        const filteredReservations = status === "all" ? reservations : reservations.filter(res => res.status === status);
+    // Show reservation details
+    function showReservationDetails(reservation) {
+        const reservationInfo = document.getElementById("reservation-info");
+        reservationInfo.innerHTML = `
+            <h4>Reservation Details</h4>
+            <p><strong>Table Size:</strong> ${reservation.table_size}</p>
+            <p><strong>Quantity:</strong> ${reservation.quantity}</p>
+            <p><strong>Date:</strong> ${reservation.booking_date}</p>
+            <p><strong>Time:</strong> ${reservation.booking_time}</p>
+            <p><strong>Status:</strong> ${reservation.status}</p>
+            <p><strong>Message:</strong> ${reservation.message}</p>
+        `;
+    }
 
-        filteredReservations.forEach(reservation => {
-            const reservationItem = document.createElement("div");
-            reservationItem.classList.add("reservation-item");
-            reservationItem.dataset.id = reservation.id;
-            reservationItem.innerHTML = `
-                ${reservation.title}
-                <span class="reservation-status ${reservation.status}">${reservation.status}</span>
-            `;
-            reservationList.appendChild(reservationItem);
-        });
-
-        addReservationClickHandlers(); // Rebind click events
-    };
-
-    // Function to handle reservation item click
-    const addReservationClickHandlers = () => {
-        const reservationItems = document.querySelectorAll(".reservation-item");
-        reservationItems.forEach(item => {
-            item.addEventListener("click", (e) => {
-                const reservationId = e.currentTarget.dataset.id;
-                const reservation = reservations.find(r => r.id === parseInt(reservationId));
-
-                reservationInfo.innerHTML = `
-                    <h5>${reservation.title}</h5>
-                    <p>${reservation.description}</p>
-                `;
-            });
-        });
-    };
-
-    // Filter button functionality for orders
-    filterButtons.forEach(button => {
-        button.addEventListener("click", (e) => {
-            filterButtons.forEach(btn => btn.classList.remove("active"));
-            e.target.classList.add("active");
-            const filter = e.target.id.split("-")[0];
-            renderOrders(filter);
-        });
+    // Event listeners for filter buttons
+    document.querySelectorAll(".reservation-filter-btn").forEach(button => {
+        button.addEventListener("click", handleFilterButtonClick);
     });
-
-    // Filter button functionality for reservations
-    reservationFilterButtons.forEach(button => {
-        button.addEventListener("click", (e) => {
-            reservationFilterButtons.forEach(btn => btn.classList.remove("active"));
-            e.target.classList.add("active");
-            const filter = e.target.id.split("-")[0];
-            renderReservations(filter);
-        });
+    document.addEventListener("DOMContentLoaded", () => {
+        const defaultFilterButton = document.querySelector(".reservation-filter-btn[data-filter='all']");
+        if (defaultFilterButton) {
+            defaultFilterButton.classList.add("active");
+            fetchReservations("all");
+        } else {
+            console.error("Filter button not found in DOM.");
+        }
     });
-
-    // Initial render
-    renderOrders("all");
-    renderReservations("all");
 });

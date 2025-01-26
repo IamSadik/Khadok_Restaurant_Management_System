@@ -3,59 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Khadok - Menu</title>
-    <link rel="stylesheet" href="css/menu.css">
-    <link rel="stylesheet" href="css/khadok.consumer.sidebar.css">
+    <title>Pick-up</title>
+    <link rel="stylesheet" href="css/pickup.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">   
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
-    <script src="js/menu.js" defer></script>
-    <link rel="stylesheet" href="css/cart.css">
-    <script src="/socket.io/socket.io.js"></script>
-
-   
 </head>
 <body>
+
     <div class="sidebar">
         <div class="logo_content">
             <div class="logo">
-                <div class="logo_name">Khadok</div>
+                
+                <div class="logo_name">Khadok
+
+                </div>
             </div>
-            <i class="bx bx-menu" id="btn"></i>
+            <i class='bx bx-menu' id="btn"></i>
         </div>
         <ul class="nav_list">
             <li>
-                <i class="bx bx-search-alt"></i>
-                <input type="text" placeholder="Search...">
-                <span class="tooltip">Search</span>
+                
+                    <i class='bx bx-search-alt'></i>
+                    <input type="text" placeholder="Search...">
+                
+                <span class="tooltip">Search </span>
             </li>
             <li>
                 <a href="khadok.consumer.dashboard.html">
-                    <i class="bx bxs-grid-alt"></i>
+                    <i class='bx bxs-grid-alt'></i>
                     <span class="links_name">Dashboard</span>
                 </a>
                 <span class="tooltip">Dashboard</span>
             </li>
             <li>
                 <a href="khadok.consumer.user.html">
-                    <i class="bx bxs-user-circle"></i>
+                    <i class='bx bxs-user-circle'></i>
                     <span class="links_name">User</span>
                 </a>
                 <span class="tooltip">User</span>
             </li>
             <li>
                 <a href="map.html">
-                    <i class="bx bx-navigation"></i>
+                    <i class='bx bx-navigation'></i>
                     <span class="links_name">Map</span>
                 </a>
                 <span class="tooltip">Map</span>
             </li>
-            
+           
             <li>
                 <a href="khadok.consumer.order.html">
-                    <i class="bx bxs-package"></i>
+                    <i class='bx bxs-package'></i>
                     <span class="links_name">Orders</span>
                 </a>
                 <span class="tooltip">Orders</span>
@@ -63,7 +63,7 @@
             
             <li>
                 <a href="khadok.consumer.setting.html">
-                    <i class="bx bxs-cog"></i>
+                    <i class='bx bxs-cog'></i>
                     <span class="links_name">Settings</span>
                 </a>
                 <span class="tooltip">Settings</span>
@@ -78,42 +78,86 @@
                     </div>
                 </div>
                 <button id="logoutButton" class="logout_button">
-                    <i class="bx bx-log-out-circle" id="log_out"></i>
+                    <i class='bx bx-log-out-circle' id="log_out"></i>
                     <span class="links_name">Logout</span>
                 </button>
             </div>
         </div>
+        
     </div>
 
-    <section id="menu-list">
-        <h2>Menu Items</h2>
-        <!-- Container for Category Filter Buttons -->
-        <div id="category-filters" class="category-filters">
-            <!-- Dynamic category buttons will be injected here -->
+    <div class="main-content">
+        <h1 style="font-family: Poppins, sans-serif; justify-self: center; font-weight: large;">Pickup</h1>
+    <!-- Pickup Container -->
+    <div class="pickup-container">
+        <div class="pickup-header">
+            <i class="bx bx-map-pin"></i>
+            <h2>Pick-up at</h2>
+        </div>
+        <div id="locationDetails" class="location-details">
+            <!-- Dynamically loaded location data will appear here -->
+        </div>
+    </div>
+
+    <!-- Personal Details Section -->
+    <div class="personal-details-container">
+        <div class="personal-details-header">
+            <h3>Your Personal Details</h3>
+        </div>
+        <div class="personal-details">
+            <div class="detail-item">
+                <i class="fas fa-user-circle"></i>
+                <span id="consumer-name">Loading...</span>
+            </div>
+            <div class="detail-item">
+                <i class="fas fa-envelope"></i>
+                <span id="consumer-email">Loading...</span>
+            </div>
+            <div class="detail-item">
+                <i class="fas fa-phone"></i>
+                <span id="consumer-phone">Loading...</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Section -->
+    <div class="cart-container">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <span id="cart-count" class="cart-count">0</span>
+        </div>
+        <ul id="cart-items" class="cart-items-list">
+            <!-- Cart items will be dynamically inserted here -->
+        </ul>
+        <div class="cart-footer">
+            <p><strong>Subtotal:</strong> $<span id="cart-subtotal">0.00</span></p>
+        </div>
+    </div>
+
+
+    <section id="payment-method">
+        <h2><i class="fas fa-credit-card"></i> Payment Method</h2>
+        
+        <div class="payment-option">
+            <label for="cod">
+                <input type="radio" id="cod" name="payment" value="COD" checked>
+                <span class="custom-radio"></span>
+                Cash on Delivery (COD)
+            </label>
         </div>
     
-        <div class="horizontal-scroll-container">
-            <button class="scroll-btn left" id="menu-scroll-left" aria-label="Scroll Left">&lt;</button>
-            <div id="menu-items-container" class="menu-item-container">
-                <!-- Dynamic Menu Items Will Be Injected Here -->
-            </div>
-            <button class="scroll-btn right" id="menu-scroll-right" aria-label="Scroll Right">&gt;</button>
-        </div>
+        <button id="place-pickup-btn">
+            <i class="fas fa-check-circle"></i> Place Pick-up
+        </button>
     </section>
     
-     <!-- Cart icon and popup -->
-     <div class="cart-icon" id="cart-icon">
-        <i class="fas fa-shopping-cart"></i><span id="cart-count">0</span>
-    </div>
-    <div class="cart-popup" id="cart-popup">
-        <h3>Your Cart</h3>
-        <ul id="cart-items"></ul>
-        <div class="cart-footer">
-            <button id="checkout-delivery-btn">Checkout for Delivery</button>
-            <button id="checkout-pickup-btn">Checkout for Pickup</button>
-        </div>
-    </div>
     
+
+
+</div>
+
+
+  
     <script>
         let btn = document.querySelector("#btn"); 
         let sidebar = document.querySelector(".sidebar");
@@ -126,14 +170,13 @@
             sidebar.classList.toggle("active");
         }
     </script>
-
     <script>
         document.getElementById('logoutButton').addEventListener('click', async () => {
             try {
                 const response = await fetch('/auth/logout?type=consumer', {
                     method: 'GET',
                 });
-
+    
                 if (response.ok) {
                     alert('Logout successful');
                     window.location.href = '../login.html';
@@ -145,7 +188,6 @@
             }
         });
     </script>
-      
-    
+    <script src="js/pickup.js"></script>
 </body>
 </html>

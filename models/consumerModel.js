@@ -44,4 +44,4 @@ const fetchCartItems = (consumer_id) => {
 
 // Export the function correctly
 
-module.exports = { getMaxConsumerId, createConsumer,fetchCartItems };
+module.exports = { getMaxConsumerId, createConsumer,fetchCartItems  };

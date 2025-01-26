@@ -1,6 +1,6 @@
 const { fetchCartItems } = require('../models/consumerModel');
 const bcrypt = require('bcrypt');
-const { createConsumer, getMaxConsumerId } = require('../models/consumerModel');
+const { createConsumer, getMaxConsumerId, getConsumerById } = require('../models/consumerModel');
 const db = require('../config/configdb');
 const consumerModel = require('../models/consumerModel');
 exports.loginHandler = async (req, res) => {
@@ -196,5 +196,40 @@ const deleteCartItem = (req, res) => {
         }
     });
 };
+
+
+
+
+const getConsumerDetails = async (req, res) => {
+    const consumerId = req.params.consumer_id;
+    console.log(`Fetching details for consumer_id: ${consumerId}`);
+
+    try {
+        const query = 'SELECT name, email, phone_number FROM consumer WHERE consumer_id = ?';
+        
+        db.query(query, [consumerId], (error, results) => {
+            if (error) {
+                console.error('Error executing query:', error);
+                return res.status(500).json({ success: false, message: 'Error fetching consumer details' });
+            }
+
+            console.log('Query result:', results); // Debug log to check query results
+
+            if (results.length > 0) {
+                res.json({ success: true, consumer: results[0] });  // Return first consumer data
+            } else {
+                console.log('Consumer not found in database');
+                res.status(404).json({ success: false, message: 'Consumer not found' });
+            }
+        });
+
+    } catch (error) {
+        console.error('Error fetching consumer details:', error);
+        res.status(500).json({ success: false, message: 'Error fetching consumer details' });
+    }
+};
+
+module.exports = { getConsumerDetails };
+
 // Export functions for use in routes
-module.exports = { signupConsumer, addToCart, getCartItems, deleteCartItem, updateCartItem};
+module.exports = { signupConsumer, addToCart, getCartItems, deleteCartItem, updateCartItem, getConsumerDetails};

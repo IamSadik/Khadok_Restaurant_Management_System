@@ -55,9 +55,111 @@ const getDineInReservations = async (query) => {
     });
 };
 
+
+
+
+
+// Function to create a new pick-up order
+const createPickupOrder = (pickupData) => {
+    return new Promise((resolve, reject) => {
+        const query = `
+            INSERT INTO pickup (consumer_id, pickup_date, status, total_amount, stakeholder_id)
+            VALUES (?, NOW(), ?, ?, ?)
+        `;
+
+        const values = [
+            pickupData.consumer_id,
+            pickupData.status,
+            pickupData.total_amount,
+            pickupData.stakeholder_id
+        ];
+
+        db.query(query, values, (err, result) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(result);
+            }
+        });
+    });
+};
+// Function to clear all items in the cart for a specific consumer
+const clearCart = (consumer_id) => {
+    return new Promise((resolve, reject) => {
+        const query = `
+            DELETE FROM cart WHERE consumer_id = ?
+        `;
+        
+        db.query(query, [consumer_id], (err, result) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(result);
+            }
+        });
+    });
+};
+// Function to get pickup orders based on consumer_id and optional status filter
+const getPickupOrders = ({ consumer_id, status }) => {
+    return new Promise((resolve, reject) => {
+        let query = `
+            SELECT pickup_date, status, total_amount 
+            FROM pickup 
+            WHERE consumer_id = ? 
+        `;
+
+        let values = [consumer_id];
+
+        if (status) {
+            query += ` AND status = ?`;
+            values.push(status);
+        }
+
+        query += ` ORDER BY pickup_date DESC`; // Latest orders first
+
+        db.query(query, values, (err, results) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(results);
+            }
+        });
+    });
+};
+
+
+
+const getDineInReservations2 = async (query) => {
+    let sql = `SELECT dine_in_id, table_size, quantity, booking_date, booking_time, status, message 
+               FROM dine_in WHERE consumer_id = ?`;
+    const params = [query.consumer_id];
+
+    if (query.status) {
+        sql += " AND status = ?";
+        params.push(query.status);
+    }
+
+    sql += " ORDER BY booking_date DESC";
+
+    return new Promise((resolve, reject) => {
+        db.query(sql, params, (err, results) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(results);
+            }
+        });
+    });
+};
+
+
 module.exports = {
     getTableAvailability,
     bookDineInTable,
     updateTableAvailability,
-    getDineInReservations
+    getDineInReservations,
+    createPickupOrder ,
+    clearCart,
+    getPickupOrders,
+    getDineInReservations2
 };

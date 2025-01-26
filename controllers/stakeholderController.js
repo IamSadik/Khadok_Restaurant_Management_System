@@ -1,5 +1,5 @@
 const bcrypt = require('bcrypt');
-const { getUniqueStakeholderId, createStakeholder } = require('../models/stakeholderModel');
+const { getUniqueStakeholderId, createStakeholder, getLocationById } = require('../models/stakeholderModel');
 
 const signupStakeholder = async (req, res) => {
     const { name, email, password, restaurant_name } = req.body;
@@ -21,4 +21,22 @@ const signupStakeholder = async (req, res) => {
     }
 };
 
-module.exports = { signupStakeholder };
+
+// Controller to fetch stakeholder location by ID
+const getStakeholderLocation = async (req, res) => {
+    const stakeholderId = req.params.stakeholderId;
+
+    try {
+        const location = await getLocationById(stakeholderId);
+        if (location) {
+            res.status(200).json(location);
+        } else {
+            res.status(404).json({ error: "Location not found" });
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Internal server error" });
+    }
+};
+
+module.exports = { signupStakeholder , getStakeholderLocation};

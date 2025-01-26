@@ -102,25 +102,22 @@
 
 <div class="home_content">
     <h2 class="page-title">Your Shopping Cart</h2>
-    <div class="cart-container">
-       
-    </div>
-    <div class="checkout-container">
-       
-    </div>
+    
+       <div class="cart-container">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <span id="cart-count" class="cart-count">0</span>
+        </div>
+        <ul id="cart-items" class="cart-items-list">
+            <!-- Cart items will be dynamically inserted here -->
+        </ul>
+        <div class="cart-footer">
+            <p><strong>Subtotal:</strong> $<span id="cart-subtotal">0.00</span></p>
+        </div>
+    </div>     
+    
 </div>
-
-<!-- Hidden Checkout Panel -->
-<div class="checkout-panel" id="checkoutPanel">
-    <div class="checkout-header">
-        <h3>Checkout</h3>
-        <button class="close-btn" onclick="toggleCheckout()">&times;</button>
-    </div>
-    <div class="checkout-body">
-        <p>Order details and confirmation will be shown here...</p>
-        <button class="confirm-order-btn">Confirm Order</button>
-    </div>
-</div>
+ 
 
 <script src="js/khadok.consumer.cart.js"></script>
 <script>

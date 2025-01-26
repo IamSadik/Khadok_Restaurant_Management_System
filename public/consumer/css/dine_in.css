@@ -1,0 +1,827 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+html {
+    font-size: 90%;
+}
+
+
+
+body{
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+    overflow: auto;
+}
+
+.sidebar{
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 78px;
+    background: #11101d;
+    padding: 6px 14px;
+    transition: all 0.5s ease;
+    overflow: visible; /* Ensure no clipping occurs */
+   
+}
+
+.sidebar.active{
+    width: 240px;
+
+}
+
+.sidebar .logo_content .logo{
+    color: #fff;
+    display: flex;
+    height: 50px;
+    width: 100%;
+    align-self: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.5s ease;
+}
+
+.sidebar.active .logo_content{
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
+.sidebar.active .logo_content .logo{
+    opacity: 1;
+    pointer-events: none;
+}
+
+.logo_content .logo i{
+    font-size: 28px;
+    margin-right: 5px; 
+}
+
+.logo_content .logo .logo_name{
+    font-size: 28px;
+    font-weight: 400;
+}
+
+.sidebar #btn{
+    position: absolute;
+    color: #fff;
+    left: 50%;
+    top: 6px;
+    font-size: 20px;
+    height: 50px;
+    width: 50px;
+    text-align: center;
+    line-height: 50px;
+    transform: translateX(-50%);
+
+}
+
+.sidebar.active #btn{
+    left: 90%;
+}
+
+.sidebar ul{
+    margin-top: 20px;
+}
+
+.sidebar ul li{
+    list-style: none;
+    line-height: 50px;
+    height: 50px;
+    width: 100%;
+    position: relative;
+    margin: 0 -20px;
+    
+}
+
+.sidebar ul li a{
+    color: #fff;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    transition: all 0.4s ease;
+    border-radius: 12px;
+    white-space: nowrap;
+}
+
+.sidebar ul li .tooltip{
+    position: absolute;
+    left: 122px;
+    top: 0;
+    transform: translate(-50%,-50%);
+    border-radius: 6px;
+    height: 35px;
+    width: 122px;
+    line-height: 35px;
+    background: #fff;
+    text-align: center;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    transition: 0s;
+    opacity: 0;
+    pointer-events: none;
+    display: block;
+    z-index: 9999; /* Ensure it appears above all other elements */
+}
+
+.sidebar.active ul li .tooltip{
+    display: none;
+}
+
+.sidebar ul li:hover .tooltip{
+    transition: 0.5s ease;
+    top: 50%;
+    opacity: 1;
+    z-index: 9999; /* Brings the tooltip above other elements */
+}
+.sidebar ul li input{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    border-radius: 12px;
+    outline: none;
+    border: none;
+    background: #1d1b31;
+    padding-left: 50px;
+    font-size: 18px;
+    color: #fff;
+
+}
+
+.sidebar ul li .bx-search-alt{
+    position: absolute;
+    z-index: 99;
+    color: #fff;
+    font-size: 22px;
+    transition: 0.5 ease;
+}
+
+.sidebar ul li .bx-search-alt:hover{
+    background: #fff;
+    color: #1d1b31;
+}
+
+.sidebar ul li a:hover{
+    color: #11101d;
+    background: #fff;
+}
+.sidebar ul li i{
+    height: 50px;
+    min-width: 50px;
+    border-radius: 12px;
+    line-height: 50px;
+    text-align: center;
+}
+
+.sidebar .links_name{
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.5s ease;
+}
+
+
+.sidebar.active .links_name{
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.sidebar .profile_content{
+    position: absolute;
+    color: #fff;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+.sidebar .profile_content .profile{
+    position: relative;
+    padding: 10px 5px;
+    height: 60px;
+    background: none;
+    transition: all 0.4s ease;
+}
+
+.sidebar.active .profile_content .profile{
+    background: #1d1b31;
+}
+
+.profile_content .profile .profile_details{
+    display: flex;
+    align-items: center; 
+    opacity: 0;
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+.sidebar.active .profile .profile_details{
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.profile .profile_details img{
+    height: 45px;
+    width: 45px;
+    object-fit: cover;
+    border-radius: 12px;
+
+}
+
+.profile .profile_details .name_job{
+    margin-left: 10px;
+
+}
+
+.profile .profile_details .name{
+    font-size: 15px;
+    font-weight: 400;
+
+}
+
+.profile .profile_details .job{
+    font-size: 12px;
+}
+
+.profile #log_out{
+    position: absolute;
+    left: 50%;
+    bottom: 5px;
+    transform: translateX(-50%);
+    min-width: 50px;
+    line-height: 50px;
+    font-size: 20px;
+    border-radius: 12px;
+    text-align: center;
+    transition: all 0.4s ease;
+    background: #1d1b31;
+    pointer-events: fill;
+    color: #fff;
+}
+
+.sidebar.active .profile #log_out{
+    left: 88%;
+}
+.sidebar.active .profile #log_out{
+    background: none;
+}
+
+.home_content{
+    position: absolute;
+    height: 100%;
+    left: 78px;
+    width: calc(100%-78px);
+    transition: all 0.5s ease;
+}
+.home_content .text{
+    font-size: 25px;
+    font-weight: 500;
+    color: #1d1b31;
+    margin: 12px;
+
+}
+
+
+
+.sidebar.active ~ .home_content{
+    width: calc(100%-240px);
+    left: 240px;
+}
+
+
+
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+/* Main Content Styling */
+.main-content {
+    flex: 1;
+    margin-left: 80px; /* Default collapsed width */
+    padding: 20px;
+    transition: margin-left 0.3s ease-in-out;
+}
+
+.sidebar.expanded ~ .main-content {
+    margin-left: 260px; /* Adjust margin for expanded sidebar */
+}
+.section {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.section-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+
+/* Ensure elements do not exceed the parent container */
+#floorSection {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    justify-content: center; /* Center elements inside the section */
+    align-items: flex-start; /* Align items at the top */
+    gap: 20px; /* Space between elements */
+    max-width: 100%;
+    overflow: hidden; /* Prevent content overflow */
+}
+
+/* Floor container adjustments */
+#floor-Container {
+    position: relative;
+    
+    max-width: 100%;
+    height: 500px;  /* Keep fixed height */
+    background-color: #f4f4f4;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive table info container */
+.row {
+    
+    display: flex;
+    flex-wrap: nowrap; /* Prevent stacking */
+    flex-direction: row;
+    justify-content: center; /* Center items side by side */
+    gap: 20px;
+    width: 100%;
+    max-width: 1000px;  /* Ensure it doesn't exceed floor section */
+    position: relative;
+}
+
+.col-md-4 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    max-width: 100%;  /* Prevent overflow */
+}
+
+/* Table info and bookable table styles */
+#tableInfo, #bookableTableInfo {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;  /* Ensure items wrap on smaller screens */
+    justify-content: space-around;
+    width: 100%;
+    max-width: 480px;  /* Limit max size */
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    box-sizing: border-box; /* Include padding in width calculations */
+}
+
+/* Ensure proper alignment within both sections */
+#tableCountDisplay, #bookableTableCountDisplay {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    width: 100%;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    #floor-Container {
+        flex: 1 1 100%;  /* Allow full width */
+        height: 400px;
+    }
+
+    #tableInfo, #bookableTableInfo {
+        max-width: 100%;
+        justify-content: center;
+        padding: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    #floor-Container {
+        height: 350px;
+    }
+
+    #tableInfo, #bookableTableInfo {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media (max-width: 480px) {
+    #floor-Container {
+        height: 300px;
+    }
+
+    #tableInfo, #bookableTableInfo {
+        padding: 10px;
+        text-align: center;
+    }
+
+    #tableCountDisplay, #bookableTableCountDisplay {
+        gap: 10px;
+    }
+}
+
+#tableInfo {
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+#tableCountDisplay{
+    display: flex;
+    flex-direction: row;
+}
+
+.table-count-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.table-icon {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%; /* Circular icon */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Add some depth */
+    flex-shrink: 0;
+}
+
+p {
+    margin: 0;
+    font-size: 16px;
+    color: #333;
+    font-size: smaller;
+
+}
+strong{
+    font-size: smaller;
+
+}
+h4{
+    font-size: smaller;
+
+}
+.table-count-display {
+    display: inline-flexbox;
+    flex-direction: column;
+    gap: 10px; /* Space between each row */
+}
+
+.table-count-item {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between icon and text */
+}
+
+.table-icon {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%; /* Circular icon */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Add some depth */
+    flex-shrink: 0; /* Ensure icon doesn't shrink */
+}
+
+p {
+    margin: 0; /* Remove default paragraph margins */
+    font-size: 16px;
+}
+
+#upper{
+    width: 80%;
+    justify-self:  center;
+}
+#view{
+    width: 80%;
+    justify-self:  center;
+}
+#reserve{
+    width: 73%;
+    justify-self:  center;
+}
+
+/* Remove Tables Section Styling */
+.section-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Button Group */
+.btn-group .btn {
+    transition: transform 0.2s ease;
+}
+
+.btn-group .btn:hover {
+    transform: scale(0.96);
+    transition: 0.2s ease-out;
+}
+
+/* Button Group */
+#incrementTableCount, #decrementTableCount {
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: transform 0.3s ease, background-color 0.2s ease;
+}
+
+#incrementTableCount:hover, #decrementTableCount:hover {
+    transform: scale(1.1);
+    background-color: #f0f0f0;
+}
+
+/* Input Field Styling */
+#removeTableCount {
+    max-width: 80px;
+    text-align: center;
+    margin: 0 5px;
+    font-size: 16px;
+}
+
+
+/* Remove Tables Section Styling */
+.section-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Button Group */
+.btn-group .btn {
+    transition: transform 0.2s ease;
+}
+
+.btn-group .btn:hover {
+    transform: scale(0.96);
+    transition: 0.2s ease-out;
+}
+
+/* Button Group */
+#incrementTableCount, #decrementTableCount {
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: transform 0.3s ease, background-color 0.2s ease;
+}
+
+#incrementTableCount:hover, #decrementTableCount:hover {
+    transform: scale(1.1);
+    background-color: #f0f0f0;
+}
+
+/* Input Field Styling */
+#removeTableCount {
+    max-width: 80px;
+    text-align: center;
+    margin: 0 5px;
+    font-size: 16px;
+}
+
+
+/* Remove Button Styling */
+#removeTableButton {
+    background-color: #dc3545;
+    border-color: #dc3545;
+    color: #fff;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    margin-right: 20px;
+    margin-top: 20px;
+}
+
+#removeTableButton:hover {
+    background-color: #c82333;
+    transform: scale(1.1);
+}
+
+/* Form Row Alignment */
+.row.align-items-center {
+    margin-bottom: 15px;
+}
+
+.row .col-md-4 {
+    display: flex;
+    align-items: center;
+}
+
+/* Input Field Styling */
+#removeTableCount {
+    max-width: 100px;
+    text-align: center;
+}
+#removeTableFields .row {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Add spacing between the columns */
+    margin-left: 10px;
+}
+
+#removeTableFields .col-md-8 {
+    flex: 1;
+    max-width: 65%; /* Take up 2/3 of the row */
+    margin-right: 20px;
+}
+
+#removeTableFields .col-md-4.d-flex.align-items-center {
+    flex: 1;
+    max-width: 33.3333%; /* Take up 1/3 of the row */
+    margin-left: 60px;
+    margin-right: 10px;
+}
+
+#removeTableFields .btn-group {
+    width: 100%; /* Make sure button group stretches fully */
+}
+
+#removeTableFields input[type="number"] {
+    width: 100%; /* Ensure input field uses full width */
+}
+#removeTableFields .col-md-4.d-flex.align-items-center {
+    display: flex;
+    flex-direction: row;
+    align-items: center; /* Align items vertically in the center */
+    justify-content: space-between; /* Distribute items evenly across the row */
+}
+
+#removeTableFields .col-md-4.d-flex.align-items-center button,
+#removeTableFields .col-md-4.d-flex.align-items-center input[type="number"] {
+    margin: 0 5px; /* Add space between the elements */
+}
+
+#removeTableFields input[type="number"] {
+    width: 60%; /* Set a width for the number input field */
+}
+
+#removeTableFields .btn-outline-secondary {
+    width: 30%; /* Make buttons take up a reasonable width */
+}
+
+
+/* Custom styling for date and time picker */
+#bookingDate, #bookingTime {
+    font-size: 1rem;
+    padding: 12px;
+    border: 2px solid #007bff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 123, 255, 0.2);
+    outline: none;
+    transition: all 0.3s ease-in-out;
+}
+
+#bookingDate:focus, #bookingTime:focus {
+    border-color: #0056b3;
+    box-shadow: 0px 4px 12px rgba(0, 86, 179, 0.4);
+}
+
+.input-group-text {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 10px 0 0 10px;
+    font-size: 1.2rem;
+    padding: 12px 15px;
+}
+
+.input-group {
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.btn-outline-secondary {
+    border: 2px solid #6c757d;
+    border-radius: 10px;
+    font-size: 1.2rem;
+}
+
+.btn-outline-secondary:hover {
+    background-color: #6c757d;
+    color: #fff;
+}
+
+.btn-danger {
+    font-size: 1.2rem;
+    padding: 10px 30px;
+    border-radius: 10px;
+    transition: 0.3s ease-in-out;
+}
+
+.btn-danger:hover {
+    background-color: #dc3545;
+    box-shadow: 0px 4px 12px rgba(220, 53, 69, 0.4);
+}
+
+@media (max-width: 768px) {
+    #bookingDate, #bookingTime {
+        font-size: 0.9rem;
+        padding: 10px;
+    }
+
+    .input-group-text {
+        font-size: 1rem;
+    }
+}
+#date{
+    justify-self: center;
+}
+
+.reservation-message textarea {
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    font-size: 16px;
+    resize: none;
+    transition: all 0.3s ease-in-out;
+}
+
+.reservation-message textarea:focus {
+    border-color: #ff6347;
+    box-shadow: 0 0 10px rgba(255, 99, 71, 0.3);
+}
+
+span .input-group-text {
+    background: #ff6347;
+    color: white;
+    background-color: #ffffff;
+    border-radius: 8px 0 0 8px;
+    border: none;
+}
+input-group-text{
+    background-color: #ffffff;
+}
+
+
+
+
+/* Generate 360 View Section */
+#viewer {
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #777;
+}
+
+button#load360View {
+    background-color: #dc3545;
+    border-color: #dc3545;
+    color: #fff;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+button#load360View i {
+    font-size: 16px;
+}
+
+button#load360View:hover {
+    background-color: #b92e3c;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 60px; /* Adjust width for smaller screens */
+    }
+
+    .sidebar.expanded {
+        width: 200px;
+    }
+
+    .main-content {
+        margin-left: 60px; /* Adjust margin for smaller sidebar */
+    }
+
+    .sidebar.expanded ~ .main-content {
+        margin-left: 200px; /* Adjust margin for expanded sidebar */
+    }
+}

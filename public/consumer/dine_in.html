@@ -1,0 +1,345 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stakeholder Sidebar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <link rel="stylesheet" href="css/dine_in.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">   
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script src="./js/panolens.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/panolens@0.12.1/dist/panolens.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/105/three.min.js" integrity="sha512-uWKImujbh9CwNa8Eey5s8vlHDB4o1HhrVszkympkm5ciYTnUEQv3t4QHU02CUqPtdKTg62FsHo12x63q6u0wmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://pchen66.github.io/js/three/three.min.js"></script>
+    <script src="https://pchen66.github.io/js/panolens/panolens.min.js"></script>
+
+   
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="logo_content">
+            <div class="logo">
+                
+                <div class="logo_name">Khadok
+
+                </div>
+            </div>
+            <i class='bx bx-menu' id="btn"></i>
+        </div>
+        <ul class="nav_list">
+            <li>
+                
+                    <i class='bx bx-search-alt'></i>
+                    <input type="text" placeholder="Search...">
+                
+                <span class="tooltip">Search </span>
+            </li>
+            <li>
+                <a href="khadok.consumer.dashboard.html">
+                    <i class='bx bxs-grid-alt'></i>
+                    <span class="links_name">Dashboard</span>
+                </a>
+                <span class="tooltip">Dashboard</span>
+            </li>
+            <li>
+                <a href="khadok.consumer.user.html">
+                    <i class='bx bxs-user-circle'></i>
+                    <span class="links_name">User</span>
+                </a>
+                <span class="tooltip">User</span>
+            </li>
+            <li>
+                <a href="map.html">
+                    <i class='bx bx-navigation'></i>
+                    <span class="links_name">Map</span>
+                </a>
+                <span class="tooltip">Map</span>
+            </li>
+            <li>
+                <a href="khadok.consumer.chat.html">
+                    <i class='bx bxs-chat'></i>
+                    <span class="links_name">Messages</span>
+                </a>
+                <span class="tooltip">Messages</span>
+            </li>
+            <li>
+                <a href="khadok.consumer.order.html">
+                    <i class='bx bxs-package'></i>
+                    <span class="links_name">Orders</span>
+                </a>
+                <span class="tooltip">Orders</span>
+            </li>
+            <li>
+                <a href="khadok.consumer.cart.html">
+                    <i class='bx bxs-cart'></i>
+                    <span class="links_name">Cart</span>
+                </a>
+                <span class="tooltip">Cart</span>
+            </li>
+            <li>
+                <a href="khadok.consumer.setting.html">
+                    <i class='bx bxs-cog'></i>
+                    <span class="links_name">Settings</span>
+                </a>
+                <span class="tooltip">Settings</span>
+            </li>
+        </ul>
+        <div class="profile_content">
+            <div class="profile">
+                <div class="profile_details">
+                    <div class="name_job">
+                        <div class="name">Logout</div>
+                        <div class="job">Consumer</div>
+                    </div>
+                </div>
+                <button id="logoutButton" class="logout_button">
+                    <i class='bx bx-log-out-circle' id="log_out"></i>
+                    <span class="links_name">Logout</span>
+                </button>
+            </div>
+        </div>
+        
+    </div>
+
+
+        <!-- Main Content -->
+<div class="main-content">
+    <div class="container mt-4" id="upper">
+        <!-- Section 0: 3D Animated Floor and Table Count Display -->
+<div class="section mb-5" id="floorSection">
+    <h2 class="section-title text-center">Interactive 3D Floor</h2>
+    <div id="floor-Container"></div>
+    <div class="row">
+        <div class="col-md-4">
+            <div id="tableInfo">
+                <h4>Table Availability</h4>
+                <div id="tableCountDisplay" class="table-count-display">
+                    <div class="table-count-item">
+                        <div class="table-icon" style="background-color: #007bff;"></div>
+                        <p style="color: #007bff;">
+                            <strong>2 Person:</strong>
+                            <span id="twoPersonTable" data-table-type="2">0</span>
+                        </p>
+                    </div>
+                    <div class="table-count-item">
+                        <div class="table-icon" style="background-color: #198754;"></div>
+                        <p style="color: #198754;">
+                            <strong>4 Person:</strong>
+                            <span id="fourPersonTable" data-table-type="4">0</span>
+                        </p>
+                    </div>
+                    <div class="table-count-item">
+                        <div class="table-icon" style="background-color: #0DCAF0;"></div>
+                        <p style="color: #0DCAF0;">
+                            <strong>8 Person:</strong>
+                            <span id="eightPersonTable" data-table-type="8">0</span>
+                        </p>
+                    </div>
+                    <div class="table-count-item">
+                        <div class="table-icon" style="background-color: #FFC13C;"></div>
+                        <p style="color: #FFC13C;">
+                            <strong>16 Person:</strong>
+                            <span id="sixteenPersonTable" data-table-type="16">0</span>
+                        </p>
+                    </div>
+                    <div class="table-count-item">
+                        <div class="table-icon" style="background-color: #C82333;"></div>
+                        <p style="color: #C82333;">
+                            <strong>Round Table:</strong>
+                            <span id="roundTableTable" data-table-type="5">0</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <!-- New Bookable Table Section -->
+        <div class="col-md-4">
+            <div id="bookableTableInfo">
+                <h4>Bookable Table</h4>
+                <div id="bookableTableCountDisplay" class="table-count-display">
+                    <div class="table-count-item">
+                        <div class="table-icon" style="background-color: #007bff;"></div>
+                        <p style="color: #007bff;">
+                            <strong>2 Person:</strong>
+                            <span id="twoPersonBookable" data-booking="2">0</span>
+                        </p>
+                    </div>
+                    <div class="table-count-item">
+                        <div class="table-icon" style="background-color: #198754;"></div>
+                        <p style="color: #198754;">
+                            <strong>4 Person:</strong>
+                            <span id="fourPersonBookable" data-booking="4">0</span>
+                        </p>
+                    </div>
+                    <div class="table-count-item">
+                        <div class="table-icon" style="background-color: #0DCAF0;"></div>
+                        <p style="color: #0DCAF0;">
+                            <strong>8 Person:</strong>
+                            <span id="eightPersonBookable" data-booking="8">0</span>
+                        </p>
+                    </div>
+                    <div class="table-count-item">
+                        <div class="table-icon" style="background-color: #FFC13C;"></div>
+                        <p style="color: #FFC13C;">
+                            <strong>16 Person:</strong>
+                            <span id="sixteenPersonBookable" data-booking="16">0</span>
+                        </p>
+                    </div>
+                    <div class="table-count-item">
+                        <div class="table-icon" style="background-color: #C82333;"></div>
+                        <p style="color: #C82333;">
+                            <strong>Round Table:</strong>
+                            <span id="roundTableBookable" data-booking="5">0</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+
+        <!-- Section 3: Generating 360 View -->
+        <div class="section mb-5" id="view">
+            <h2 class="section-title text-center">Generate 360 Interior View</h2>
+            <div id="panolens-container" class="image-container" style="width: 100%; height: 500px;"></div>
+
+                <p class="text-muted">Restaurant 360 view </p>
+            </div>
+            
+        </div>
+
+        <div class="section mb-5" id="reserve">
+            <h2 class="section-title text-center">Book Tables from Restaurant</h2>
+            <form id="removeTableForm">
+                <div id="removeTableFields">
+                    <div class="row align-items-center mb-3">
+                        <div class="col-md-8">
+                            <div class="btn-group d-flex" role="group">
+                                <input type="radio" class="btn-check" name="removeTableType" id="removeTwoPerson" value="2" required>
+                                <label class="btn btn-outline-primary" for="removeTwoPerson"><i class="fas fa-chair"></i> 2 Person</label>
+        
+                                <input type="radio" class="btn-check" name="removeTableType" id="removeFourPerson" value="4">
+                                <label class="btn btn-outline-success" for="removeFourPerson"><i class="fas fa-couch"></i> 4 Person</label>
+        
+                                <input type="radio" class="btn-check" name="removeTableType" id="removeEightPerson" value="8">
+                                <label class="btn btn-outline-info" for="removeEightPerson"><i class="fas fa-table"></i> 8 Person</label>
+        
+                                <input type="radio" class="btn-check" name="removeTableType" id="removeSixteenPerson" value="16">
+                                <label class="btn btn-outline-warning" for="removeSixteenPerson"><i class="fas fa-table-cells"></i> 16 Person</label>
+        
+                                <input type="radio" class="btn-check" name="removeTableType" id="removeRoundTable" value="5">
+                                <label class="btn btn-outline-danger" for="removeRoundTable"><i class="fas fa-circle-notch"></i> Round Table(5)</label>
+                            </div>
+                        </div>
+                        <div class="col-md-4 d-flex align-items-center">
+                            <button type="button" class="btn btn-outline-secondary me-2" id="decrementTableCount">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <input type="number" class="form-control" id="removeTableCount" name="removeTableCount" placeholder="Remove Number of Tables" value="1" min="1" required>
+                            <button type="button" class="btn btn-outline-secondary ms-2" id="incrementTableCount">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+        
+                    <!-- Date and Time Picker Section -->
+                    <div class="row align-items-center mt-3">
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+                                <input type="date" id="bookingDate" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-clock"></i></span>
+                                <input type="time" id="bookingTime" class="form-control" required>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <!-- Reservation Message Section -->
+                    <div class="row align-items-center mt-3">
+                        <div class="col-12">
+                            <div class="input-group reservation-message">
+                                <span class="input-group-text"><i class="fas fa-comment-alt"></i></span>
+                                <textarea id="reservationMessage" class="form-control" rows="3" placeholder="Add a reservation message for the restaurant " required></textarea>
+                            </div>
+                        </div>
+                    </div>
+        
+                </div>
+                <div class="d-flex justify-content-end mt-3">
+                    <button type="submit" class="btn btn-danger" id="removeTableButton"><i class="fa fa-plus"></i> Book</button>
+                </div>
+            </form>
+        </div>
+        
+        
+
+    </div>
+</div>
+
+    
+
+    
+    
+
+
+
+<script>
+    document.getElementById('logoutButton').addEventListener('click', async () => {
+        try {
+            const response = await fetch('/auth/logout?type=consumer', {
+                method: 'GET',
+            });
+
+            if (response.ok) {
+                alert('Logout successful');
+                window.location.href = '../login.html';
+            } else {
+                alert('Error during logout');
+            }
+        } catch (error) {
+            console.error('Error logging out:', error);
+        }
+    });
+</script>
+
+<script>
+    // Set the minimum date to today
+    document.addEventListener("DOMContentLoaded", function () {
+        let today = new Date().toISOString().split('T')[0];
+        document.getElementById("bookingDate").setAttribute("min", today);
+    });
+</script>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="./js/dine_in.js"></script>
+<script>
+    let btn = document.querySelector("#btn"); 
+    let sidebar = document.querySelector(".sidebar");
+    let searchBtn = document.querySelector(".bx-search-alt");  
+
+    btn.onclick = function(){
+        sidebar.classList.toggle("active");
+    }
+    searchBtn.onclick = function(){
+        sidebar.classList.toggle("active");
+    }
+</script>
+</body>
+</html>

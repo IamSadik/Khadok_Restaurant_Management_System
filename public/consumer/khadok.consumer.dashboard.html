@@ -57,7 +57,7 @@
             <li>
                 <a href="map.html">
                     <i class='bx bx-navigation'></i>
-                    <span class="links_name">User</span>
+                    <span class="links_name">Map</span>
                 </a>
                 <span class="tooltip">Map</span>
             </li>
@@ -110,7 +110,7 @@
     <div class="home_content">
     <div class="dashboard-container">
         <div class="user-info">
-            <p id="userEmail">Fetching user info...</p>
+            <p hidden id="userEmail">Fetching user info...</p>
         </div>
         
         <header>
@@ -169,7 +169,57 @@
             </div>
         </section>
         <div id="active-orders-section"></div>
-
+        <section id="restaurant-section">
+            <h2>Restaurants</h2>
+            <div class="filter-container">
+                <label>Sort By:</label>
+                <div class="radio-group">
+                    <label class="radio-option">
+                        <input type="radio" name="sort-option" value="relevance" checked />
+                        Relevance
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="sort-option" value="ratings" />
+                        Ratings
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="sort-option" value="name" />
+                        Name
+                    </label>
+                </div>
+            </div>
+            <div id="restaurants-container" class="restaurants-container">
+                <p>Loading restaurants...</p>
+            </div>
+        </section>
+        
+        <section id="dinein-section">
+            <h2>Dine In Restaurants</h2>
+            <div class="filter-container">
+                <label>Sort By:</label>
+                <div class="radio-group">
+                    <label class="radio-option">
+                        <input type="radio" name="dinein-sort-option" value="relevance" checked />
+                        Relevance
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="dinein-sort-option" value="ratings" />
+                        Ratings
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="dinein-sort-option" value="name" />
+                        Name
+                    </label>
+                </div>
+            </div>
+            <div id="dinein-restaurants-container" class="restaurants-container">
+                <p>Loading restaurants...</p>
+            </div>
+        </section>
+        
+        
+        
+        
     </div>
     </div>
     
@@ -280,14 +330,12 @@
     });
 </script>
 
+
 <script>
-    // Fetch logged-in email
+    // Function to fetch and display the logged-in user's email
     async function fetchEmail() {
         try {
-            const response = await fetch('/auth/email?type=consumer', {
-                method: 'GET',
-            });
-
+            const response = await fetch('/auth/email?type=consumer');
             if (response.ok) {
                 const data = await response.json();
                 if (data.email) {
@@ -306,9 +354,32 @@
         }
     }
 
-    // Call the function on page load
-    fetchEmail();
+    // Function to fetch the consumer ID from the session
+    async function fetchConsumerId() {
+        try {
+            const response = await fetch('/auth/consumer-id'); // Updated to use session
+            const data = await response.json();
+
+            if (data.success) {
+                console.log('Logged-in consumer ID:', data.consumer_id);
+                localStorage.setItem('consumer_id', data.consumer_id);  // Save to local storage
+            } else {
+                console.error('Error fetching consumer ID:', data.message);
+            }
+        } catch (error) {
+            console.error('Error fetching consumer ID:', error);
+        }
+    }
+    
+
+    // Call the functions on page load
+    document.addEventListener('DOMContentLoaded', function () {
+        fetchEmail();
+        fetchConsumerId();
+    });
 </script>
+
+
    
 
 </body>

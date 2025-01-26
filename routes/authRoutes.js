@@ -37,6 +37,14 @@ router.get('/stakeholder-id', (req, res) => {
         return res.status(401).json({ error: 'Not authenticated or session expired' });
     }
 });
+router.get('/consumer-id', (req, res) => {
+    if (req.session && req.session.user && req.session.user.type === 'consumer') {
+        res.json({ success: true, consumer_id: req.session.user.id });
+    } else {
+        res.status(401).json({ success: false, message: 'Unauthorized' });
+    }
+});
+
 
 
 

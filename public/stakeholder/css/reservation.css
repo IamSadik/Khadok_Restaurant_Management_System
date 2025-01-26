@@ -1,0 +1,340 @@
+html{
+    font-size: 80%;
+}
+/* General styles */
+body {
+    margin: 0;
+    font-family: Poppins, sans-serif;
+}
+
+/* Sidebar styles */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 80px; /* Default collapsed width */
+    height: 100%;
+    background-color: #2a3d66; /* Main sidebar color */
+    color: #f0f0f0;
+    transition: width 0.3s ease-in-out;
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center-align icons */
+}
+
+.sidebar.expanded {
+    width: 260px; /* Expanded width */
+    align-items: flex-start; /* Align to left for expanded state */
+}
+
+
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%; /* Full width for clickable area */
+    text-decoration: none;
+    
+}
+
+.sidebar ul li {
+    position: relative; /* Position for tooltip */
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center icons in collapsed state */
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out, transform 0.2s;
+    text-decoration: none;
+    color: #f0f0f0; /* Ensure consistent text color */
+    list-style: none;
+}
+
+
+.sidebar.expanded ul li {
+    justify-content: flex-start; /* Align to left in expanded state */
+    
+}
+
+.sidebar ul li i {
+    font-size: 1.2rem;
+    
+}
+
+.sidebar ul li a{
+    list-style: none;
+    text-decoration: none;
+    color: #f0f0f0;
+
+}
+
+.sidebar ul li span {
+    display: none; /* Hide names in collapsed state */
+    text-decoration: none; /* Remove underline */
+    
+}
+
+.sidebar.expanded ul li span {
+    display: inline; /* Show names in expanded state */
+    margin-left: 15px; /* Add space for expanded state */
+    text-decoration: none;
+}
+
+/* Tooltip for hover in collapsed mode only */
+.sidebar:not(.expanded) ul li:hover::after {
+    content: attr(data-title); /* Display the text from the data-title attribute */
+    position: absolute;
+    left: 90px;
+    top: 50%;
+    transform: translateY(-50%) scale(0.8); /* Smooth animation */
+    background-color: #4c5a88; /* Tooltip background */
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    white-space: nowrap;
+    font-size: 0.9rem;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    
+}
+
+.sidebar:not(.expanded) ul li:hover::after {
+    opacity: 1;
+    transform: translateY(-50%) scale(1); /* Grow animation */
+    
+
+}
+
+/* Sidebar hover effects */
+.sidebar ul li:hover {
+    background-color: #4c5a88; /* New hover color */
+    transform: scale(1.05);
+    text-decoration: none; /* Ensure no underline on hover */
+}
+
+/* Toggle button styles */
+.toggle-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 15px 20px;
+    background-color: #1f2c4a;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.toggle-btn i {
+    font-size: 1.5rem;
+}
+
+.toggle-btn:hover {
+    background-color: #354870; /* Hover effect */
+}
+
+  /* Logout button styles */
+  .logout-btn {
+    margin-top: auto; /* Push to bottom */
+    width: 100%;
+    text-align: center;
+    padding: 15px 0;
+    background-color: #1f2c4a;
+    color: #f0f0f0;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    align-items: center;
+}
+
+.logout-btn:hover {
+    background-color: #354870;
+}
+
+.logout-btn i {
+    font-size: 1.2rem;
+    margin-right: 10px;
+}
+/* Page content adjustment */
+.main-content {
+    margin-left: 80px; /* Adjusted for default collapsed state */
+    padding: 20px;
+    transition: margin-left 0.3s ease-in-out;
+}
+
+.main-content.expanded {
+    margin-left: 260px; /* Adjusted for expanded state */
+}
+
+
+/* Reservation Container */
+.reservation-container {
+    display: flex;
+    gap: 20px;
+    margin-top: 40px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+/* Reservation Sidebar */
+.reservation-sidebar {
+    flex: 1;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-right: 10px;
+}
+
+.reservation-sidebar-header {
+    padding: 15px;
+    background-color: #007bff;
+    color: #fff;
+    text-align: center;
+}
+
+.reservation-filter {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.reservation-filter-btn {
+    padding: 8px 16px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.reservation-filter-btn.active {
+    background-color: #0056b3;
+}
+
+.reservation-list {
+    padding: 15px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.reservation-item {
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: #fff;
+}
+
+.reservation-item:hover {
+    background-color: #f0f0f0;
+}
+/* Reservation Sidebar */
+.reservation-filter {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+/* Filter Buttons */
+.reservation-filter-btn {
+    padding: 8px 16px;
+    border: none;
+    background-color: #007bff; /* Default button color */
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+/* Active Button Style */
+.reservation-filter-btn.active {
+    background-color: #0056b3; /* Active background color */
+}
+
+/* Non-active Button Style */
+.reservation-filter-btn:not(.active) {
+    background-color: #007bff; /* Non-active background color */
+    opacity: 0.6; /* Slightly faded for non-active buttons */
+}
+
+/* Reservation Item */
+.reservation-item {
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: #fff;
+}
+
+/* Hover effect for reservation item */
+.reservation-item:hover {
+    background-color: #f0f0f0;
+}
+
+/* Reservation Details */
+.reservation-details {
+    flex: 2;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.reservation-info .placeholder {
+    text-align: center;
+    color: #aaa;
+    gap: 10px;
+}
+
+.reservation-info i {
+    font-size: 50px;
+    margin-bottom: 10px;
+}
+
+
+/* Button Styling */
+.change-complete-btn {
+    background-color: #28a745; /* Green color */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 30px; /* Rounded corners */
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.change-complete-btn i {
+    margin-right: 8px; /* Space between the icon and text */
+}
+
+/* Hover Effect */
+.change-complete-btn:hover {
+    background-color: #218838; /* Darker green when hovered */
+    transform: translateY(-2px); /* Slightly raise the button */
+}
+
+/* Focus Effect */
+.change-complete-btn:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(40, 167, 69, 0.6); /* Green glow on focus */
+}
+
+/* Disabled State */
+.change-complete-btn:disabled {
+    background-color: #6c757d; /* Gray color */
+    cursor: not-allowed;
+}

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservations - Khadok</title>
+    <link rel="stylesheet" href="css/reservation.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <button class="toggle-btn" id="toggle-btn">
+            <i class="fas fa-bars"></i>
+        </button>
+        <ul>
+            <a href="khadok.stakeholder.index.html"><li data-title="Dashboard"><i class="fas fa-home"></i> <span>Dashboard</span></li></a>
+            <a href="menu.html"><li data-title="Menu Management"><i class="fas fa-utensils"></i> <span>Menu Management</span></li></a>
+            <a href="./interior-setup.html"><li data-title="3D Interior View"><i class="fas fa-cube"></i> <span>3D Interior View</span></li></a>
+            <li data-title="Live Kitchen Feed"><i class="fas fa-video"></i> <span>Live Kitchen Feed</span></li>
+            <li data-title="Orders"><i class="fas fa-box"></i> <span>Orders</span></li>
+            <a href="reservation.html"><li data-title="Reservations"><i class="fas fa-calendar-check"></i> <span>Reservations</span></li></a>
+            <li data-title="Reviews & Feedback"><i class="fas fa-comment-alt"></i> <span>Reviews & Feedback</span></li>
+            <li data-title="Analytics"><i class="fas fa-chart-line"></i> <span>Analytics</span></li>
+            <li data-title="Promotions"><i class="fas fa-tags"></i> <span>Promotions</span></li>
+            <li data-title="Profile"><i class="fas fa-user"></i> <span>Profile</span></li>
+            <li data-title="Settings"><i class="fas fa-cog"></i> <span>Settings</span></li>
+        </ul>
+        <div class="logout-btn" id="logoutButton">
+            <i class="fas fa-sign-out-alt"></i>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <h1>Reservations</h1>
+
+        <div class="reservation-container">
+            <!-- Reservation Sidebar -->
+            <div class="reservation-sidebar">
+                <div class="reservation-sidebar-header">
+                    <h3>Your Reservations</h3>
+                    <div class="reservation-filter">
+                        <button id="all-reservation-filter" class="reservation-filter-btn active">All</button>
+                        <button id="upcoming-reservation-filter" class="reservation-filter-btn">Upcoming</button>
+                        <button id="past-reservation-filter" class="reservation-filter-btn">Past</button>
+                    </div>
+                </div>
+                <div class="reservation-list" id="reservation-list">
+                    <!-- Reservations will be dynamically loaded here -->
+                </div>
+            </div>
+
+            <!-- Reservation Details Area -->
+            <div class="reservation-details">
+                <div class="reservation-header">
+                    <h4>Reservation Details</h4>
+                </div>
+                <div class="reservation-info" id="reservation-info">
+                    <div class="placeholder">
+                        <i class="fas fa-calendar-alt"></i>
+                        <p>Select a reservation to view details</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./js/reservation.js"></script>
+    <script>
+        document.getElementById('logoutButton').addEventListener('click', async () => {
+            try {
+                const response = await fetch('/auth/logout?type=stakeholder', {
+                    method: 'GET',
+                });
+    
+                if (response.ok) {
+                    alert('Logout successful');
+                    window.location.href = '../login.html';
+                } else {
+                    alert('Error during logout');
+                }
+            } catch (error) {
+                console.error('Error logging out:', error);
+            }
+        });
+    </script>
+     <script>
+        // JavaScript for Sidebar Toggle
+        const toggleBtn = document.getElementById('toggle-btn');
+        const sidebar = document.getElementById('sidebar');
+        const mainContent = document.querySelector('.main-content'); // Fix to target the main content correctly
+
+        toggleBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('expanded');
+            mainContent.classList.toggle('expanded');
+        });
+    </script>
+</body>
+</html>

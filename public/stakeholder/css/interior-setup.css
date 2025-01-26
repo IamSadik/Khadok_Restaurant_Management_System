@@ -203,16 +203,19 @@ body {
 /* Floor Section Styles */
 #floorSection {
     display: flex;
-    flex-wrap: wrap; /* Ensure proper alignment on smaller screens */
-    justify-content: space-between; /* Space between 3D floor and table info */
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    justify-content: center; /* Center elements inside the section */
     align-items: flex-start; /* Align items at the top */
     gap: 20px; /* Space between elements */
+    max-width: 100%;
+    overflow: hidden; /* Prevent content overflow */
 }
 #floor-Container {
     position: relative;
-    width: 100%;
-    height: 500px;  /* Adjust based on the design */
-    background-color: #f4f4f4;  /* Light background color */
+    
+    max-width: 100%;
+    height: 500px;  /* Keep fixed height */
+    background-color: #f4f4f4;
     border-radius: 15px;
     overflow: hidden;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -225,10 +228,50 @@ body {
     margin: 0 auto;
 }
 
-.col-md-4{
-    display: inline-block;
-    width: 600px;
+/* Responsive table info container */
+.row {
     
+    display: flex;
+    flex-wrap: nowrap; /* Prevent stacking */
+    flex-direction: row;
+    justify-content: center; /* Center items side by side */
+    gap: 20px;
+    width: 100%;
+    max-width: 1000px;  /* Ensure it doesn't exceed floor section */
+    position: relative;
+}
+
+.col-md-4 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    max-width: 100%;  /* Prevent overflow */
+}
+/* Table info and bookable table styles */
+#tableInfo, #bookableTableInfo {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;  /* Ensure items wrap on smaller screens */
+    justify-content: space-around;
+    width: 100%;
+    max-width: 480px;  /* Limit max size */
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    box-sizing: border-box; /* Include padding in width calculations */
+}
+
+/* Ensure proper alignment within both sections */
+#tableCountDisplay, #bookableTableCountDisplay {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    width: 100%;
 }
 
 #tableInfo {
@@ -299,7 +342,26 @@ p {
     border-radius: 10px;
     padding: 20px;
 }
+#tableFields .row {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap; /* Prevent wrapping to a new line */
+    gap: 15px; /* Add spacing between the columns */
+}
+#tableFields .col-md-8, 
+#tableFields .col-md-4 {
+    flex: 1; /* Allow columns to take equal space */
+    max-width: 50%; /* Limit the width to 50% each */
+}
 
+#tableFields .btn-group {
+    width: 100%; /* Make sure button group stretches fully */
+}
+
+#tableFields input[type="number"] {
+    width: 70%; /* Ensure input field uses full width */
+    margin-left: 150px;
+}
 .btn-group .btn {
     display: flex;
     align-items: center;
@@ -457,6 +519,53 @@ button[type="submit"]:hover {
     max-width: 100px;
     text-align: center;
 }
+#removeTableFields .row {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Add spacing between the columns */
+    margin-left: 10px;
+}
+
+#removeTableFields .col-md-8 {
+    flex: 1;
+    max-width: 65%; /* Take up 2/3 of the row */
+    margin-right: 20px;
+}
+
+#removeTableFields .col-md-4.d-flex.align-items-center {
+    flex: 1;
+    max-width: 33.3333%; /* Take up 1/3 of the row */
+    margin-left: 60px;
+    margin-right: 10px;
+}
+
+#removeTableFields .btn-group {
+    width: 100%; /* Make sure button group stretches fully */
+}
+
+#removeTableFields input[type="number"] {
+    width: 100%; /* Ensure input field uses full width */
+}
+#removeTableFields .col-md-4.d-flex.align-items-center {
+    display: flex;
+    flex-direction: row;
+    align-items: center; /* Align items vertically in the center */
+    justify-content: space-between; /* Distribute items evenly across the row */
+}
+
+#removeTableFields .col-md-4.d-flex.align-items-center button,
+#removeTableFields .col-md-4.d-flex.align-items-center input[type="number"] {
+    margin: 0 5px; /* Add space between the elements */
+}
+
+#removeTableFields input[type="number"] {
+    width: 60%; /* Set a width for the number input field */
+}
+
+#removeTableFields .btn-outline-secondary {
+    width: 30%; /* Make buttons take up a reasonable width */
+}
+
 
 
 

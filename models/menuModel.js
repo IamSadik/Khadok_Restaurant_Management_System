@@ -80,8 +80,38 @@ const getMenuItemsByStakeholder = (stakeholder_id, callback) => {
     });
 };
 
-module.exports = {
-    getMenuItemsByStakeholder
+
+// Model to fetch menu items for a restaurant
+const fetchMenuByRestaurant = (stakeholder_id) => {
+    return new Promise((resolve, reject) => {
+        const query = `
+            SELECT 
+                menu_id, 
+                item_name, 
+                category, 
+                item_price, 
+                description, 
+                item_picture 
+            FROM 
+                menu 
+            WHERE 
+                stakeholder_id = ?
+        `;
+
+        db.query(query, [stakeholder_id], (err, results) => {
+            if (err) {
+                console.error("Database error:", err);
+                reject(err);
+            } else {
+                resolve(results);
+            }
+        });
+    });
+};
+const getMenuItemsByRestaurant = async (restaurantId) => {
+    const query = 'SELECT * FROM menu WHERE stakeholder_id = ?';
+    return await executeQuery(query, [restaurantId]);
 };
 
-module.exports = { getMenuItems, getMenuItemById, addMenuItem, updateMenuItem, deleteMenuItem };
+
+module.exports = { getMenuItems, getMenuItemById, addMenuItem, updateMenuItem, deleteMenuItem, fetchMenuByRestaurant , getMenuItemsByStakeholder};

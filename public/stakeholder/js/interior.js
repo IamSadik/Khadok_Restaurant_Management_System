@@ -371,3 +371,28 @@ document.getElementById("load360View").addEventListener("click", async () => {
         alert("Failed to delete 360 view. Please try again.");
     }
 });
+
+
+
+//Bookable tables info
+document.addEventListener('DOMContentLoaded', () => {
+    fetch('/interior/fetch-bookable-info')
+        .then(response => {
+            console.log('Fetch response status:', response.status);
+            return response.json();
+        })
+        .then(data => {
+            console.log('Fetched bookable data:', data);
+
+            if (data.success) {
+                const bookableData = data.data;
+                document.querySelectorAll('[data-booking]').forEach(span => {
+                    const bookingType = span.getAttribute('data-booking');
+                    span.textContent = bookableData[bookingType] || 0; // Default to 0 if not found
+                });
+            } else {
+                console.error('Failed to fetch bookable data:', data.error);
+            }
+        })
+        .catch(error => console.error('Error fetching bookable data:', error));
+});

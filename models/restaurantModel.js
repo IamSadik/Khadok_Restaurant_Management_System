@@ -54,5 +54,26 @@ const searchRestaurants = async (searchQuery) => {
         throw error;
     }
 };
+const getAllRestaurantsModel = async (sortBy) => {
+    return new Promise((resolve, reject) => {
+        let query = `SELECT stakeholder_id, restaurant_name, ratings FROM stakeholder`;
 
-  module.exports = { getTopRatedRestaurantsFromDB , searchRestaurants};
+        // Apply sorting based on the query parameter
+        if (sortBy === 'ratings') {
+            query += ` ORDER BY ratings DESC`;
+        } else if (sortBy === 'name') {
+            query += ` ORDER BY restaurant_name ASC`;
+        }
+
+        pool.query(query, (error, results) => {
+            if (error) {
+                return reject(error);
+            }
+            resolve(results);
+        });
+    });
+};
+
+
+
+  module.exports = { getTopRatedRestaurantsFromDB , searchRestaurants, getAllRestaurantsModel};

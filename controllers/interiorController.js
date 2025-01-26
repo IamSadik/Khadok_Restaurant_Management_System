@@ -1,4 +1,4 @@
-const { addTableToDB, uploadImageToDB, getImageFromDB, removeTableFromDB } = require('../models/interiorModel');
+const { addTableToDB, uploadImageToDB, getImageFromDB, removeTableFromDB, fetchConsumerBookableTableInfoFromDB, fetchBookableInfoFromDB } = require('../models/interiorModel');
 const { fetchTableInfoFromDB } = require('../models/interiorModel');
 const { deleteImageFromDB } = require("../models/interiorModel");
 
@@ -121,6 +121,98 @@ exports.getTableInfo = (req, res) => {
     fetchTableInfoFromDB(stakeholderId, (err, tableData) => {
         if (err) {
             console.error('Error fetching table data:', err);
+            return res.status(500).json({ success: false, error: 'Server error' });
+        }
+
+        res.status(200).json({ success: true, data: tableData || {} });
+    });
+};
+
+
+// Controller function to fetch consumer table info
+exports.getConsumerTableInfo = (req, res) => {
+    const { restaurantId } = req.query;
+
+    if (!restaurantId) {
+        console.error('Bad request: No restaurant ID provided.');
+        return res.status(400).json({ success: false, error: 'Restaurant ID is required' });
+    }
+
+    // Fetch table data from model
+    fetchTableInfoFromDB(restaurantId, (err, tableData) => {
+        if (err) {
+            console.error('Error fetching consumer table data:', err);
+            return res.status(500).json({ success: false, error: 'Server error' });
+        }
+
+        res.status(200).json({ success: true, data: tableData || {} });
+    });
+};
+
+
+// Get 360 image for consumers
+exports.getConsumerInteriorImage = async (req, res) => {
+    try {
+        const restaurantId = req.query.restaurantId; // Get restaurant ID from query
+
+        if (!restaurantId) {
+            console.error('Bad request: No restaurant ID provided.');
+            return res.status(400).json({ success: false, message: 'Restaurant ID is required.' });
+        }
+
+        const image = await getImageFromDB(restaurantId); // Fetch the image from the DB
+
+        if (!image) {
+            return res.status(404).json({ success: false, message: 'Image not found.' });
+        }
+
+        // Return the image URL (assumes you're serving static files from 'uploads')
+        const imageUrl = `/uploads/${image}`;
+        console.log('Image URL:', imageUrl);
+
+        res.status(200).json({ success: true, imageUrl });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ success: false, message: 'Failed to fetch image.' });
+    }
+};
+
+
+// Controller function to fetch bookable table info
+exports.getConsumerBookableInfo = (req, res) => {
+    const { restaurantId } = req.query;
+
+    if (!restaurantId) {
+        console.error('Bad request: No restaurant ID provided.');
+        return res.status(400).json({ success: false, error: 'Restaurant ID is required' });
+    }
+
+    // Fetch bookable table data from model
+    fetchConsumerBookableTableInfoFromDB(restaurantId, (err, bookableData) => {
+        if (err) {
+            console.error('Error fetching bookable table data:', err);
+            return res.status(500).json({ success: false, error: 'Server error' });
+        }
+
+        res.status(200).json({ success: true, data: bookableData || {} });
+    });
+};
+
+
+// Controller function to fetch bookable info for stakeholder
+exports.getBookableInfo = (req, res) => {
+    // Validate session and fetch stakeholder ID
+    const stakeholderId = req.session?.user?.id;
+
+    if (!stakeholderId) {
+        console.error('Unauthorized access: No stakeholder ID in session.');
+        return res.status(401).json({ success: false, error: 'Unauthorized access' });
+    }
+
+    // Fetch table bookable data from model
+    fetchBookableInfoFromDB(stakeholderId, (err, tableData) => {
+        if (err) {
+            console.error('Error fetching bookable data:', err);
             return res.status(500).json({ success: false, error: 'Server error' });
         }
 

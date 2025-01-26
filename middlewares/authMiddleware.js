@@ -6,3 +6,6 @@ const isStakeholderLoggedIn = (req, res, next) => {
 };
 
 module.exports = { isStakeholderLoggedIn };
+
+
+

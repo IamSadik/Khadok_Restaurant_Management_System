@@ -1,8 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const menuController = require('../controllers/menuController');
-
+const { getMenuByRestaurant } = require('../controllers/menuController');
 const upload = require('../utils/imageProcessing');
+
+
+
 
 // Routes
 router.get('/', menuController.getMenuItems);
@@ -36,6 +39,7 @@ router.get('/menu-builder', (req, res) => {
     }
 });
 
-
+// Route to fetch menu by restaurant ID
+router.get('/:stakeholder_id', getMenuByRestaurant);
 
 module.exports = router;

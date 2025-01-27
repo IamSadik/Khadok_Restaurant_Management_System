@@ -25,5 +25,7 @@ router.delete('/cart/delete/:itemId', deleteCartItem);
 
 router.get('/details/:consumer_id', getConsumerDetails); // Add route to get consumer details
 
+
+
 // Export the router
 module.exports = router;

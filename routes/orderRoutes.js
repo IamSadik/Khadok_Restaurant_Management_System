@@ -4,7 +4,7 @@ const { bookTable, getReservations } = require("../controllers/orderController")
 const { updateReservationStatus, updateInteriorBookable , placePickupOrder , getPickupOrders, getConsumerReservations } = require('../controllers/orderController');
 
 const { getOrdersByStakeholderId, getPickupsByStakeholderId } = require("../controllers/orderController");
-
+const { placeDeliveryOrder } = require('../controllers/orderController');
 
 router.post('/book-table', bookTable);
 
@@ -68,6 +68,8 @@ router.get("/", async (req, res) => {
         res.status(500).json({ success: false, message: "Failed to fetch orders." });
     }
 });
+
+router.post('/delivery', placeDeliveryOrder);
 
 
 module.exports = router;

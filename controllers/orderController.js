@@ -3,6 +3,9 @@ const Consumer = require("../models/consumerModel");
 const Pickup = require('../models/orderModel');
 const Cart = require('../models/orderModel'); // Assuming you have a cart model for database operations
 const fetch = require('node-fetch');
+
+const Delivery = require('../models/orderModel');
+
 const db = require('../config/configdb');
 const bookTable = async (req, res) => {
     try {
@@ -264,4 +267,38 @@ const getPickupsByStakeholderId = async (stakeholderId, status) => {
     }
 };
 
-module.exports = { getReservations, bookTable , updateReservationStatus, updateInteriorBookable, placePickupOrder,getPickupOrders, getConsumerReservations, getOrdersByStakeholderId , getPickupsByStakeholderId};
+// Controller function to place a delivery order
+const placeDeliveryOrder = async (req, res) => {
+    try {
+        const { consumer_id, total_amount, stakeholder_id } = req.body;
+
+        if (!consumer_id || !total_amount || !stakeholder_id) {
+            return res.status(400).json({ success: false, message: 'Missing required fields.' });
+        }
+
+        const orderData = {
+            consumer_id,
+            total_amount,
+            stakeholder_id
+        };
+
+        // Insert into orders and delivery tables
+        const result = await Order.createDeliveryOrder(orderData);
+
+        if (result.orderId && result.deliveryId) {
+            res.status(201).json({
+                success: true,
+                message: 'Delivery order placed successfully, and cart cleared.',
+                orderId: result.orderId,
+                deliveryId: result.deliveryId
+            });
+        } else {
+            res.status(500).json({ success: false, message: 'Failed to place delivery order.' });
+        }
+    } catch (error) {
+        console.error('Error placing delivery order:', error);
+        res.status(500).json({ success: false, message: 'Internal server error.' });
+    }
+};
+
+module.exports = { getReservations, bookTable , updateReservationStatus, updateInteriorBookable, placePickupOrder,getPickupOrders, getConsumerReservations, getOrdersByStakeholderId , getPickupsByStakeholderId, placeDeliveryOrder };

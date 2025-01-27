@@ -83,6 +83,7 @@ const createPickupOrder = (pickupData) => {
         });
     });
 };
+
 // Function to clear all items in the cart for a specific consumer
 const clearCart = (consumer_id) => {
     return new Promise((resolve, reject) => {
@@ -194,6 +195,60 @@ const getPickups = (stakeholderId, status) => {
         });
     });
 };
+
+
+// Function to insert into orders and delivery tables
+const createDeliveryOrder = async (orderData) => {
+    return new Promise((resolve, reject) => {
+        // First, insert into orders table
+        const orderQuery = `
+            INSERT INTO orders (stakeholder_id, consumer_id, order_date, status, total_amount)
+            VALUES (?, ?, NOW(), ?, ?)
+        `;
+
+        const orderValues = [
+            orderData.stakeholder_id,
+            orderData.consumer_id,
+            'pending',  // Default status
+            orderData.total_amount
+        ];
+
+        db.query(orderQuery, orderValues, (err, orderResult) => {
+            if (err) {
+                reject(err);
+            } else {
+                const orderId = orderResult.insertId; // Get the inserted order ID
+
+                // Now, insert into delivery table using the newly created order_id
+                const deliveryQuery = `
+                    INSERT INTO delivery (consumer_id, status, total_amount, rider_id)
+VALUES (?, ?, ?, 0)
+
+                `;
+
+                const deliveryValues = [
+                    orderData.consumer_id,
+                    'pending',  // Default status
+                    orderData.total_amount
+                ];
+
+                db.query(deliveryQuery, deliveryValues, (err, deliveryResult) => {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        resolve({
+                            orderId: orderId,
+                            deliveryId: deliveryResult.insertId
+                        });
+                    }
+                });
+            }
+        });
+    });
+};
+
+
+
 module.exports = {
     getTableAvailability,
     bookDineInTable,
@@ -202,5 +257,5 @@ module.exports = {
     createPickupOrder ,
     clearCart,
     getPickupOrders,
-    getDineInReservations2, getOrders, getPickups
+    getDineInReservations2, getOrders, getPickups, createDeliveryOrder
 };

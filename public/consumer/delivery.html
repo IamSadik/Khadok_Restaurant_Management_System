@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delivery</title>
+    <link rel="stylesheet" href="css/pickup.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">   
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+</head>
+<body>
+
+    <div class="sidebar">
+        <div class="logo_content">
+            <div class="logo">
+                
+                <div class="logo_name">Khadok
+
+                </div>
+            </div>
+            <i class='bx bx-menu' id="btn"></i>
+        </div>
+        <ul class="nav_list">
+            <li>
+                
+                    <i class='bx bx-search-alt'></i>
+                    <input type="text" placeholder="Search...">
+                
+                <span class="tooltip">Search </span>
+            </li>
+            <li>
+                <a href="khadok.consumer.dashboard.html">
+                    <i class='bx bxs-grid-alt'></i>
+                    <span class="links_name">Dashboard</span>
+                </a>
+                <span class="tooltip">Dashboard</span>
+            </li>
+            <li>
+                <a href="khadok.consumer.user.html">
+                    <i class='bx bxs-user-circle'></i>
+                    <span class="links_name">User</span>
+                </a>
+                <span class="tooltip">User</span>
+            </li>
+            <li>
+                <a href="map.html">
+                    <i class='bx bx-navigation'></i>
+                    <span class="links_name">Map</span>
+                </a>
+                <span class="tooltip">Map</span>
+            </li>
+           
+            <li>
+                <a href="khadok.consumer.order.html">
+                    <i class='bx bxs-package'></i>
+                    <span class="links_name">Orders</span>
+                </a>
+                <span class="tooltip">Orders</span>
+            </li>
+            
+            <li>
+                <a href="khadok.consumer.setting.html">
+                    <i class='bx bxs-cog'></i>
+                    <span class="links_name">Settings</span>
+                </a>
+                <span class="tooltip">Settings</span>
+            </li>
+        </ul>
+        <div class="profile_content">
+            <div class="profile">
+                <div class="profile_details">
+                    <div class="name_job">
+                        <div class="name">Logout</div>
+                        <div class="job">Consumer</div>
+                    </div>
+                </div>
+                <button id="logoutButton" class="logout_button">
+                    <i class='bx bx-log-out-circle' id="log_out"></i>
+                    <span class="links_name">Logout</span>
+                </button>
+            </div>
+        </div>
+        
+    </div>
+
+    <div class="main-content">
+        <h1 style="font-family: Poppins, sans-serif; justify-self: center; font-weight: large;">Delivery</h1>
+    
+
+
+    <!-- Cart Section -->
+    <div class="cart-container">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <span id="cart-count" class="cart-count">0</span>
+        </div>
+        <ul id="cart-items" class="cart-items-list">
+            <!-- Cart items will be dynamically inserted here -->
+        </ul>
+        <div class="cart-footer">
+            <p><strong>Subtotal:</strong> $<span id="cart-subtotal">0.00</span></p>
+        </div>
+    </div>
+
+
+    <section id="payment-method">
+        <h2><i class="fas fa-credit-card"></i> Payment Method</h2>
+        
+        <div class="payment-option">
+            <label for="cod">
+                <input type="radio" id="cod" name="payment" value="COD" checked>
+                <span class="custom-radio"></span>
+                Cash on Delivery (COD)
+            </label>
+        </div>
+    
+        <button id="place-pickup-btn">
+            <i class="fas fa-check-circle"></i> Place Order
+        </button>
+    </section>
+    
+    
+
+
+</div>
+
+
+  
+    <script>
+        let btn = document.querySelector("#btn"); 
+        let sidebar = document.querySelector(".sidebar");
+        let searchBtn = document.querySelector(".bx-search-alt");  
+
+        btn.onclick = function(){
+            sidebar.classList.toggle("active");
+        }
+        searchBtn.onclick = function(){
+            sidebar.classList.toggle("active");
+        }
+    </script>
+    <script>
+        document.getElementById('logoutButton').addEventListener('click', async () => {
+            try {
+                const response = await fetch('/auth/logout?type=consumer', {
+                    method: 'GET',
+                });
+    
+                if (response.ok) {
+                    alert('Logout successful');
+                    window.location.href = '../login.html';
+                } else {
+                    alert('Error during logout');
+                }
+            } catch (error) {
+                console.error('Error logging out:', error);
+            }
+        });
+    </script>
+    <script src="./js/delivery.js"></script>
+</body>
+</html>

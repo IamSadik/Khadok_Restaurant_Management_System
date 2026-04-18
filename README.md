@@ -6,7 +6,18 @@
 <p align="center">
   <img src="https://readme-typing-svg.herokuapp.com?font=Poppins&size=30&duration=3000&pause=1000&color=00C2FF&center=true&vCenter=true&width=900&lines=🍽️+Khadok;Smart+Food+Delivery+%7C+Pickup+%7C+Dine-In+Platform;Built+for+the+Future+of+Restaurants+in+Bangladesh" />
 </p>
+🌐 Live Demo
 
+🚀 Experience the live frontend deployment of **Khadok – Smart Food Delivery, Pickup & Dine-In Platform**
+
+<p align="center">
+  <a href="https://khadok-restaurant-management-system.vercel.app/" target="_blank">
+    <img src="https://img.shields.io/badge/🔗 Live Demo-Visit Website-00C2FF?style=for-the-badge" />
+  </a>
+</p>
+
+
+> *Note: This deployment showcases the frontend UI/UX of the platform. Backend services such as Node.js APIs, MySQL database operations, authentication, and real-time features require separate server deployment.*
 <p align="center">
   <img src="https://img.shields.io/badge/Node.js-Backend-success?style=for-the-badge&logo=node.js">
   <img src="https://img.shields.io/badge/Express.js-Framework-black?style=for-the-badge&logo=express">
@@ -28,6 +39,7 @@
 ---
 
 # 🍽️ Khadok – Smart Food Delivery, Pickup & Dine-In Platform
+ 
 
 ## 🚀 Project Overview
 

@@ -4,7 +4,7 @@
 <!-- ========================= -->
 
 <p align="center">
-  <img src="https://readme-typing-svg.herokuapp.com?font=Poppins&size=30&duration=3000&pause=1000&color=00C2FF&center=true&vCenter=true&width=900&lines=🍽️+Khadok+2.0;Smart+Food+Delivery+%7C+Pickup+%7C+Dine-In+Platform;Built+for+the+Future+of+Restaurants+in+Bangladesh" />
+  <img src="https://readme-typing-svg.herokuapp.com?font=Poppins&size=30&duration=3000&pause=1000&color=00C2FF&center=true&vCenter=true&width=900&lines=🍽️+Khadok;Smart+Food+Delivery+%7C+Pickup+%7C+Dine-In+Platform;Built+for+the+Future+of+Restaurants+in+Bangladesh" />
 </p>
 
 <p align="center">
@@ -257,7 +257,7 @@ Users can instantly find:
 ## 1️⃣ Clone Repository
 
 ```bash
-git clone https://github.com/IamSadik/khadok-2.0.git
+git clone https://github.com/IamSadik/Khadok_Restaurant_Management_System.git
 ```
 
 ---
@@ -330,7 +330,7 @@ Designed with scalability, real-time performance, and premium customer experienc
 
 # 👨‍💻 Developed By
 
-### Yeamine Alam Sorol
+### Team KA/YO
 
 Software Engineering Student
 Full Stack Developer

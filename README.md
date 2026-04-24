@@ -1,4 +1,5 @@
 
+
 <!-- ========================= -->
 <!--        HERO SECTION       -->
 <!-- ========================= -->
@@ -79,7 +80,7 @@ Unlike conventional food delivery platforms, Khadok introduces:
 ---
 
 ## 🗺️ 1. Map-Based Discovery & Smart Routing
-
+<img width="1913" height="917" alt="Capture" src="https://github.com/user-attachments/assets/735024f2-5732-4154-a5e2-97d2fb0fe298" />
 ### 📍 MapTiler + Leaflet.js
 
 - Interactive custom-styled maps
@@ -128,7 +129,7 @@ Preparing → Packed → En Route → Delivered
 ## 🏛️ 3. 3D Interior Restaurant Preview
 
 ### 🌐 Panolens.js
-
+<img width="1912" height="911" alt="Capture1" src="https://github.com/user-attachments/assets/7c971454-5564-497c-b6f8-5836771db25b" />
 * 360° panoramic restaurant tours
 * Virtual dine-in experience before booking
 
